@@ -1,0 +1,24 @@
+{
+  "name": "diplomarbeitsbuch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ListAssist/Diplomarbeitsbuch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ListAssist/Diplomarbeitsbuch/issues"
+  },
+  "homepage": "https://github.com/ListAssist/Diplomarbeitsbuch#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-exec": "^4.0.0",
+    "gulp-once": "^2.0.3"
+  }
+}
