@@ -21,5 +21,5 @@ bibtex build/diplomarbeit
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 
-REM rd /s /q build\tmp
+rd /s /q build\tmp
 

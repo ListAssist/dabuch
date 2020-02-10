@@ -6,23 +6,11 @@ async function build() {
 }
 
 async function compileFinalMarkdown() {
-    await execSync(".\\scripts\\makeWin.bat", (err, stdout) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log(stdout);
-    });
+    await execSync(".\\scripts\\makeWin.bat", {stdio: 'inherit'});
 }
 
 async function compileMarkdown() {
-    await execSync(".\\scripts\\makeWinDev.bat", (err, stdout) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log(stdout);
-    });
+    await execSync(".\\scripts\\makeWinDev.bat", {stdio: 'inherit'});
 }
 
 async function watch() {

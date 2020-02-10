@@ -17,4 +17,4 @@ cd ..
 
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error -quiet
 
-REM rd /s /q build\tmp
+rd /s /q build\tmp

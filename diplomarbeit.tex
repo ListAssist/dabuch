@@ -89,7 +89,7 @@
 \pdfgentounicode=1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%  Kopf und Fußzeilen -- links und rechts verschieden 
+%  Kopf und Fußzeilen -- links und rechts verschieden
 \newcommand{\kopfseitenummer}{{\bfseries \thepage}}
 \newcommand{\kopfkapl}{{\bfseries\leftmark}}
 \newcommand{\kopfkapr}{{\bfseries\rightmark}}
@@ -115,7 +115,7 @@
 %% Kapitel - aufwändige Kapitelüberschriften
 %Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
 %\usepackage[Bjornstrup]{fncychap}
-% Alternative: 
+% Alternative:
 %\usepackage{titlesec}
 
 % Verzeichnisse - aufwändiger
@@ -123,7 +123,7 @@
 
 
 %% Code Beispiele
-%% eine Variante 
+%% eine Variante
 \usepackage{listings}
 \renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
 %% andere Variante
@@ -141,7 +141,7 @@
 %\end{minted}
 %\caption{Beschreibung}
 %\end{listing}
-%% dritte Variante 
+%% dritte Variante
 % mit/für pandoc
 \input{tex/00_pandoclisting.tex}
 
@@ -172,7 +172,7 @@
 %% schöner: 10000 -- gar keine, 1000 als Mittelweg
 \clubpenalty = 1000 % Schusterjungen verhindern
 \widowpenalty = 1000 % Hurenkinder verhindern
-\displaywidowpenalty = 1000 
+\displaywidowpenalty = 1000
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -214,7 +214,7 @@ A-1030 Wien :: Tel +43 1 24215-10 :: Fax DW 18
  der Höheren Technischen Lehranstalt Wien 3 Rennweg\\
  \vspace{1cm}
  im Schuljahr 2019/2020\\
- 
+
  \vspace{1cm}
  durch\\
  \vspace{0.5cm}
@@ -235,7 +235,7 @@ Klein Christian
 
 \begin{center}
 \vspace{5mm}
-Wien, \today 
+Wien, \today
 \par\end{center}
 
 \end{titlepage}%%%%%%%%%%%%%%%%%%%%% Ende Titelseite %%%%%%%%%%%%%%%%%%%%%%
@@ -295,7 +295,7 @@ Mögliche Gliederung (nach \cite{leitfaden})
 
 \chapter{Planung}
 
-% Das komplette nächste Kapitel wird in der externen Datei diplomarbeit2.tex gespeichert. 
+% Das komplette nächste Kapitel wird in der externen Datei diplomarbeit2.tex gespeichert.
 % Es wird an dieser Stelle im Dokument eingebaut.
 % Damit ist es möglich, mehrere Personen an diversen Teilen der Diplomarbeit arbeiten zu lassen.
 
@@ -319,7 +319,7 @@ Mögliche Gliederung (nach \cite{leitfaden})
 
 was auch immer: technische Dokumentationen etc.
 
-Zusätzlich sollte es geben: 
+Zusätzlich sollte es geben:
 \begin{itemize}
 \item Abkürzungsverzeichnis
 \item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
@@ -339,7 +339,7 @@ Zusätzlich sollte es geben:
 \linethickness{0.05mm}%
 \put(0,0){\dashbox{0.2}(#1,#2)%
 {\parbox{#1mm}{%
-\centering\footnotesize  
+\centering\footnotesize
 %{\bf MESSBOX}\\
 % if \textrm fails use \rm
 Breite $ = #1 {\textrm\ mm}$\\
@@ -354,5 +354,5 @@ Höhe $ = #2 {\textrm\ mm}$
 
 {\Large --- Diese Seite nach dem Druck entfernen! ---}
 \todo{Diese Seite nach dem Druck entfernen!}
-\end{center} 
+\end{center}
 \end{document}
