@@ -25,6 +25,8 @@
 
 \setcounter{secnumdepth}{3}
 
+\usepackage{longtable}
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
@@ -126,6 +128,7 @@
 %% eine Variante
 \usepackage{listings}
 \renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
+\newcommand{\passthrough}[1]{\lstset{mathescape=false}\texttt{#1}\lstset{mathescape=true}}
 %% andere Variante
 % \usepackage{minted}
 % \setminted{

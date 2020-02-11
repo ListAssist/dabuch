@@ -1,19 +1,31 @@
 \hypertarget{allgemein}{%
 \section{Allgemein}\label{allgemein}}
 
-\hypertarget{einkaufslisten-in-gruppensss}{%
-\section{Einkaufslisten in
-Gruppensss}\label{einkaufslisten-in-gruppensss}}
+\hypertarget{einkaufslisten-in-gruppen}{%
+\section{Einkaufslisten in Gruppen}\label{einkaufslisten-in-gruppen}}
 
-Da bereits für die Einkaufsslisten Widgets erstellt wurden, wurden diese
+Da bereits für die Einkaufslisten Widgets erstellt wurden, wurden diese
 einfach wiederverwendet. Das erspart sowohl die erneute Programmierung
-des Widgets als auch Probleme mit der Esinheitlichkeit, da man bei einer
-Änderung beide Widgets wieder anpassen müsstse. s \# Übersicht der
-Benutzer in einer Gruppe
+des Widgets als auch Probleme mit der Einheitlichkeit, da man bei einer
+Änderung beide Widgets wieder anpassen müsste.
 
-test
+\hypertarget{uxfcbersicht-der-benutzer-in-einer-gruppe}{%
+\section{Übersicht der Benutzer in einer
+Gruppe}\label{uxfcbersicht-der-benutzer-in-einer-gruppe}}
+
+Die Liste der Benutzer einer Gruppe ist ein Array von Maps, die den
+Namen, eine UID und eine URL für das Profilbild enthalten. Mit der
+``map'' methode werden aus den einzelnen Maps Widgets erstellt. Die
+Darstellung ist ein einfaches ``Row'' Widget mit einem Profilbild vorne,
+und dem Namen nach dem Profilbild. Falls ein Benutzer keine URL für ein
+Profilbild besitzt oder während das Bild lädt, wird ein selbst
+erstelltes Standard Profilbild angezeigt. Da der Besitzer der Gruppe
+ebenfalls in der Liste der Mitglieder ist, wird der Besitzer vor dem
+``mappen'' entfernt und er bekommt eine etwas andere Darstellung,
+nämlich mit einem grünen ``Gruppenersteller'' nach seinem Namen. Sollte
+der Name zu lang sein um ihn richtig darzustellen, wird mittels der
+Einstellung \passthrough{\lstinline!overflow: TextOverflow.ellipsis!}
+der Text gekürzt und mit \ldots{} am Ende dargestellt.
 
 \hypertarget{probleme}{%
 \section{Probleme}\label{probleme}}
-
-ssLOLssss
