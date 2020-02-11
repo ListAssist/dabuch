@@ -17,7 +17,7 @@ cd ..
 
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 makeindex -c -q build/diplomarbeit.idx 
-bibtex build/diplomarbeit
+bibtex build/tmp/diplomarbeit
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 

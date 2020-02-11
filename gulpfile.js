@@ -15,7 +15,7 @@ async function compileMarkdown() {
 
 async function watch() {
     await compileMarkdown();
-    gulp.watch("./markdown/*.md", compileMarkdown);
+    gulp.watch(["./markdown/*.md", "diplom.bib", "diplomarbeit.tex"], compileMarkdown);
 }
 
 exports.build = build;

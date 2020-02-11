@@ -1,15 +1,30 @@
 # Allgemein
 
-# Einkaufslisten in Gruppen
+# Problemstellungen
 
-Da bereits für die Einkaufslisten Widgets erstellt wurden, wurden diese
-einfach wiederverwendet. Das erspart sowohl die erneute Programmierung des Widgets
-als auch Probleme mit der Einheitlichkeit, da man bei einer Änderung beide Widgets
-wieder anpassen müsste.
+Das einscannen
 
-# Übersicht der Benutzer in einer Gruppe
+# Camera Scanner Modis
 
-test
+Wie in der Problemstellung bereits erwähnt, ist das Auslesen der Rechnung
+sehr schwer zu generalisieren. Das heißt eine Lösung zu finden, welche für
+egal welche Art von Foto funktioniert, ist kaum realisierbar.
 
-# Probleme
-ssLOLss
+Aus diesem Grund wurde der Camera Scanner in drei Modis unterteilt:
+
+* Editor
+* Selector
+* Trainer
+
+wobei der **Editor** auch als Hilfe für die anderen zwei Editoren verwendet
+werden kann.
+
+# Rechnungserkennung
+
+## Threshold Algorithmen
+
+## Holistically-Nested Edge Detection
+
+\cite{HED} Holistically-Nested Edge Detection (auch HED genannt), ist ein Deep Learning Ansatz, um
+Kanten in einem Bild hervorzuheben. Das Netzwerk basiert auv einer \cite{VGGNet} VGGNet Architektur und beinhaltet auch
+Residual Connections
