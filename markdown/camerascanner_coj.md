@@ -9,36 +9,41 @@ Die Extraktion dieser Informationen ist nicht trivial, vor allem wenn man davon 
 Die Extraktion beinhaltet auch viele Zwischenschritte die wie folgt aussehen.
 
 ## Rechnungserkennung
-Bei der Rechnungserkennung wird versucht die Rechnung vom Hintergrund des Bildes zu extrahieren
+Bei der Rechnungserkennung wird versucht die Rechnung vom Hintergrund des Bildes zu extrahieren.
+Durch lösen des Subproblems kommen wir zum nächsten Punkt.
 
 ## Wichtige Teile erkennen
-Den wichtigen Teil der Rechnung erkennen, wo die oben genannten Informationen vorhanden sind.
+Bevor wir den Text extrahieren, müssen wir den wichtigen Teil der Rechnung finden aus welchem
+der Text erkannt werden soll.
 
 ## Texterkennung
-Text aus einem Bild zu erkennen nicht einfach, PIXEL, FONT,
+Texterkennung oder auch "Optical character recognition" genannt (OCR)
 
 ## Produkte und Preise erkennen
 Matching mit Produkten
 
-DAS HIER ZU ALLGEMEIN
+# Flutter Widget
+Widget bla bla api call je nach Modi siehe unten hochladne firestore
 
-# Camera Scanner Modis
+# Camera Scanner Modi
 Wie in der Problemstellung bereits erwähnt, ist das Auslesen der Rechnung
 sehr schwer zu generalisieren. Das heißt eine Lösung zu finden, welche für
 egal welche Art von Foto funktioniert, ist kaum realisierbar.
 
-Aus diesem Grund wurde der Camera Scanner in drei Modis unterteilt:
+Aus diesem Grund wurde der Camera Scanner in drei Modi unterteilt:
 
 * Editor
 * Automatic
 * Trainer (Default)
 
-wobei der **Editor** Modus auch in Kombination mit den anderen zwei Modis verwendet werden kann.
+wobei der **Editor** Modus auch in Kombination mit den anderen zwei Modi verwendet werden kann.
 
 ## Editor
 
-Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Der Nutzer muss daraufhin
-den wichtigen Teil der Rechnung selbst auswählen.
+Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um ein perfomanten und flüssigen
+Editor zur Verfügung zu stellen, wurde das `image_cropper` verwendet, welche das Foto nativ
+auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin
+den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
 
 ### Anforderungen
 * Wichtiger Inhalt ausgewählt
@@ -59,6 +64,10 @@ und bewegen lässt. Weiters, können einzelne Eckpunkte oder zwei Eckpunkte glei
 
 Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen
 wie Raw Pixel Werte als auch Koordinaten uvm.!
+
+Um einen Canvas zu erstellen wurde das ``Custom Paint`` Widget verwendet, welches den `PolygonPainter` verwendet.
+Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist
+das dies ein convex Quadliteral ist.
 
 ### Anforderungen
 * Wichtiger Inhalt ausgewählt
