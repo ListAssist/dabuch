@@ -14,11 +14,13 @@ Bei der Rechnungserkennung wird versucht die Rechnung vom Hintergrund des Bildes
 ## Wichtige Teile erkennen
 Den wichtigen Teil der Rechnung erkennen, wo die oben genannten Informationen vorhanden sind.
 
-## Texterkennung 
+## Texterkennung
 Text aus einem Bild zu erkennen nicht einfach, PIXEL, FONT,
 
 ## Produkte und Preise erkennen
 Matching mit Produkten
+
+DAS HIER ZU ALLGEMEIN
 
 # Camera Scanner Modis
 Wie in der Problemstellung bereits erwähnt, ist das Auslesen der Rechnung
@@ -67,18 +69,18 @@ wäre es theoretisch möglich ein DCNN im Hintergrund zu trainieren, welches das
 
 # Rechnungserkennung
 Um überhaupt mit der Erkennung des "wichtigen Teiles" oder überhaupt Text zu beginnen, muss erstmal die Rechnung
-selbst lokalisiert werden. Um dies zu realisieren, müssen wir die Kanten des Rechnungzettels erkennen. 
+selbst lokalisiert werden. Um dies zu realisieren, müssen wir die Kanten des Rechnungzettels erkennen.
 Hierfür stehen vier größere Ansätze zur Verfügung.
 
 ## Threshold Algorithmen
 Um die Kanten der Rechnungen zu erkennen, kann man sich den Kontrast zum Hintergrund zu Nutze machen.
 Es existieren viele verschiedene Threshold Algorithmen, der einfachste wäre einen bestimmten Grauwert als Grenze
-zu nehmen und schauen, ob dieser überschritten 
+zu nehmen und schauen, ob dieser überschritten
 
 ## Holistically-Nested Edge Detection
 \cite{HED} Holistically-Nested Edge Detection (auch HED genannt), ist ein Deep Learning Ansatz, um
 Kanten in einem Bild hervorzuheben. Das Netzwerk basiert auf einer \cite{VGGNet} VGGNet Architektur und beinhaltet auch
-Residual Connections. 
+Residual Connections.
 
 Der Vorteil hierbei ist, dass das Netz nicht zu sehr vom Kontrast abhängt - ein klarer Vorteil gegenüber herkömmlichen Threshold Algorithmen.
 
@@ -86,7 +88,7 @@ Der Vorteil hierbei ist, dass das Netz nicht zu sehr vom Kontrast abhängt - ein
 Hough space bla bla polare darstellung
 
 # Wichtige Teile extrahieren
-Dieser Algorithmus funktioniert nur für **Billa** Rechnungen, da diese eine markable Linie zwischen 
+Dieser Algorithmus funktioniert nur für **Billa** Rechnungen, da diese eine markable Linie zwischen
 den Produkten zur Verfügung stellen.
 
 
@@ -97,7 +99,8 @@ Linien, wie z.B. die Kanten der Rechnung, miterkannt. Um die zwei richtigen Lini
 die Linie mit dem kleinsten Y-Achsen Wert, die obere Rechnungskante ist.
 
 # Texterkennung
-Zuletzt 
+Zuletzt
 
 
 
+\abb{King Bild}
