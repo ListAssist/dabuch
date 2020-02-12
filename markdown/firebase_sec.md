@@ -10,7 +10,7 @@ machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 
 ## Benutzer
 
-\begin{wrapfigure}{i}{0.4\textwidth}
+\begin{wrapfigure}{o}{0.4\textwidth}
 \begin{center}
 \includegraphics[width=0.28\textwidth, keepaspectratio]{images/seczer/users.png}
 \end{center}
@@ -29,7 +29,7 @@ automatische Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall e
 \needspace{10cm}
 ## Einladungen
 
-\begin{wrapfigure}{i}{0.4\textwidth}
+\begin{wrapfigure}{o}{0.4\textwidth}
 \begin{center}
 \includegraphics[width=0.28\textwidth, keepaspectratio]{images/seczer/invites.png}
 \end{center}
