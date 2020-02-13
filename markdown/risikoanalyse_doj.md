@@ -7,9 +7,9 @@
 
 # Risikoportfolio
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=2cm,height=\textheight]{images/doja/risikoanalyse.png}
+\includegraphics[width=6cm,height=\textheight]{images/doja/risikoanalyse.png}
 \caption{Bild des Risikoportfolios\label{King Bild}}
 \end{figure}
 

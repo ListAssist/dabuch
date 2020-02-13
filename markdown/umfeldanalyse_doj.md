@@ -1,6 +1,6 @@
 # Grafische Darstellung
 
-![Bild der Umfeldanalyse](images/doja/umweltanalyse.png "Umfeldanalyse")
+![Bild der Umfeldanalyse](images/doja/umweltanalyse.png)
 
 # Beschreibung der wichtigsten Umfelder
 
