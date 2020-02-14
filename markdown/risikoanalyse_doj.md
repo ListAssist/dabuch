@@ -1,5 +1,6 @@
 # Beschreibung der wichtigsten Risiken
 
+
 | #   | Bezeichnung | Beschreibung des Risikos                 | P   | A   | RF   |
 | --- | ----------- | ---------------------------------------- | --- | --- | ---- |
 | 1   | Geschäfte   | Stellen uns keine Angebote zur Verfügung | 50  | 5   | 250  |
@@ -7,7 +8,11 @@
 
 # Risikoportfolio
 
-![Bild des Risikoportfolios\label{King Bild}](images/doja/risikoanalyse.png "Risikoportfolio"){width=2cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm,height=\textheight]{images/doja/risikoanalyse.png}
+\caption{Bild des Risikoportfolios\label{King Bild}}
+\end{figure}
 
 # Risiko Gegenmaßnahmen
 

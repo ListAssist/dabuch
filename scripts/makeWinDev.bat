@@ -15,6 +15,6 @@ cd markdown
 for %%f in (*.md) do pandoc %PANDOCOPT% %%f -o "../tex/converted/%%~nf%.tex"
 cd ..
 
-%LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error -quiet
+%LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 
 rd /s /q build\tmp
