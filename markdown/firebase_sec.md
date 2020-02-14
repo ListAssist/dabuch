@@ -1,3 +1,6 @@
+\newcommand\outerWidth{0.35}
+\newcommand\innerWidth{0.28}
+
 # Allgemein
 
 Um zu bewerkstelligen, dass die Daten auf der Clientseite in echtzeit
@@ -10,9 +13,9 @@ machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 
 ## Benutzer
 
-\begin{wrapfigure}{o}{0.4\textwidth}
+\begin{wrapfigure}{O}{\outerWidth\textwidth}
 \begin{center}
-\includegraphics[width=0.28\textwidth, keepaspectratio]{images/seczer/users.png}
+\includegraphics[width=\innerWidth\textwidth, keepaspectratio]{images/seczer/users.png}
 \end{center}
 \caption{Users Collection\label{usersCollection}}
 \end{wrapfigure}
@@ -27,11 +30,26 @@ werden alle Einstellungen gespeichert. Das Feld `last_automatically_generated` i
 automatische Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall einzuhalten.
 
 \needspace{10cm}
+## Gruppen
+
+\begin{wrapfigure}{O}{\outerWidth\textwidth}
+\begin{center}
+\includegraphics[width=\innerWidth\textwidth, keepaspectratio]{images/seczer/groups.png}
+\end{center}
+\caption{Groups Collection\label{groupsCollection}}
+\end{wrapfigure}
+
+Auch die `groups` Collection verwendet als Dokument-ID einen zufällig generierten String, 
+der 28 Zeichen lang ist. Anders als bei den Benutzern wird dieser nicht zusätzlich in einem Feld
+gespeichert. Die Maps von den Feldern `members` und `creator` sind leicht abgeänderte Benutzer-Elemente.
+Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
+
+
 ## Einladungen
 
-\begin{wrapfigure}{o}{0.4\textwidth}
+\begin{wrapfigure}{O}{\outerWidth\textwidth}
 \begin{center}
-\includegraphics[width=0.28\textwidth, keepaspectratio]{images/seczer/invites.png}
+\includegraphics[width=\innerWidth\textwidth, keepaspectratio]{images/seczer/invites.png}
 \end{center}
 \caption{Invites Collection\label{invitesCollection}}
 \end{wrapfigure}

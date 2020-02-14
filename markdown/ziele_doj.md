@@ -90,47 +90,47 @@ Die App wird im AppStore zur Verfügung stehen.
 
 ## Rafael Doja
 
-| Themenschwerpunkt        | Scrum Master, Design & Gestaltung des Produktes  |
-| -----------------------  | -----------------------------------------------  |
-| Ziele und Anforderungen  | RE-M 1 Dokumentation                             |
-|                          | RE-M 2 Corporate Identity                        |
-|                          | RE-M 3 Design                                    |
-|                          | RE-M 14 Animationsvideo                          |  
-|                          | RE-M 15 Produktdatensammlung 
+| Themenschwerpunkt       | Scrum Master, Design & Gestaltung des Produktes |
+| ----------------------- | ----------------------------------------------- |
+| Ziele und Anforderungen | RE-M 1 Dokumentation                            |
+|                         | RE-M 2 Corporate Identity                       |
+|                         | RE-M 3 Design                                   |
+|                         | RE-M 14 Animationsvideo                         |
+|                         | RE-M 15 Produktdatensammlung                    |
 
 ## Filip Coja
 
-| Themenschwerpunkt        | Programmierung der App                           |
-| -----------------------  | -----------------------------------------------  |
-| Ziele und Anforderungen  | RE-M 5 Automatisches einlesen der Rechnung per Foto                             |
-|                          | RE-M 7 Sicherung der Daten                       |
-|                          | RE-M 8 Automatische Einkaufsliste                                    |
-|                          | RE-M 9 Authentifizierung                           |  
-|                          | RE-M 12 Projektwebsite                            |
-|                          | RE-M 16 Veröffentlichung                          |
-|                          | RE-O 3 Rechnungen und Einkauflisten als PDF exportieren                     |
+| Themenschwerpunkt       | Programmierung der App                                  |
+| ----------------------- | ------------------------------------------------------- |
+| Ziele und Anforderungen | RE-M 5 Automatisches einlesen der Rechnung per Foto     |
+|                         | RE-M 7 Sicherung der Daten                              |
+|                         | RE-M 8 Automatische Einkaufsliste                       |
+|                         | RE-M 9 Authentifizierung                                |
+|                         | RE-M 12 Projektwebsite                                  |
+|                         | RE-M 16 Veröffentlichung                                |
+|                         | RE-O 3 Rechnungen und Einkauflisten als PDF exportieren |
 
 ## Tobias Seczer
 
-| Themenschwerpunkt        | Programmierung der App                           |
-| -----------------------  | -----------------------------------------------  |
-| Ziele und Anforderungen  | RE-M 4 Einkaufsliste                             |
-|                          | RE-M 7 Sicherung der Daten                       |
-|                          | RE-M 8 Automatische Einkaufsliste                                    |
-|                          | RE-M 10 Gruppen                                  |  
-|                          | RE-M 11 Einladungen                              |
+| Themenschwerpunkt       | Programmierung der App            |
+| ----------------------- | --------------------------------- |
+| Ziele und Anforderungen | RE-M 4 Einkaufsliste              |
+|                         | RE-M 7 Sicherung der Daten        |
+|                         | RE-M 8 Automatische Einkaufsliste |
+|                         | RE-M 10 Gruppen                   |
+|                         | RE-M 11 Einladungen               |
 
 
 ## Daniel Kisling
 
-| Themenschwerpunkt        | Programmierung der App                           |
-| -----------------------  | -----------------------------------------------  |
-| Ziele und Anforderungen  | RE-M 4 Einkaufsliste                             |
-|                          | RE-M 6 Verlauf der Einkäufe                      |
-|                          | RE-M 13 Einstellungen                            |
-|                          | RE-M 15 Produktdatensammlung                           |  
-|                          | RE-O 1 Darstellung von gesammelten Daten                            |
-|                          | RE-O 2 Benachrichtingungen bei Angeboten                          |
+| Themenschwerpunkt       | Programmierung der App                   |
+| ----------------------- | ---------------------------------------- |
+| Ziele und Anforderungen | RE-M 4 Einkaufsliste                     |
+|                         | RE-M 6 Verlauf der Einkäufe              |
+|                         | RE-M 13 Einstellungen                    |
+|                         | RE-M 15 Produktdatensammlung             |
+|                         | RE-O 1 Darstellung von gesammelten Daten |
+|                         | RE-O 2 Benachrichtingungen bei Angeboten |
 
 
 
