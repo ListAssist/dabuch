@@ -98,8 +98,8 @@ Folgende Funktion beschreibt den Algorithmus:
 $$  
 f(G) =   
 \begin{cases}  
-       \text{255,} &\quad\text{if G}_{value} \ge T \\  
-       \text{0,} &\quad\text{if G}_{value} \le T-1 \\  
+       \text{255,} &\quad\text{if G} \ge T \\  
+       \text{0,} &\quad\text{if G} \le T-1 \\  
 \end{cases}  
 $$
 
