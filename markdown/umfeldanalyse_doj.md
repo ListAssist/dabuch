@@ -1,6 +1,12 @@
 # Grafische Darstellung
 
-![Bild der Umfeldanalyse](images/doja/umweltanalyse.png)
+<!-- ![Bild der Umfeldanalyse](images/doja/umweltanalyse.png "Umfeldanalyse") -->
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm, keepaspectratio]{images/doja/umweltanalyse.png}
+\caption{Bild der Umfeldanalyse}
+\end{figure}
 
 # Beschreibung der wichtigsten Umfelder
 
