@@ -83,17 +83,13 @@ Hier werden mal die wichtigsten Algorithmen aufgelistet, als auch ihre Lösung f
 Um die Kanten der Rechnungen zu erkennen, kann man sich den Kontrast zum Hintergrund zu Nutze machen. Threshold Algorithmen
 analysieren die Helligkeit der Pixel und stufen es in Weiß (1) oder Schwarz (0) ein.
 
-Es existieren drei Methoden des Thresholdings
+Thresholding Methoden können in drei folgende Gruppen unterteilt werden.
 
-### Simple Thresholding
+### Global Thresholding
 Hier wird ein bestimmter Grauwert als Grenze
 genommen und es wird geprüft, ob dieser überschritten wird.
 
-#### Standard Binary Thresholding
-\hfill
-Die hier einfachste genannte Methode. 
 Folgende Funktion beschreibt den Algorithmus:
-
 
 $$  
 f(G) =   
@@ -110,10 +106,21 @@ T & ausgesuchter Threshold Wert ($ 0 \le T \le 255 $)
 \end{tabular}
 \end{center}
 
-### Adaptive Thresholding
-Bei dieser Methode wird 
+### Local Adaptive Thresholding
+Es kann oft dazu kommen, dass eine Rechnung an einigen Stellen mehr beleuchtet ist als andere Stellen siehe Vergleich zwischen Simple Binary Thresholding und Adaptive Gauss \abb{Thresholding Vergleich}. Aus diesem Grund ist es unmöglich einen globalen Wert zu nehmen, da der Hintergrund unterschiedlich hell ist.
+
+Der Trick ist es, verschiedene Thresholds für bestimmte Bereiche des Bildes zu nehmen. Innerhalb dieses Bereiches (z.B. 11x11 Pixel) kann der normale oder gewichtete Mittelwert als Threshold genommen werden. Wobei die Gewichte für die Pixelwerte dann ein Gaussian Kernel ist. \cite{GaussianKernel}
+
+Dies bringt den Vorteil mit sich, dass Pixel welche weiter entfernt sind vom derzeitigem Pixel weniger gewichtet werden. Aus diesem Grund schweift der Integral Bild Algorithmus vom orginalem ab, da hier die Summen anderes berechnet werden müssen.
+
+Um die Pixelsumme effizient zu berechnen, wird ein Integral Bild erstellt. \cite{IntegralImages}. Damit wird ein Lookup Table erstellt, in welchem wir mit folgender Formel
+
+$$
+ 
+$$
 
 ### Otsu's Methode
+
 
 ### Der Vergleich
 Um die Thresholding Algorithmen zu vergleichen, wurde dieser folgende Code Snippet erstellt.
