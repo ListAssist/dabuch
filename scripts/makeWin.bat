@@ -9,7 +9,7 @@ set PANDOCMODULES=%PANDOCMODULES%+pipe_tables+table_captions
 set PANDOCMODULES=%PANDOCMODULES%+inline_notes+footnotes+link_attributes+smart
 
 
-set PANDOCOPT=--listings -S -N -f %PANDOCMODULES%
+set PANDOCOPT=--listings -N -f %PANDOCMODULES%
 
 cd markdown
 for %%f in (*.md) do pandoc %PANDOCOPT% %%f -o "../tex/converted/%%~nf%.tex"
