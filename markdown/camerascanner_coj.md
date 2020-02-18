@@ -79,7 +79,7 @@ wäre es theoretisch möglich ein DCNN im Hintergrund zu trainieren, welches das
 Die oben genannten Problemstellungen können mit vielen verschiedenen Algorithmen bis zu einem bestimmten Grad gelöst werden.
 Hier werden mal die wichtigsten Algorithmen aufgelistet, als auch ihre Lösung für die Probleme.
 
-## Threshold Algorithmen
+## Threshold
 Um die Kanten der Rechnungen zu erkennen, kann man sich den Kontrast zum Hintergrund zu Nutze machen. Threshold Algorithmen
 analysieren die Helligkeit der Pixel und stufen es in Weiß (1) oder Schwarz (0) ein.
 
@@ -107,9 +107,9 @@ T & ausgesuchter Threshold Wert ($ 0 \le T \le 255 $)
 \end{center}
 
 ### Local Adaptive Thresholding
-Es kann oft dazu kommen, dass eine Rechnung an einigen Stellen mehr beleuchtet ist als andere Stellen siehe Vergleich zwischen Simple Binary Thresholding und Adaptive Gauss \abb{Thresholding Vergleich}. Aus diesem Grund ist es unmöglich einen globalen Wert zu nehmen, da der Hintergrund unterschiedlich hell ist.
+Es kann oft dazu kommen, dass eine Rechnung an einigen Stellen mehr beleuchtet ist als andere Stellen, siehe Vergleich zwischen Simple Binary Thresholding und Adaptive Gauss \abb{Thresholding Vergleich}. Aus diesem Grund ist es unmöglich nur einen globalen Wert zu nehmen, welcher über das ganze Bild die erwarteten Ergebnisse liefert, da der Hintergrund unterschiedlich hell ist.
 
-Der Trick ist es, verschiedene Thresholds für bestimmte Bereiche des Bildes zu nehmen. Innerhalb dieses Bereiches (z.B. 11x11 Pixel) kann der normale oder gewichtete Mittelwert als Threshold genommen werden. Wobei die Gewichte für die Pixelwerte dann ein Gaussian Kernel ist. \cite{GaussianKernel}
+Der Trick ist es, verschiedene Thresholdwerte für bestimmte Bereiche des Bildes zu nehmen. Innerhalb dieses Bereiches (z.B. 11x11 Pixel) kann der normale oder gewichtete Mittelwert als Threshold genommen werden. Wobei die Gewichte für die Pixelwerte dann ein Gaussian Kernel ist. \cite{GaussianKernel}
 
 Dies bringt den Vorteil mit sich, dass Pixel welche weiter entfernt sind vom derzeitigem Pixel weniger gewichtet werden. Aus diesem Grund schweift der Integral Bild Algorithmus vom orginalem ab, da hier die Summen anderes berechnet werden müssen.
 
@@ -120,7 +120,107 @@ $$
 $$
 
 ### Otsu's Methode
+\cite{Otsu} Otsu's Methode kann auch zu den Globalen Threshold Kategorien gezählt werden. Otsu versucht anhand eines Histogrammes, die gewichtete Intra-class Varianz zu minimieren. Die gesamte Varianz des Histogrammes sieht wie folgt aus
+$$
+    \sigma^2 = \sigma_{intra}^2 + \sigma_{inter}^2
+$$
+wobei gilt, dass sich die Intra-class Varianz durch die gewichtete Summe der Varianzen der zwei Klassen. Wobei die Gewichte die Eintrittswarscheinlichkeiten der Klasse selbst sind.
+$$
+    \sigma_{intra}^2 = q1*\sigma_1^2 + q2 * \sigma_2^2
+$$
 
+Die Inter-Klassen varianz ergibt sich wie folgt
+
+$$
+    \sigma_{inter}^2 = q1 * q2 (\mu1 - \mu2)
+$$
+
+wobei $q2 = (1 - q1)$ da jedem Pixel Wert von $0 - 255$ eine Eintrittswarscheinlichkeit, im Bezug auf die Anzahl des Pixels im Histogramm, hergegeben wurde.
+
+Wie wir sehen, wenn wir $\sigma_{intra}^2$ minimieren, maximieren wir $\sigma_{inter}^2$. Das Maximieren wird hier bevorzugt, da diese perfomanter und leichter zu berechnen ist.
+
+#### Algorithmus
+
+\begin{center}
+\begin{tabular}{@{}>{$}l<{$}l@{}}
+\sigma_intra^2 & Intra-class Varianz \\
+\sigma_{inter}^2 & Inter-Klassen Varianz \\
+q1 & Eintrittswarscheinlichkeit der Klasse 1 \\
+\mu1 & Durchschnitt Klasse 1 \\
+\sigma_1^2 & Varianz der Klasse 1 \\
+q2 & Eintrittswarscheinlichkeit der Klasse 2 \\
+\mu2 & Durchschnitt Klasse 2 \\
+\sigma_2^2 & Varianz der Klasse 2
+\end{tabular}
+\end{center}
+
+ Interessant ist es, wie man den Threshold ermittelt. Der Algorithmus sieht wie folgt aus:
+
+\cite{OtsuVideo} \cite{OtsuWiki}
+
+
+* Erstelle eine Eintrittswarscheinlichkeit für jeden Grauwert aus dem Histogramm 
+```python
+    histogram, _ = np.histogram(img, bins=256)
+    histogram = histogram / histogram.sum()
+    # histogram.sum() = 1 jetzt
+```
+* Iteriere durch alle möglichen Thresholds $1 \le t \le 255$
+  
+    ```python
+    for t in range(1, 255):
+    ```
+    * Berechne $q1$ und $q2$ mit
+    $$
+        q1 = \sum_{i=1}^{t}P(i)
+    $$
+    $$
+        q2 = \sum_{i=t+1}^{256}P(i)
+    $$
+    ```python
+    q1 = histogram[:t].sum()
+    q2 = histogram[t:].sum()
+    ```
+    * Berechne $\mu1$ und $\mu2$
+    $$
+        \mu1 = \frac{1}{q1} * \sum_{i=1}^{t}i * P(i)
+    $$
+    $$
+        \mu2 = \frac{1}{q2} * \sum_{i=t+1}^{256}i * P(i)
+    $$
+    ```python
+    u1 = np.arange(0, t) * histogram[:t]
+    u1 = u1.sum() / q1
+    
+    u2 = np.arange(t, 256) * histogram[t:]
+    u2 = u2.sum() / q2
+    ```
+    * Berechne die Inter-Klassen Varianz
+    $$
+        variance = q1 * (1 - q1) * (\mu1 - \mu2)^2 
+    $$
+    ```python
+        variance = q1 * (1 - q1) * (u1 - u2)**2
+    ```
+    * Prüfe ob $v_{neu} > v_{alt}$, wenn ja, setze neuen threshold $t$ und setze $v_{alt} = v_{neu}$
+* Threshold nehmen, welcher die höchste Inter-Klassen Varianz hat
+```python
+otsu_output = (img > thresh) * 255
+```
+
+\begin{center}
+\begin{tabular}{@{}>{$}l<{$}l@{}}
+P(i) & Eintrittswarscheinlichkeit der Pixelintensität an Stelle $i$ \\
+t & derzeitiger getesteter Threshold \\
+i & Position im Histogramm \\
+v_{neu} & neu berechnete Inter-Klassen Varianz \\
+v_{alt} & höchst aufgetretende Varianz bis zum jetzigem Zeitpunkt
+\end{tabular}
+\end{center}
+
+Im Bild kann man schön den Verlauf der Inter-Klassen Varianz sehen. Der grüne Strich kennzeichnet den ermittelten Threshold. Man erkennt, dass dieser sich genau bei der Maxima der Inter-Klassen Varianz befindet. \abb{Otsu Graph}
+
+[Verlauf der Inter-Klassen Varianz \label{Otsu Graph}](images/coja/otsu_graph.PNG)
 
 ### Der Vergleich
 Um die Thresholding Algorithmen zu vergleichen, wurde dieser folgende Code Snippet erstellt.
