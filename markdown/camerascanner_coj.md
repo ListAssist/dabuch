@@ -9,8 +9,8 @@ Die Extraktion dieser Informationen ist nicht trivial, vor allem wenn man davon 
 Die Extraktion beinhaltet auch viele Zwischenschritte die wie folgt aussehen.
 
 ## Rechnungserkennung
-Bei der Rechnungserkennung wird versucht die Rechnung vom Hintergrund des Bildes zu extrahieren.
-Durch lösen des Subproblems kommen wir zum nächsten Punkt.
+Bei der Rechnungserkennung wird versucht, die Rechnung vom Hintergrund des Bildes zu extrahieren.
+Durch lösen dieses Subproblems kommen wir zum nächsten Punkt.
 
 ## Wichtige Teile erkennen
 Bevor wir den Text extrahieren, müssen wir den wichtigen Teil der Rechnung finden aus welchem
@@ -40,7 +40,7 @@ wobei der **Editor** Modus auch in Kombination mit den anderen zwei Modi verwend
 
 ## Editor
 Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um ein perfomanten und flüssigen
-Editor zur Verfügung zu stellen, wurde das `image_cropper` verwendet, welche das Foto nativ
+Editor zur Verfügung zu stellen, wurde das `image_cropper` Paket verwendet, welche das Foto nativ
 auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin
 den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
 
@@ -49,7 +49,7 @@ den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
 * Text erkennbar
 
 ## Automatic
-Der "Automatic" Modus ist ein sehr instabiler Modus und hat hohe Anforderungen an das Bild.
+Der "Automatic" Modus ist ein sehr instabiler Modus und hat hohe Anforderungen an das Bild. Ziel ist es die Informationen aus der Rechnung auszulesen, ohne weitere Informationen, wie Koordinaten der Polygone etc., zu verwenden.
 
 ### Anforderungen
 * hoher Rechnungs zu Hintergrund Kontrast
@@ -80,7 +80,7 @@ Die oben genannten Problemstellungen können mit vielen verschiedenen Algorithme
 Hier werden mal die wichtigsten Algorithmen aufgelistet, als auch ihre Lösung für die Probleme.
 
 ## Threshold
-Um die Kanten der Rechnungen zu erkennen, kann man sich den Kontrast zum Hintergrund zu Nutze machen. Threshold Algorithmen
+Um die Kanten der Rechnungen hervorzuheben, kann man sich den Kontrast zum Hintergrund zu Nutze machen. Threshold Algorithmen
 analysieren die Helligkeit der Pixel und stufen es in Weiß (1) oder Schwarz (0) ein.
 
 Thresholding Methoden können in drei folgende Gruppen unterteilt werden.
@@ -106,6 +106,14 @@ T & ausgesuchter Threshold Wert ($ 0 \le T \le 255 $)
 \end{tabular}
 \end{center}
 
+In Python ist dieser Algorithmus ganz einfach implementiert.
+```python
+import cv2
+
+img = cv2.imread("images/rechnung.jpeg", cv2.IMREAD_GRAYSCALE)
+thresholded_image = (img > thresh) * 255
+```
+
 ### Local Adaptive Thresholding
 Es kann oft dazu kommen, dass eine Rechnung an einigen Stellen mehr beleuchtet ist als andere Stellen, siehe Vergleich zwischen Simple Binary Thresholding und Adaptive Gauss \abb{Thresholding Vergleich}. Aus diesem Grund ist es unmöglich nur einen globalen Wert zu nehmen, welcher über das ganze Bild die erwarteten Ergebnisse liefert, da der Hintergrund unterschiedlich hell ist.
 
@@ -113,7 +121,7 @@ Der Trick ist es, verschiedene Thresholdwerte für bestimmte Bereiche des Bildes
 
 Dies bringt den Vorteil mit sich, dass Pixel welche weiter entfernt sind vom derzeitigem Pixel weniger gewichtet werden. Aus diesem Grund schweift der Integral Bild Algorithmus vom orginalem ab, da hier die Summen anderes berechnet werden müssen.
 
-Um die Pixelsumme effizient zu berechnen, wird ein Integral Bild erstellt. \cite{IntegralImages}. Damit wird ein Lookup Table erstellt, in welchem wir mit folgender Formel
+Um die Pixelsumme effizient zu berechnen, wird ein Integral Bild, auch Summed-Area-Table genannt, erstellt. \cite{IntegralImages}. In dieser Table können wir mit Formel XYZ uns die Summe eines bestimmten Blockes schnell und effizient ausrechnen.
 
 $$
  
@@ -143,7 +151,7 @@ Wie wir sehen, wenn wir $\sigma_{intra}^2$ minimieren, maximieren wir $\sigma_{i
 
 \begin{center}
 \begin{tabular}{@{}>{$}l<{$}l@{}}
-\sigma_intra^2 & Intra-class Varianz \\
+\sigma_{intra}^2 & Intra-class Varianz \\
 \sigma_{inter}^2 & Inter-Klassen Varianz \\
 q1 & Eintrittswarscheinlichkeit der Klasse 1 \\
 \mu1 & Durchschnitt Klasse 1 \\
