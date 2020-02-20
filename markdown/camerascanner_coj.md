@@ -117,15 +117,123 @@ thresholded_image = (img > thresh) * 255
 ### Local Adaptive Thresholding
 Es kann oft dazu kommen, dass eine Rechnung an einigen Stellen mehr beleuchtet ist als andere Stellen, siehe Vergleich zwischen Simple Binary Thresholding und Adaptive Gauss \abb{Thresholding Vergleich}. Aus diesem Grund ist es unmöglich nur einen globalen Wert zu nehmen, welcher über das ganze Bild die erwarteten Ergebnisse liefert, da der Hintergrund unterschiedlich hell ist.
 
-Der Trick ist es, verschiedene Thresholdwerte für bestimmte Bereiche des Bildes zu nehmen. Innerhalb dieses Bereiches (z.B. 11x11 Pixel) kann der normale oder gewichtete Mittelwert als Threshold genommen werden. Wobei die Gewichte für die Pixelwerte dann ein Gaussian Kernel ist. \cite{GaussianKernel}
+Der Trick ist es, verschiedene Thresholdwerte für bestimmte Bereiche des Bildes zu nehmen. Innerhalb dieses Bereiches (z.B. 11x11 Pixel) kann dann ein bestimmter Wert als Threshold genommen werden. Um diesen Wert zu bestimmten, gibt es verschiedenste Methoden. 
 
-Dies bringt den Vorteil mit sich, dass Pixel welche weiter entfernt sind vom derzeitigem Pixel weniger gewichtet werden. Aus diesem Grund schweift der Integral Bild Algorithmus vom orginalem ab, da hier die Summen anderes berechnet werden müssen.
+* Mittelwert des Blockes als Threshold Wert
+* Gewichteter Mittelwert des Blockes, wobei die Gewichte durch einen Gausschen Filter gegeben werden, wobei die Summe aller Gewichtungen = 1 sein müssen.
+    $$
+        \sum_{row = 0}^{blockSize} \sum_{col = 0}^{blockSize} G_w = 1
+    $$
+    Der Vorteil hierbei ist, dass Pixel die weiter entfernt sind im Block, weniger Einfluss auf den Mittelwert haben.
 
-Um die Pixelsumme effizient zu berechnen, wird ein Integral Bild, auch Summed-Area-Table genannt, erstellt. \cite{IntegralImages}. In dieser Table können wir mit Formel XYZ uns die Summe eines bestimmten Blockes schnell und effizient ausrechnen.
+    Beispiel Gewichte für ein 3x3 Block \cite{GausscherKernelRechner}
+    $$
+    \begin{bmatrix}
+    0.102059 & 0.115349 & 0.102059 \\
+    0.115349 & 0.130371 & 0.115349 \\
+    0.102059 & 0.115349 & 0.102059
+    \end{bmatrix}
+    $$
+
+    Die Gewichte werden von der Funktion eines 2D Gausschen Filters entnommen \cite{GausscherFilterFormel}, welcher mithilfe nummerischer Integration diskrete Werte erhält.
+    $$
+        g(x, y) = e^{\frac{-(x^2 + y^2)}{2\sigma^2}}
+    $$
+
+    In OpenCV wird das sigma als $\sigma = 0.3 * (blockSize / n - 1) + 0.8$ definiert. \cite{OpenCVSigma}
+    ![2D Gausscher Filter mit $\sigma = 1$ \label{2D Gauss}](images/coja/2d_gauss.PNG)
+* Median des Blockes
+
+Adaptive Methoden haben das Problem, dass oft ein Block nur aus zum Beispiel schwarzen Pixel besteht. (Vielleicht ein Hintergrund?). Hier würde es keinen Sinn machen einen Threshold zu nehmen, da die Pixel nur minimal abweichen. Aus diesem Grund verwenden wir noch eine Konstante $C$ welche vom ermittelten Threshold abgezogen wird.
+
+**Integral Images**
+
+Um die Pixelsumme effizient zu berechnen, wird ein Integral Bild, auch Summed-Area-Table genannt, erstellt. \cite{IntegralImages}. Ziel ist es für ein Rechteck in einem Bild die Pixelsumme zu ermitteln.
+
+Um die Summed-Area-Table schnell in einem Durchlauf zu berechnen, können wir folgende Formel verwenden.
+$$
+    I(x, y) = i(x, y) + I(x, y - 1) + I(x - 1, y) - I(x - 1, y - 1)
+$$
+
+\begin{center}
+\begin{tabular}{@{}>{$}l<{$}l@{}}
+I(x,y) & Summe der Pixel bis zu Pixel Position (x, y) \\
+i(x,y) & Pixelintensität bei Position (x, y)
+\end{tabular}
+\end{center}
+
+Die Implementierung sieht wie folgt aus.
+```python
+def gen_integral_img(image):
+    height, width = image.shape
+
+    integral = np.zeros_like(image, dtype=int)
+    # create first x and y row so faster algorithm can come to use
+    for col in range(width):
+        integral[0, col] = image[0, 0:col].sum()
+    for row in range(height):
+        integral[row, 0] = image[0:row, 0].sum()
+
+    # use fast formula: I(x,y) = i(x,y) + I(x, y-1) + I(x-1, y) - I(x-1, y-1)
+    for col in range(1, width):
+        for row in range(1, height):
+            integral[row, col] = image[row, col] + integral[row - 1, col] + integral[row, col - 1] - integral[row - 1, col - 1]
+
+    return integral
+```
+
+![Integral Bild visualisiert. Die Pixelsumme steigt, da immer weiter aufsummiert wird. \label{Integral Bild visualisiert}](images/coja/integral_vis.PNG)
+
+Mit den vorgerechneten Summen im Integral Bild, kann man schnell für eine bestimmte Fläche im Bild die Pixelsumme errechnen. Mit folgender Formel kann dies erreicht werden.
 
 $$
- 
+    sum(A, B, C, D) = I(D) - I(B) - I(C) + I(A)
 $$
+
+\begin{center}
+\begin{tabular}{@{}>{$}l<{$}l@{}}
+A, B, C, D & Koordinaten des Rechtecks, wessen Summe berechnet werden soll
+\end{tabular}
+\end{center}
+
+![Die größte Summe $D$ wird von den kleineren Rechtecken $B$ und $C$ abgezogen. Da das kleine Rechteck links oben zwei mal abgezogen wird, müssen wir noch $A$ addieren. \label{Summed Area Final Calc}](images/coja/integral_calc.png)
+
+Jetzt müssen wir für jeden Pixel im Bild, die Pixelsumme innerhalb des Pixel holen. Mit dieser Summe dann mit $\frac{Wert}{blockSize^2}$ den Mittelwert oder Median ermittelt. Bei der gausschen Methode müssen wir nicht nochmal dividieren, da die Gewichtungen sich alle schon auf 1 summieren.
+
+Wenn wir den Threshold dann haben, fragen wir ab, ob der derzeitige Pixel über oder unter dem Threshold ist. Je nach dem welche Bedingung übereinstimmt, wird dann Schwarz (0) oder Weiß (1) für den Pixel gesetzt.
+
+Hier wurde in python mal der Algorithmus mit dem Mittelwert implementiert.
+```python
+def adaptive_mean_thresh(input_img, blockSize, C):
+    height, width = input_img.shape
+    integral = gen_integral_img(input_img)
+
+    # calculate boxes
+    output_image = np.zeros_like(input_img)
+    margin = int((blockSize - 1) / 2)
+    for x in range(margin, width-margin):
+        for y in range(margin, height-margin):
+            pixel = input_img[y, x]
+            thresh = get_threshold_for_area(input_img, integral, (x, y), blockSize)
+            thresh -= C
+            if pixel >= thresh:
+                output_image[y, x] = 255
+            else:
+                output_image[y, x] = 0
+
+    return output_image
+
+def get_threshold_for_area(image, I, pos: tuple, b: int):
+    h, w = image.shape
+    x, y = pos
+    db = int((b - 1) / 2)
+
+    if 0 + db <= x <= w - db or 0 + db <= y <= h - db:
+        #                  I(D)       +        I(A)     +     I(B)        -       I(C)
+        pixel_sum = I[y + db, x + db] + I[y - db, x - db] - I[y - db, x + db] - I[y + db, x - db]
+        return pixel_sum / b**2
+```
+
 
 ### Otsu's Methode
 \cite{Otsu} Otsu's Methode kann auch zu den Globalen Threshold Kategorien gezählt werden. Otsu versucht anhand eines Histogrammes, die gewichtete Intra-class Varianz zu minimieren. Die gesamte Varianz des Histogrammes sieht wie folgt aus
@@ -226,9 +334,9 @@ v_{alt} & höchst aufgetretende Varianz bis zum jetzigem Zeitpunkt
 \end{tabular}
 \end{center}
 
-Im Bild kann man schön den Verlauf der Inter-Klassen Varianz sehen. Der grüne Strich kennzeichnet den ermittelten Threshold. Man erkennt, dass dieser sich genau bei der Maxima der Inter-Klassen Varianz befindet. \abb{Otsu Graph}
+Im Bild kann man schön den Verlauf der Inter-Klassen Varianz sehen. Der grüne Strich kennzeichnet den ermittelten Threshold. Man erkennt, dass dieser sich genau bei der Maxima der Inter-Klassen Varianz befindet. \abb{Inter Klassen Varianz}
 
-[Verlauf der Inter-Klassen Varianz \label{Otsu Graph}](images/coja/otsu_graph.PNG)
+![Verlauf der Inter-Klassen Varianz \label{Inter Klassen Varianz}](images/coja/otsu_graph.PNG)
 
 ### Der Vergleich
 Um die Thresholding Algorithmen zu vergleichen, wurde dieser folgende Code Snippet erstellt.
