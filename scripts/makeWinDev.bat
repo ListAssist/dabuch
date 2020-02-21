@@ -17,4 +17,9 @@ cd ..
 
 %LATEX% diplomarbeit.tex --output-directory=build -aux-directory=build/tmp -halt-on-error
 
-rd /s /q build\tmp
+del build\tmp\diplomarbeit.aux
+del build\tmp\diplomarbeit.lof
+del build\tmp\diplomarbeit.lot
+del build\tmp\diplomarbeit.idx
+del build\tmp\diplomarbeit.out
+del build\tmp\diplomarbeit.toc
