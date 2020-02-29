@@ -2,14 +2,14 @@
 
 # Allgemein
 
-Zum Speichern der Daten wird Cloud Firestore \cite{firestore} verwendet.
+Zum Speichern der Daten wird Cloud Firestore verwendet.
 Zusätzlich werden für das Speichern der Profilbilder und eingescannten Rechnungen
-Cloud Storage \cite{storage} und für einige Funktionen, die serverseitig ausgeführt
-werden müssen, Cloud Functions \cite{cloudFunctions} verwendet. 
+Cloud Storage und für einige Funktionen, die serverseitig ausgeführt
+werden müssen, Cloud Functions verwendet. 
 
-Um zu bewerkstelligen, dass die Daten auf der Clientseite in echtzeit
+Um zu bewerkstelligen, dass die Daten auf der Clientseite in Echtzeit
 aktualisiert werden, war Firebase die leichteste Variante. Mit Firebase ist
-es mithilfe von Streams leicht möglich, Updates in der Datenbank in echtzeit
+es mithilfe von Streams leicht möglich, Updates in der Datenbank in Echtzeit
 auf der Clientseite zu registrieren. Um Gebrauch von den Echtzeit-Updates zu
 machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 

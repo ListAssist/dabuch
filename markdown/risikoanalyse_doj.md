@@ -1,10 +1,10 @@
 # Beschreibung der wichtigsten Risiken
 
 
-| #   | Bezeichnung | Beschreibung des Risikos                 | P   | A   | RF   |
-| --- | ----------- | ---------------------------------------- | --- | --- | ---- |
-| 1   | Geschäfte   | Stellen uns keine Angebote zur Verfügung | 50  | 5   | 250  |
-| 2   | Geschäfte2  | Stellen uns keine Angebote zur Verfügung | 50  | 60  | 3000 |
+| #   | Bezeichnung | Beschreibung des Risikos                               | P   | A   | RF   |
+| --- | ----------- | ------------------------------------------------------ | --- | --- | ---- |
+| 1   | Geschäfte   | Stellen uns keine Angebote zur Verfügung               | 50  | 5   | 250  |
+| 2   | Geschäfte2  | Stellen uns keine Datenbank der Produkte zur Verfügung | 50  | 60  | 3000 |
 
 # Risikoportfolio
 
