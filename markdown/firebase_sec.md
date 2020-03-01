@@ -2,14 +2,14 @@
 
 # Allgemein
 
-Zum Speichern der Daten wird Cloud Firestore \cite{firestore} verwendet.
+Zum Speichern der Daten wird Cloud Firestore verwendet.
 Zusätzlich werden für das Speichern der Profilbilder und eingescannten Rechnungen
-Cloud Storage \cite{storage} und für einige Funktionen, die serverseitig ausgeführt
-werden müssen, Cloud Functions \cite{cloudFunctions} verwendet. 
+Cloud Storage und für einige Funktionen, die serverseitig ausgeführt
+werden müssen, Cloud Functions verwendet. 
 
-Um zu bewerkstelligen, dass die Daten auf der Clientseite in echtzeit
+Um zu bewerkstelligen, dass die Daten auf der Clientseite in Echtzeit
 aktualisiert werden, war Firebase die leichteste Variante. Mit Firebase ist
-es mithilfe von Streams leicht möglich, Updates in der Datenbank in echtzeit
+es mithilfe von Streams leicht möglich, Updates in der Datenbank in Echtzeit
 auf der Clientseite zu registrieren. Um Gebrauch von den Echtzeit-Updates zu
 machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 
@@ -49,7 +49,7 @@ Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
 
 ### Beziehung zum Benutzer
 
-Welcher Benutzer in welchen Gruppen ist wird in der ``groups_user` Collection gespeichert.Als Dokument-ID
+Welcher Benutzer in welchen Gruppen ist wird in der `groups_user` Collection gespeichert.Als Dokument-ID
 verwendet sie die `uid` des Benutzers. In den jeweiligen Dokumenten gibt es nur ein `groups` Feld, welches
 die IDs der Gruppen beinhaltet, denen der Benutzer angehört. Die ID der Gruppe ist die zufällig generierte
 Dokument-ID der Gruppe.
@@ -92,8 +92,8 @@ den Namen des Produktes.
 
 Die Struktur der Storage ist sehr simpel aufgebaut. Für Benutzer müssen nur Profilbilder und eingescannte
 Rechnungen abgespeichert werden und für Gruppen nur die eingescannten Rechnungen. Es gibt zwei Ordner, `users` und
-`groups`. Jeder dieser Ordner hat als Unterordner Ordner, die nach den IDs der Benutzer \todo{Darf man bzw. schreiben?}
-bzw. der Gruppen benannt sind. Diese Ordner beinhalten noch einen Unterordner namens `lists`. Zusätzlich zu dem `lists`
-Ordner wird bei den Benutzern auch noch das Profilbild `profile-picture.png` gespeichert. Der Ordner `lists`
-enthält wiederum Ordner die nach den IDs der Listen benannt sind. Darin befinden sich die eingescannten Rechnungen
-im Format `YYYY-MM-DD HH:MM:SS.MS.png` bzw. `DateTime.now()` mit der Endung png.
+`groups`. Jeder dieser Ordner hat als Unterordner Ordner, die nach den IDs der Benutzer bzw. der Gruppen benannt 
+sind. Diese Ordner beinhalten noch einen Unterordner namens `lists`. Zusätzlich zu dem `lists` Ordner wird bei den
+Benutzern auch noch das Profilbild `profile-picture.png` gespeichert. Der Ordner `lists` enthält wiederum Ordner 
+die nach den IDs der Listen benannt sind. Darin befinden sich die eingescannten Rechnungen im Format 
+`YYYY-MM-DD HH:MM:SS.MS.png` bzw. `DateTime.now()` mit der Endung png.
