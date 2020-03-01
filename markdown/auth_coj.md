@@ -1,24 +1,63 @@
 # Allgemein
-Authentizierung, echtzeit, streamprovider
+Die Authentizierung ist ein sehr wichtiger Teil der Applikation, da sie die zwei größten Blöcke, die Authentizierung und die App selbst, von einander trennt. Um das Problem des Authentizierens zu lösen, wurde die `AuthService` Klasse erstellt.
+
+![Klassendiagramm der AuthService und ResultHandler Klasse. AuthenticationType ist eine Instanz der Enum Klasse von Dart. \label{Inter Klassen Varianz}](images/coja/auth_puml.png)
 
 # Firebase
-Firebase bietet viele verschiedene Authenticationmöglichkeiten an, welche auch für dart mit dem ```firebase_auth```
- Package verfügbar sind.
+Firebase bietet viele verschiedene Authenticationmöglichkeiten an, welche auch für dart mit dem ```firebase_auth``` Package verfügbar sind.
  
-Folgende Möglich
+Folgende Authentizierungen werden schon von Haus aus angeboten, wobei die fett markierten wirklich in Verwendung sind.
 
+* **Email und Passwort**
+* Telefon
+* **Google**
+* Google Play
+* Apple Game Center
+* **Facebook**
 * Twitter
+* GitHub
+* Yahoo
+* Microsoft
 * Apple
-* Vieles mehr
- 
+
 ## OAUTH
 
-# Realtime Authenticaation
+# Realtime Authentication
+Um die Echtzeit Authentizierung zu verwenden, war es essentiell einen `StreamProvider` aus dem `provider` Paket zu verwenden. Es existieren drei Streams dieses Stream-typen, einen für den `StreamProvider<User>`, welche in Echtzeit die Userdaten aus der Datenbank liest. Der zweite ist für den `StreamProvider<FirebaseUser>` verantwortlich und der dritte vom Typen `StreamProvider<bool>` dafür, ob derzeit eine Authentizierung im Gange ist.
 
-mit Stream Provider
+Diese Streams können von allen Kindern im Widget Baum in Echtzeit gelesen werden. Aus diesem Grund musste die Authentizierung selbst auch ein Kind des `MaterialApp` Widgets sein. (siehe Code Snippet am Ende des Kapitels)
+
+```java
+    /* Wie man die Echtzeitdaten des Streams auslesen kann. */
+    FirebaseUser user = Provider.of<FirebaseUser>(context);
+    User docUser = Provider.of<User>(context);
+    bool loading = Provider.of<bool>(context);
+```
 
 # Probleme
+Es gab zwei größere Probleme, welche etwas Zeit gekostet haben, da diese nicht sehr offensichtlich während der Programmierung waren.
 
 ## Twitter Login
+Ein Problem, welches gleich am Anfang aufgetreten ist war, dass die Twitter Integration von dem ``firebase_auth`` Package die neue Twitter API Version nicht unterstüzt. Aus diesem Grund ist kein Login mit Twitter möglich.
 
 ## State Handling
+Hier war das Problem, den Unterschied zwischen eines `FirebaseUser` Users und eines selbst erstellten `User` zu handlen. Dies ist sehr wichtig, da der `User` erst geladen wird, nachdem der `FirebaseUser` nicht `null` ist. Wenn aber das UI  sofort geändert wird, nachdem der `FirebaseUser` existiert, wird eben ein Fehler geworfen da der `User` nicht existiert. Dies konnte mit einer einfachen Abfrage gelöst werden.
+
+```dart
+    return AnimatedSwitcher(
+        duration: Duration(milliseconds: 600),
+        child: user != null
+            ? Scaffold(
+                key: mainScaffoldKey,
+                body: docUser != null ? Body() : null,
+                drawer: docUser != null ? Sidebar() : null,
+              )
+            : Scaffold(
+                key: authScaffoldKey,
+                body: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 600),
+                  child: loading != null && loading ? SpinKitDoubleBounce(color: Colors.blueAccent) : AuthenticationPage(),
+                ),
+                resizeToAvoidBottomInset: false,
+        ));
+```

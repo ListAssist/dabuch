@@ -1,26 +1,52 @@
 # Allgemein
-Rechnungserkennung ist ein Problem, welches **bis heute** noch nicht perfekt gelöst ist. Das Ziel ist es
-mithilfe eines Fotos einer Rechnung folgende Informationen zu extrahieren:
+Rechnungserkennung ist ein Problem, welches **bis heute** noch nicht perfekt gelöst ist. Das Ziel ist es mithilfe eines Fotos einer Rechnung folgende Informationen zu extrahieren:
 
 * Produkte und ihre Preise
 * Gesamtpreis
 
-Die Extraktion dieser Informationen ist nicht trivial, vor allem wenn man davon ausgeht, dass die Rechnung irgendwo im Bild sein kann.
+Die Extraktion dieser Informationen ist nicht trivial, vor allem, wenn man davon ausgeht, dass die Rechnung sich überall im Bild befinden kann.
 Die Extraktion beinhaltet auch viele Zwischenschritte die wie folgt aussehen.
 
 ## Rechnungserkennung
-Bei der Rechnungserkennung wird versucht, die Rechnung vom Hintergrund des Bildes zu extrahieren.
-Durch lösen dieses Subproblems kommen wir zum nächsten Punkt.
+Bei der Rechnungserkennung wird versucht, die Rechnung vom Hintergrund des Bildes zu extrahieren. Durch lösen dieses Problems, kommen wir zum nächsten Punkt.
+
+Diese Erkennung kann mit vielen Methoden erzielt werden, die untereinander auskombiniert werden können.
+
+Folgende Optionen liegen für das Thresholding vor:
+
+* normale Thresholding Algorithmen
+* Holistically Nested Edge Detection als Threshold
+
+Zu notieren ist, dass hier ein Gausscher Blur noch angewendet werden muss um die Perfomanz zu verbessern.
+
+Das Ergebniss kann dann mit folgenden Edge Detections noch verbunden werden:
+
+* Canny Edge Detection
+* Dilation + Canny Edge Detection (nur für HED)
+* Hough Transform
+
+Daraufhin müssen wir wirklich die Bounding Box für die Rechnung erhalten:
+
+* Rechteck aus Hough Transform
+* findContours mit minAreaRect
+* findContours mit approxPolyDP
+
+Theoretisch könnte man auch Google Cloud Vision
 
 ## Wichtige Teile erkennen
-Bevor wir den Text extrahieren, müssen wir den wichtigen Teil der Rechnung finden aus welchem
-der Text erkannt werden soll.
+Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise erkannt werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
 
 ## Texterkennung
-Texterkennung oder auch "Optical character recognition" genannt (OCR)
+Texterkennung oder auch "Optical character recognition" (=OCR) ist das grundlegende Problem in dieser Aufgabenstellung. Die Preise als auch die Namen der Produkte müssen ausgelesen werden. Um dies zu realisieren, wurde \cite{tesseract} Googles Tesseract Engine verwendet. Die Engine ist open source und wird von Google weiterentwickelt. Diese besteht aus mehreren \cite{lstm} LSTM Netzwerken, welche für verschiedene Aufgaben zuständig sind.
+
+Um die Daten aus der Engine schön formatiert zu erhalten, wird die `pytesseract` Bibliothek verwendet, welche eine Abstraktion der Tesseract Engine ist.
 
 ## Produkte und Preise erkennen
-Matching mit Produkten
+Nachdem der Text erkannt wurde, müssen Texte und Preise zusammengeführt werden. Hier trennen sich die Pfade je nach Anwendung. 
+
+Falls der Camera Scanner für das Abhaken der Einkaufsliste verwendet wird, muss eine veränderte Variante des Stable Marriage Problems verwendet werden, welche die erkannten Produkte mit den vorhandenen vereinigt.
+
+Falls der Camera Scanner für das Erstellen einer neuen Einkaufsliste verwendet wird, werden einfach die Items hinzugefügt.
 
 # Flutter Widget
 Widget bla bla api call je nach Modi siehe unten hochladne firestore
@@ -58,11 +84,11 @@ Der "Automatic" Modus ist ein sehr instabiler Modus und hat hohe Anforderungen a
 * Text erkennbar
 
 ## Trainer
-Der Trainer Modus stellt dem User ein eine Quadliteral zur Verfügung, welcher sich bis zu bestimmten Grenzen verformen
-und bewegen lässt. Weiters, können einzelne Eckpunkte oder zwei Eckpunkte gleichzeitig verschoben werden.
+Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich bis zu bestimmten Grenzen verformen
+und bewegen lässt. Weiters können einzelne Eckpunkte oder zwei Eckpunkte gleichzeitig verschoben werden.
 
 Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen
-wie Raw Pixel Werte als auch Koordinaten uvm.!
+wie Raw Pixel Werte, als auch Koordinaten uvm.!
 
 Um einen Canvas zu erstellen wurde das ``Custom Paint`` Widget verwendet, welches den `PolygonPainter` verwendet.
 Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist
@@ -73,7 +99,7 @@ das dies ein convex Quadliteral ist.
 * Text erkennbar
 
 Da hier nicht nur das Bild, sondern auch die Koordinaten des wichtigen Teils an den Server gesendet werden,
-wäre es theoretisch möglich ein DCNN im Hintergrund zu trainieren, welches das erkennen des wichtigen Teiles perfektioniert.
+wäre es theoretisch möglich ein Convolutional Neural Network im Hintergrund zu trainieren, welches das erkennen des wichtigen Teiles perfektioniert.
 
 # Algorithmen
 Die oben genannten Problemstellungen können mit vielen verschiedenen Algorithmen bis zu einem bestimmten Grad gelöst werden.
@@ -84,6 +110,8 @@ Um die Kanten der Rechnungen hervorzuheben, kann man sich den Kontrast zum Hinte
 analysieren die Helligkeit der Pixel und stufen es in Weiß (1) oder Schwarz (0) ein.
 
 Thresholding Methoden können in drei folgende Gruppen unterteilt werden.
+
+----------- AB HIER EXTREMST KÜRZEN --------------------
 
 ### Global Thresholding
 Hier wird ein bestimmter Grauwert als Grenze
@@ -338,6 +366,9 @@ Im Bild kann man schön den Verlauf der Inter-Klassen Varianz sehen. Der grüne 
 
 ![Verlauf der Inter-Klassen Varianz \label{Inter Klassen Varianz}](images/coja/otsu_graph.PNG)
 
+----------- BIS HIER EXTREMST KÜRZEN --------------------
+
+
 ### Der Vergleich
 Um die Thresholding Algorithmen zu vergleichen, wurde dieser folgende Code Snippet erstellt.
 ```python
@@ -376,17 +407,15 @@ das der Boden das Licht reflektiert und daher der Kontrast nicht mehr so gegeben
 
 ![Endergebniss der verschiedenen Thresholding Algorithmen\label{Thresholding Vergleich}](images/coja/threshold_comparison.PNG)
 
-
-
 ## Holistically-Nested Edge Detection
 \cite{HED} Holistically-Nested Edge Detection (auch HED genannt), ist ein Deep Learning Ansatz, um
-Kanten in einem Bild hervorzuheben. Das Netzwerk basiert auf einer \cite{VGGNet} VGGNet Architektur und beinhaltet auch
+Kanten in einem Bild hervorzuheben. Das Neuronale Netzwerk basiert auf einer \cite{VGGNet} VGGNet Architektur und beinhaltet auch
 Residual Connections.
 
-Der Vorteil hierbei ist, dass das Netz nicht zu sehr vom Kontrast abhängt - ein klarer Vorteil gegenüber herkömmlichen Threshold Algorithmen.
+Der Vorteil hierbei ist, dass das Neuronale Netzwerk nicht zu sehr vom Kontrast abhängt - ein klarer Vorteil gegenüber herkömmlichen Threshold Algorithmen.
 
 ## Hough Lines
-Hough space bla bla polare darstellungs
+Hough Space => wie funktioniert es?
 
 # Wichtige Teile extrahieren
 Dieser Algorithmus funktioniert nur für **Billa** Rechnungen, da diese eine markable Linie zwischen
@@ -395,7 +424,7 @@ den Produkten zur Verfügung stellen.
 
 **Bild für Billa Rechnung einfügen**
 
-Diese Linien werden dann mit der oben erklärten "_Hough Lines Methode_" versucht zu erkennen. Jedoch werden auch viele andere
+Diese Linien werden dann mit der oben erklärten "_Hough Lines Methode_" zu erkennen versucht. Jedoch werden auch viele andere
 Linien, wie z.B. die Kanten der Rechnung, miterkannt. Um die zwei richtigen Linien zu finden, wird davon ausgegangen, dass
 die Linie mit dem kleinsten Y-Achsen Wert, die obere Rechnungskante ist.
 
@@ -403,5 +432,3 @@ die Linie mit dem kleinsten Y-Achsen Wert, die obere Rechnungskante ist.
 Zuletzt
 
 
-
-\abb{King Bild}
