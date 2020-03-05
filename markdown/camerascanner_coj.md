@@ -31,13 +31,55 @@ Daraufhin müssen wir wirklich die Bounding Box für die Rechnung erhalten:
 * findContours mit minAreaRect
 * findContours mit approxPolyDP
 
-Theoretisch könnte man auch Google Cloud Vision
+Theoretisch kann dies auch alles übersprungen werden, indem der Text auf dem ganzen Bild erkannt wird. Die Idee ist es die Bounding Box zu nehmen, welche alle Texte umfasst, und diese Box dann als Rechnung anzunehmen. Problem hier ist, dass auch oft im Hintergrund (z.B. bei komplexen Hintergründen) Text erkannt wird, welche die Bounding Box wieder fälschen.
+
+### Lösung
+Es hat sich gezeigt, dass die beste Kombination folgende ist:
+
+* Gausscher Blur (5x5 Kernel)
+* Otsu Thresholding
+* findContours mit approxPolyDP und als Fallback minAreaRect
+* Vier Punkt Transformation um erkannten Teil des Bildes auszuschneiden
 
 ## Wichtige Teile erkennen
 Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise erkannt werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
 
+Diese Linien können mithilfe des Hough Transforms erkannt werden. Hier ergab sich folgende Konfiguration als gut:
+
+```python
+lines = cv2.HoughLinesP(b_w_edges, 1, np.pi / 180, threshold=150, minLineLength=10, maxLineGap=300)
+```
+
+Da man davon ausgehen kann, dass die Rechnung gerade ist, müssen wir nur horizontale Linien erkennen. Da es aber sehr unwarscheinlich ist das die erkannte Linie wirklich einen Winkel von 0° besitzt, werden nur Linien genommen, welche sich zwischen -20° und 20° befinden.
+
+```python
+bounding_lines = []
+for line in lines:
+    x1, y1, x2, y2 = line[0]
+    # calculate angle to check if its a horizontal line https://i.imgur.com/fCw3PHC.png
+    # tan a = GK / AK
+    x_diff = abs(x2 - x1)
+
+    # to stay on the save side in case x_diff is 0
+    if x_diff == 0:
+        x_diff = 1
+
+    # get angle to check if it can go through as a horizontal line
+    angle = atan(abs(y2 - y1) / x_diff) * 180.0 / np.pi
+
+    if abs(angle) < 20:
+        # add line to array with coords
+        # [(x1, y1),(x2, y2)]
+        # [(x1, y1), (x2, y2)]
+        avg_y = (y1 + y2) / 2
+        bounding_lines.append(((x1, y1, x2, y2), avg_y))
+```
+Danach wird die Durchschnittliche X-Koordinate der Linken und Rechten Seite berechnet um dann das Rechteck zu bestimmten, welches den wichtigen Teil beinhaltet. Der nächste Schritt wäre, eine Vier Punkt Transformation durchzuführen um den erkannten Teil rauszuschneiden.
+
+Falls keine Linien erkannt werden, wird einfach das Input Bild weiterverwendet. Aus diesem wird dann der Text erkannt.
+
 ## Texterkennung
-Texterkennung oder auch "Optical character recognition" (=OCR) ist das grundlegende Problem in dieser Aufgabenstellung. Die Preise als auch die Namen der Produkte müssen ausgelesen werden. Um dies zu realisieren, wurde \cite{tesseract} Googles Tesseract Engine verwendet. Die Engine ist open source und wird von Google weiterentwickelt. Diese besteht aus mehreren \cite{lstm} LSTM Netzwerken, welche für verschiedene Aufgaben zuständig sind.
+Texterkennung oder auch "Optical character recognition" (OCR) ist das grundlegende Problem in dieser Aufgabenstellung. Die Preise als auch die Namen der Produkte müssen ausgelesen werden. Um dies zu realisieren, wurde \cite{tesseract} Googles Tesseract Engine verwendet. Die Engine ist open source und wird von Google weiterentwickelt. Diese besteht aus mehreren \cite{lstm} LSTM Netzwerken, welche für verschiedene Aufgaben zuständig sind.
 
 Um die Daten aus der Engine schön formatiert zu erhalten, wird die `pytesseract` Bibliothek verwendet, welche eine Abstraktion der Tesseract Engine ist.
 
@@ -48,10 +90,25 @@ Falls der Camera Scanner für das Abhaken der Einkaufsliste verwendet wird, muss
 
 Falls der Camera Scanner für das Erstellen einer neuen Einkaufsliste verwendet wird, werden einfach die Items hinzugefügt.
 
-# Flutter Widget
-Widget bla bla api call je nach Modi siehe unten hochladne firestore
+# Backend
+Um die ganze Pipeline von Transformationen der Bilder mit der App zu verbinden, brauchen wir eine REST Api. Um dies zu realisieren, wurde eine Flask REST Api gebaut. 
 
-# Camera Scanner Modi
+Folgende Endpunkte sind verfügbar, wobei die Basis URL **api.listassist.gq** ist.
+
+| Methode | Endpunkt    | Parameter          | Modus     |
+|---------|-------------|--------------------|-----------|
+| POST    | /detect     | Bild               | Editor    |
+| POST    | /trainable  | Bild + Koordinaten | Trainer   |
+| POST    | /prediction | Bild               | Automatic |
+
+Flasks Development Server ist nicht für Production geeignet, aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. \cite{flask_gunicorn} Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. \cite{gunicorn_nginx} Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server geproxied werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend}
+
+![Backend Flow\label{backend}](images/coja/backend.png)
+
+# Flutter Widget
+Die ganze Logik steckt im größten Widget `CameraScanner`, welche alle Variablen und States speichern und kontrollieren muss. Dieses Widget kann in mehrere Abschnitte unterteilt werden.
+
+## Camera Scanner Modi
 Wie in der Problemstellung bereits erwähnt, ist das Auslesen der Rechnung
 sehr schwer zu generalisieren. Das heißt eine Lösung zu finden, welche für
 egal welche Art von Foto funktioniert, ist kaum realisierbar.
@@ -64,42 +121,67 @@ Aus diesem Grund wurde der Camera Scanner in drei Modi unterteilt:
 
 wobei der **Editor** Modus auch in Kombination mit den anderen zwei Modi verwendet werden kann.
 
-## Editor
+### Editor
 Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um ein perfomanten und flüssigen
 Editor zur Verfügung zu stellen, wurde das `image_cropper` Paket verwendet, welche das Foto nativ
 auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin
 den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
 
-### Anforderungen
+#### Anforderungen
 * Wichtiger Inhalt ausgewählt
 * Text erkennbar
 
-## Automatic
+### Automatic
 Der "Automatic" Modus ist ein sehr instabiler Modus und hat hohe Anforderungen an das Bild. Ziel ist es die Informationen aus der Rechnung auszulesen, ohne weitere Informationen, wie Koordinaten der Polygone etc., zu verwenden.
 
-### Anforderungen
+#### Anforderungen
 * hoher Rechnungs zu Hintergrund Kontrast
 * Billa Rechnung oder Linien, welche die Produkte vom Rest der Rechnung trennen
-* Rechnungsecken sind zu sehen
 * Text erkennbar
 
-## Trainer
-Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich bis zu bestimmten Grenzen verformen
-und bewegen lässt. Weiters können einzelne Eckpunkte oder zwei Eckpunkte gleichzeitig verschoben werden.
+### Trainer
+Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich bis zu bestimmten Grenzen verformen und bewegen lässt. Da der Canvas nur über den ganzen Bildschirm geht, müssen folgende Sachen selbst programmiert werden für das Selection Werkzeug:
 
-Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen
-wie Raw Pixel Werte, als auch Koordinaten uvm.!
+* Collision Detection => Kollision mit Ende des Bildes?
+* Angle Detection => Winkel des Quadliterals zu groß oder zu klein?
+* Size Detection => Selection zu groß oder zu klein?
 
-Um einen Canvas zu erstellen wurde das ``Custom Paint`` Widget verwendet, welches den `PolygonPainter` verwendet.
-Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist
-das dies ein convex Quadliteral ist.
+Wobei diese Detections die Selektion Rot aufleuchten lassen, um dem User zu zeigen, dass hier eine Grenze gesetzt ist.
 
-### Anforderungen
+Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen wie Pixel Werte, Koordinaten uvm.! Um einen Canvas zu erstellen wurde das `PolygonPainter` Widget ausprogrammiert, welches vom `CustomPainter` ableitet. \abb{polypainter} Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist, dass das Quadliteral convex ist. (Jeder Winkel ist kleiner als 180°) \cite{convex}
+
+![PolygonPainter Klassenstruktur \label{polypainter}](images/coja/polygonpainter.png)
+
+
+#### Anforderungen
 * Wichtiger Inhalt ausgewählt
 * Text erkennbar
 
 Da hier nicht nur das Bild, sondern auch die Koordinaten des wichtigen Teils an den Server gesendet werden,
 wäre es theoretisch möglich ein Convolutional Neural Network im Hintergrund zu trainieren, welches das erkennen des wichtigen Teiles perfektioniert.
+
+## API Calls
+Wenn der User auf den "Check" Knopf drückt, wird je nach State ein API Call an die oben erwähnten Endpunkte abgesendet. Wenn dieser erfolgreich war, wird das Bild in Firestore hochgeladen.
+
+### String Filterung
+Hier werden unsinnige erkannte Wörter und Symbole mithilfe Regulären Audrücken entfernt. Folgender Regex wird verwendet:
+
+
+%|§|\?|\^|°|_|²|³|#|€|EUR|kassa|bon-nr|bonnr|filiale 
+
+Ein weiterer Regex wird verwendet, um bei Produktnamen Nummern, Punkte oder Gewichtseinheiten zu entfernen.
+
+
+\.|[0-9]|kg|g|-
+
+
+Weiters werden erkannte Preise über 1000€ nicht angenommen und Produktnamen ohne Preise entfernt. Ein Produkt wird ebenfalls entfernt wenn die Namenslänge < 3 ist.
+
+Je nach Anwendungsfall des Camera Scanners, wird jetzt entweder ein modifiziertes Stable Marriage Problem gelöst, falls eine Einkaufsliste abgehackt werden soll, oder die erkannten Preise mit Produktnamen zurückgeliefert.
+
+![CameraScanner Widget Klassenstruktur \label{camerascanner_struct}](images/coja/camera_scanner.png)
+
+----------- AB HIER WEGSCHNEIDEN --------------------
 
 # Algorithmen
 Die oben genannten Problemstellungen können mit vielen verschiedenen Algorithmen bis zu einem bestimmten Grad gelöst werden.
@@ -111,7 +193,6 @@ analysieren die Helligkeit der Pixel und stufen es in Weiß (1) oder Schwarz (0)
 
 Thresholding Methoden können in drei folgende Gruppen unterteilt werden.
 
------------ AB HIER EXTREMST KÜRZEN --------------------
 
 ### Global Thresholding
 Hier wird ein bestimmter Grauwert als Grenze
@@ -366,9 +447,6 @@ Im Bild kann man schön den Verlauf der Inter-Klassen Varianz sehen. Der grüne 
 
 ![Verlauf der Inter-Klassen Varianz \label{Inter Klassen Varianz}](images/coja/otsu_graph.PNG)
 
------------ BIS HIER EXTREMST KÜRZEN --------------------
-
-
 ### Der Vergleich
 Um die Thresholding Algorithmen zu vergleichen, wurde dieser folgende Code Snippet erstellt.
 ```python
@@ -431,4 +509,5 @@ die Linie mit dem kleinsten Y-Achsen Wert, die obere Rechnungskante ist.
 # Texterkennung
 Zuletzt
 
+----------- BIS HIER WEGSCHNEIDEN --------------------
 

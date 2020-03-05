@@ -4,7 +4,7 @@ Die Authentizierung ist ein sehr wichtiger Teil der Applikation, da sie die zwei
 ![Klassendiagramm der AuthService und ResultHandler Klasse. AuthenticationType ist eine Instanz der Enum Klasse von Dart. \label{Inter Klassen Varianz}](images/coja/auth_puml.png)
 
 # Firebase
-Firebase bietet viele verschiedene Authenticationmöglichkeiten an, welche auch für dart mit dem ```firebase_auth``` Package verfügbar sind.
+Firebase bietet viele verschiedene Authenticationmöglichkeiten an, welche auch für dart mit dem ```firebase_auth``` Paket verfügbar sind.
  
 Folgende Authentizierungen werden schon von Haus aus angeboten, wobei die fett markierten wirklich in Verwendung sind.
 
@@ -38,12 +38,12 @@ Diese Streams können von allen Kindern im Widget Baum in Echtzeit gelesen werde
 Es gab zwei größere Probleme, welche etwas Zeit gekostet haben, da diese nicht sehr offensichtlich während der Programmierung waren.
 
 ## Twitter Login
-Ein Problem, welches gleich am Anfang aufgetreten ist war, dass die Twitter Integration von dem ``firebase_auth`` Package die neue Twitter API Version nicht unterstüzt. Aus diesem Grund ist kein Login mit Twitter möglich.
+Ein Problem, welches gleich am Anfang aufgetreten ist war, dass die Twitter Integration von dem `firebase_auth` Paket die neue Twitter API Version nicht unterstüzt. Aus diesem Grund ist kein Login mit Twitter möglich.
 
 ## State Handling
-Hier war das Problem, den Unterschied zwischen eines `FirebaseUser` Users und eines selbst erstellten `User` zu handlen. Dies ist sehr wichtig, da der `User` erst geladen wird, nachdem der `FirebaseUser` nicht `null` ist. Wenn aber das UI  sofort geändert wird, nachdem der `FirebaseUser` existiert, wird eben ein Fehler geworfen da der `User` nicht existiert. Dies konnte mit einer einfachen Abfrage gelöst werden.
+Hier war das Problem, den Unterschied zwischen eines `FirebaseUser` Users und eines selbst erstellten `User` zu handlen. Dies ist sehr wichtig, da der `User` erst geladen wird, nachdem der `FirebaseUser` nicht `null` ist. Wenn aber das UI  sofort geändert wird, nachdem der `FirebaseUser` existiert, wird eben ein Fehler geworfen, da der `User` nicht existiert. Dies konnte mit einer einfachen Abfrage gelöst werden.
 
-```dart
+```java
     return AnimatedSwitcher(
         duration: Duration(milliseconds: 600),
         child: user != null
