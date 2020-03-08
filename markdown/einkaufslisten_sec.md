@@ -19,7 +19,7 @@ einen Eintrag wird ein Popup-Menü mit den Optionen zum Kopieren\todo{Noch progr
 Bei den offenen Einkaufslisten werden der Text, wie viele Produkte bereits gekauft wurden (\siehe{listenansicht-der-einkaufslisten})
 und die Liste der zu kaufenden Produkte angezeigt. Die Liste der Produkte ist eine `ListView`, die `CheckboxListTile`s beinhaltet.
 Die `CheckboxListTile`s sind wie folgt aufgebaut: An erster Stelle ist die Checkbox, danach kommen der Produktname und darunter die Anzahl der
-Produkte, die zu Kaufen \todo{zu Kaufen oder zu kaufen?} sind. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
+Produkte, die zu kaufen sind. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
 
 Nach abschließen einer Einkaufsliste wird diese in dem "Erledigt" Bereich angezeigt. Die
 eingescannten Rechnungen können dann inkl. ihrer erkannten Produkte und Preise angezeigt werden.
@@ -28,7 +28,7 @@ eingescannten Rechnungen können dann inkl. ihrer erkannten Produkte und Preise 
 # Abgeschlossene Einkaufslisten
 
 Bei den abgeschlossenen Einkaufslisten werden die sowohl die Produkte, die gekauft wurden, als auch
-die Produkte, die nicht gekauft wurden, seperat angezeigt. Ebenso werden die Anzahl der gekauften
+die Produkte, die nicht gekauft wurden, separat angezeigt. Ebenso werden die Anzahl der gekauften
 Produkte und der Preis, den der Benutzer eingestellt hat bzw. ein Preis von 0,- € falls
 kein Preis eingestellt wurde angezeigt. Ganz oben steht ein Text, wann der Einkauf abgeschlossen
 wurde. 

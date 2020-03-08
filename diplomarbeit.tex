@@ -153,13 +153,34 @@
 % mit/für pandoc
 \input{tex/00_pandoclisting.tex}
 
+%define Javascript language
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let, const, for, of, object, string, number},
+  % keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  % ndkeywordstyle=\color{darkgray}\bfseries,
+  % identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  % commentstyle=\color{purple}\ttfamily,
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{Dart}{
+	language=Java,
+	morekeywords={*,num,String,var,library,get,set}
+}
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \lstdefinestyle{mystyle}{
-  backgroundcolor=\color{backcolour},   
+  backgroundcolor=\color{backcolour},
   commentstyle=\color{codegreen},
   keywordstyle=\color{magenta},
   numberstyle=\tiny\color{codegray},
@@ -175,6 +196,17 @@
   showstringspaces=false,
   showtabs=false,                  
   tabsize=2
+}
+
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
 }
 
 \lstset{style=mystyle}
@@ -432,6 +464,7 @@ Wien, \today
 
 \chapter{Automatische Einkaufsliste (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
+\input{tex/converted/automatische_liste_sec.tex}
 
 \appendix
 
