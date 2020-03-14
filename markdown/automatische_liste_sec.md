@@ -161,3 +161,22 @@ _createAutomaticList() async {
     }
 }
 \end{lstlisting}
+
+Der gleiche Code wird auch für Gruppen verwendet, mit dem Unterschied, dass anstelle der Benutzereinstellungen
+die Gruppeneinstellungen geladen werden und die Cloud-Function mit der GruppenID aufgerufen wird.
+
+\needspace{12cm}
+# Vorschläge mit AI
+
+Beim Überlegen, wie die AI aussehen sollte, gab es einige Schwierigkeiten mit der AI. Mit einem Convolutional Neural Network
+(CNN) ist diese Art von AI nicht möglich. Im Unterricht wurden CNN Grundlagen beigebracht, jedoch nur im Zusammenhang
+mit Bildklassifizierung und nicht als eine Art "Vorschlags-AI". Später im Unterricht wurde das sogenannte Recurrent 
+Neural Network (RNN) durchgemacht. Diese Art von neuronalen Netzwerken wird vorallem bei Aktienkursvorhersagen verwendet.
+Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM) Layer.
+Da ein RNN Aktienpreise vorhersagen kann, wäre es vielleicht auch möglich dieses für Produktvorhersagen zu trainieren.
+
+# Warum Algorithmus nicht AI
+
+Da eine AI auch sehr viele Trainingsdaten benötigt, um gut zu funktionieren, wurde anstelle einer AI ein Algorithmus verwendet.
+Außerdem ist eine AI in diesem Umfang gar nicht nötig. Der Algorithmus ist für diese Aufgabe besser geignet, da man keine Trainingsdaten
+braucht und er auch schneller funktioniert.
