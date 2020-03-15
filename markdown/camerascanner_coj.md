@@ -17,9 +17,9 @@ Folgende Optionen liegen für das Thresholding vor:
 * normale Thresholding Algorithmen
 * Holistically Nested Edge Detection als Threshold
 
-Zu notieren ist, dass hier ein Gausscher Blur noch angewendet werden muss um die Perfomanz zu verbessern.
+Zu notieren ist, dass hier ein Gausscher Blur noch angewendet werden muss um die Performance zu verbessern.
 
-Das Ergebniss kann dann mit folgenden Edge Detections noch verbunden werden:
+Das Ergebnis kann dann mit folgenden Edge Detections noch verbunden werden:
 
 * Canny Edge Detection
 * Dilation + Canny Edge Detection (nur für HED)
@@ -31,15 +31,17 @@ Daraufhin müssen wir wirklich die Bounding Box für die Rechnung erhalten:
 * findContours mit minAreaRect
 * findContours mit approxPolyDP
 
-Theoretisch kann dies auch alles übersprungen werden, indem der Text auf dem ganzen Bild erkannt wird. Die Idee ist es die Bounding Box zu nehmen, welche alle Texte umfasst, und diese Box dann als Rechnung anzunehmen. Problem hier ist, dass auch oft im Hintergrund (z.B. bei komplexen Hintergründen) Text erkannt wird, welche die Bounding Box wieder fälschen.
+Theoretisch können auch all diese Schritte auch übersprungen werden, indem der Text auf dem ganzen Bild erkannt wird. Die Idee ist es die Bounding Box zu nehmen, welche alle Texte umfasst, und diese Box dann als Rechnung anzunehmen. Problem hier ist, dass auch oft im Hintergrund (z.B. bei komplexen Hintergründen) Text erkannt wird, welcher die Bounding Box wieder fälscht.
 
 ### Lösung
 Es hat sich gezeigt, dass die beste Kombination folgende ist:
 
 * Gausscher Blur (5x5 Kernel)
 * Otsu Thresholding
-* findContours mit approxPolyDP und als Fallback minAreaRect
+* findContours() mit approxPolyDP() und als Fallback minAreaRect()
 * Vier Punkt Transformation um erkannten Teil des Bildes auszuschneiden
+
+Dies ist aber noch immer keine universelle Lösung für das Problem.
 
 ## Wichtige Teile erkennen
 Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise erkannt werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
@@ -91,9 +93,9 @@ Falls der Camera Scanner für das Abhaken der Einkaufsliste verwendet wird, muss
 Falls der Camera Scanner für das Erstellen einer neuen Einkaufsliste verwendet wird, werden einfach die Items hinzugefügt.
 
 # Backend
-Um die ganze Pipeline von Transformationen der Bilder mit der App zu verbinden, brauchen wir eine REST Api. Um dies zu realisieren, wurde eine Flask REST Api gebaut. 
+Um die ganze Pipeline von Transformationen der Bilder mit der App zu verbinden, wird eine REST API benötigt. Um dies zu realisieren, wurde eine Flask REST API gebaut. 
 
-Folgende Endpunkte sind verfügbar, wobei die Basis URL **api.listassist.gq** ist.
+Folgende Endpunkte sind verfügbar, wobei die Basis URL [api.listassist.gq](https://api.listassist.gq/ "ListAssist Backend") ist.
 
 | Methode | Endpunkt    | Parameter          | Modus     |
 |---------|-------------|--------------------|-----------|
@@ -101,7 +103,7 @@ Folgende Endpunkte sind verfügbar, wobei die Basis URL **api.listassist.gq** is
 | POST    | /trainable  | Bild + Koordinaten | Trainer   |
 | POST    | /prediction | Bild               | Automatic |
 
-Flasks Development Server ist nicht für Production geeignet, aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. \cite{flask_gunicorn} Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. \cite{gunicorn_nginx} Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server geproxied werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend}
+Flasks Development Server ist nicht für Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. \cite{flask_gunicorn} Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. \cite{gunicorn_nginx} Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server geproxied werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend}
 
 ![Backend Flow\label{backend}](images/coja/backend.png)
 
@@ -176,6 +178,8 @@ Ein weiterer Regex wird verwendet, um bei Produktnamen Nummern, Punkte oder Gewi
 
 
 Weiters werden erkannte Preise über 1000€ nicht angenommen und Produktnamen ohne Preise entfernt. Ein Produkt wird ebenfalls entfernt wenn die Namenslänge < 3 ist.
+
+Falls der Camera Scanner für das Abhaken der Produkte verantwortlich ist, wird zu jedem P
 
 Je nach Anwendungsfall des Camera Scanners, wird jetzt entweder ein modifiziertes Stable Marriage Problem gelöst, falls eine Einkaufsliste abgehackt werden soll, oder die erkannten Preise mit Produktnamen zurückgeliefert.
 
