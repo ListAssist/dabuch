@@ -152,12 +152,15 @@ _createAutomaticList() async {
             "groupid": null
         });
         if (resp.data["status"] != "Successful") {
-            //InfoOverlay.showErrorSnackBar("Fehler beim Erstellen der Automatischen Einkaufsliste");
+            //Fehler in der Cloud-Function
+            // z.B.: Nicht genug Einkäufe abgeschlossen
         } else {
-            InfoOverlay.showInfoSnackBar("Automatische Einkaufsliste wurde erstellt");
+            InfoOverlay.showInfoSnackBar(
+                "Automatische Einkaufsliste wurde erstellt"
+            );
         }
     }catch(e) {
-        //InfoOverlay.showErrorSnackBar("Fehler: $\$${e.message}");
+        //Fehler beim Aufrufen der Cloud-Function
     }
 }
 \end{lstlisting}
@@ -173,10 +176,10 @@ Beim Überlegen, wie die AI aussehen sollte, gab es einige Schwierigkeiten mit d
 mit Bildklassifizierung und nicht als eine Art "Vorschlags-AI". Später im Unterricht wurde das sogenannte Recurrent 
 Neural Network (RNN) durchgemacht. Diese Art von neuronalen Netzwerken wird vorallem bei Aktienkursvorhersagen verwendet.
 Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM) Layer.
-Da ein RNN Aktienpreise vorhersagen kann, wäre es vielleicht auch möglich dieses für Produktvorhersagen zu trainieren.
+Da ein RNN Aktienpreise vorhersagen kann, wäre es auch möglich, dieses für Produktvorhersagen zu trainieren.
 
 # Warum Algorithmus nicht AI
 
 Da eine AI auch sehr viele Trainingsdaten benötigt, um gut zu funktionieren, wurde anstelle einer AI ein Algorithmus verwendet.
-Außerdem ist eine AI in diesem Umfang gar nicht nötig. Der Algorithmus ist für diese Aufgabe besser geignet, da man keine Trainingsdaten
-braucht und er auch schneller funktioniert.
+Außerdem ist eine AI in diesem Umfang gar nicht nötig. Der Algorithmus ist für diese Aufgabe besser geeignet, da man keine Trainingsdaten
+benötigt und er zudem schneller funktioniert.

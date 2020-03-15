@@ -5,6 +5,48 @@ keine komplizierteren Sachen, wie zum Beispiel überprüfen, ob ein User in eine
 ist um die Gruppe zu bearbeiten, wurden Updates/Creates mit Cloud-Functions geregelt. Dadurch hat
 man eine bessere Kontrolle. 
 
+# Gruppen des Benutzers streamen
+
+<!-- EVTL SIDEBAR AUCH SCHREIBEN -->
+Die Gruppen des Benutzers werden als ein Stream vom Typ `List<Group>` bereitgestellt. Dafür ist es
+notwendig, die Gruppen, in denen der Benutzer ist, aus `groups_user` auszulesen und die eingetragenen
+GruppenIDs als Liste zu streamen. Dafür wurde folgender Code verwendet:
+
+\begin{lstlisting}[language=Dart]
+return Observable(_db
+  .collection("groups_user")
+  .document(uid)
+  .snapshots()).switchMap((DocumentSnapshot snap) {
+      //Sollte der User in keinen Gruppen
+      //sein oder das Dokument nicht existieren
+      //eine leere Liste zurückgegeben
+      if(snap.data == null || 
+          snap.data["groups"] == null || 
+          snap.data["groups"].length == 0){
+          return Stream.value(List<Group>.from([]));
+      }
+      return _db
+          .collection("groups")
+          .where(FieldPath.documentId, whereIn: snap.data["groups"])
+          .snapshots()
+          .map((snap) => 
+            snap.documents.map((d) => 
+                Group.fromFirestore(d)
+            ).toList()
+        );
+      });
+\end{lstlisting}
+
+\needspace{5cm}
+Wichtig ist dabei dieser Teil: `.where(FieldPath.documentId, whereIn: snap.data["groups"])`. Durch das
+`whereIn` werden alle Dokumente geladen, die in dem Array von `snap.data["groups"]` vorhanden sind. Diese
+Funktionalität wurde jedoch erst im Laufe der Durchführung hinzugefügt. Deswegen wurde zu Beginn nur eine 
+Gruppe geladen, später als diese Funktionalität hinzugefügt wurde, wurde dann die Liste der Gruppen gestreamt.
+
+Zudem wurde kein Dart-Stream verwendet, sondern ein Observable von `rxdart`. Das hat den Vorteil, dass
+mit der `switchMap` Methode der Datentyp des Stream geändert werden kann, was mit einem normalen `map` vom
+Dart-Stream nicht möglich ist.
+
 # Einkaufslisten in Gruppen
 
 Zuerst gab es für Gruppen eigene Widgets, die ähnlich aufgebaut waren wie die der einzelnen
