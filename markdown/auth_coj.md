@@ -21,6 +21,7 @@ Folgende Authentizierungen werden schon von Haus aus angeboten, wobei die fett m
 * Apple
 
 ## OAUTH
+Mithilfe OAUTH ist es überhaupt erst möglich, User sicher über einen Dritte App einzuloggen. \cite{oauth} Die Implementierung von OAuth mit den einzelnen Social Media Plattformen wurde von schon dem `firebase_auth` Paket gemacht und zur Verfügung gestellt.
 
 # Realtime Authentication
 Um die Echtzeit Authentizierung zu verwenden, war es essentiell einen `StreamProvider` aus dem `provider` Paket zu verwenden. Es existieren drei Streams dieses Stream-typen, einen für den `StreamProvider<User>`, welche in Echtzeit die Userdaten aus der Datenbank liest. Der zweite ist für den `StreamProvider<FirebaseUser>` verantwortlich und der dritte vom Typen `StreamProvider<bool>` dafür, ob derzeit eine Authentizierung im Gange ist.
