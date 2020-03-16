@@ -33,6 +33,49 @@ automatische Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall e
 \label{usersCollection}
 \end{figure}
 
+### Lists-Subcollection
+
+\begin{figure}[H]
+	\begin{minipage}{\textwidth - \picWidth\textwidth - 0.1\textwidth} 
+	    Hier steht der Text, der sich nun links neben der Grafik befindet.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{\picWidth\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{images/seczer/lists.png}
+        \caption{Lists\\Collection}
+        \label{listsCollection} 
+	\end{minipage}
+\end{figure}
+
+\needspace{10cm}
+### Shopping_data-Subcollection 
+
+<!-- Die `shopping_data` Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
+ein Feld `last`, das mehrere Maps beinhaltet. Diese Maps sind eine reduzierte Version einer
+`list`, wie oben beschrieben, und beinhaltet nur den Zeitpunk des Abschließens und die Produkte
+als Array. Bei den Produkten wird das Feld `bought` nicht mitgespeichert, da sowieso nur gekaufte
+Produkte gespeichert werden. -->
+
+\todo{Leerzeichen vor nicht}
+\begin{figure}[H]
+	\begin{minipage}{\textwidth - \picWidth\textwidth - 0.1\textwidth} 
+        Die \passthrough{\lstinline!shopping\_data!} Subcollection hat nur ein
+		Dokument namens \passthrough{\lstinline!data!}. Dieses Dokument enthält
+		ein Feld \passthrough{\lstinline!last!}, das mehrere Maps beinhaltet.
+		Diese Maps sind eine reduzierte Version einer
+		\passthrough{\lstinline!list!}, wie oben beschrieben, und beinhaltet nur
+		den Zeitpunk des Abschließens und die Produkte als Array. Bei den
+		Produkten wird das Feld \passthrough{\lstinline!bought!} nicht
+		mitgespeichert, da sowieso nur gekaufte Produkte gespeichert werden.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{\picWidth\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{images/seczer/shopping_data.png}
+        \caption{Shopping data\\Collection}
+        \label{shoppingDataCollection} 
+	\end{minipage}
+\end{figure}
+
 ## Gruppen
 
 Auch die `groups` Collection verwendet als Dokument-ID einen zufällig generierten String, 
@@ -47,9 +90,9 @@ Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
 \label{groupsCollection}
 \end{figure}
 
-### Beziehung zum Benutzer
+## Beziehung der Benutzer zu den Gruppen
 
-Welcher Benutzer in welchen Gruppen ist wird in der `groups_user` Collection gespeichert.Als Dokument-ID
+Welcher Benutzer in welchen Gruppen ist wird in der `groups_user` Collection gespeichert. Als Dokument-ID
 verwendet sie die `uid` des Benutzers. In den jeweiligen Dokumenten gibt es nur ein `groups` Feld, welches
 die IDs der Gruppen beinhaltet, denen der Benutzer angehört. Die ID der Gruppe ist die zufällig generierte
 Dokument-ID der Gruppe.
@@ -77,7 +120,7 @@ wurde. Passend zu der `groupid` wird auch der Name der Gruppe in `groupname` ges
 \needspace{10cm}
 ## Beliebte Produkte
 
-Die `popular_products` Collection hat als nur ein Dokument namens `products`. Dieses Dokument enthält
+Die `popular_products` Collection hat nur ein Dokument namens `products`. Dieses Dokument enthält
 ein Feld `products`, das mehrere Maps beinhaltet. Diese Maps speichern sowohl die Kategorie als auch
 den Namen des Produktes. 
 
