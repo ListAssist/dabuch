@@ -4,7 +4,7 @@ Zum Suchen und Speichern, der von uns selbst erstellten Produkte, wird Algolia v
 Der Free Plan von Algolia erlaubt es bis zu 10.000 Datensätze zu speichern, was mehr als ausreichend war.
 Auch aufgrund der schnellen und anpassbaren Suche war Algolia eine gute Wahl. Die Produkte konnten effizient
 mittels JSON in die Datenbank eingefügt werden.
-Für die Algolia Suche in Flutter wurde das ```algolia``` Package verwendet, welches eine einfache 
+Für die Algolia Suche in Flutter wurde das `algolia`\footnote{\url{https://pub.dev/packages/algolia}} Package verwendet, welches eine einfache 
 Implementierung bereitstellt.
 
 \begin{lstlisting}[language=Dart]
@@ -45,8 +45,8 @@ Benutzers wird die `updateRecipe` Methode statt der `updateList` Methode aufgeru
 ## Spracheingabe
 
 Eine weitere Variante Produkte zu Einkaufslisten hinzuzufügen ist die Spracheingabe. Benutzer können mehrere Produkte per Sprachsteuerung durch
-"und" getrennt auflisten und so hinzufügen. Für die Spracheingabe wurde das ```speech_recognition``` Package verwendet.
-Im `AndroidManifest.xml` musste dafür Folgendes eingefügt werden.
+"und" getrennt auflisten und so hinzufügen. Für die Spracheingabe wurde das `speech_recognition`\footnote{\url{https://pub.dev/packages/speech_recognition}} Package verwendet.
+Im `AndroidManifest.xml` musste dafür Folgendes eingefügt werden:
 \begin{lstlisting}[language=XML]
 <uses-permission android:name="android.permission.RECORD_AUDIO" />
 \end{lstlisting}
@@ -83,8 +83,8 @@ _requestDatabaseUpdate() {
 
 # Preise zu Produkten hinzufügen
 
-Benutzer haben die Möglichkeit, den `Item`s einer Einkaufsliste, Preise zuzuteilen. Preise die der Camera Scanner erkennt werden ebenfalls automatisch
-in den den `Item`s gespeichert.
+Benutzer haben die Möglichkeit, den `Item`s einer Einkaufsliste, Preise zuzuteilen. Preise die der Camera Scanner erkennt, werden ebenfalls automatisch
+in den `Item`s gespeichert. Die Preise werden in den Statistiken in Form von Graphen dargestellt.
 
 
 
