@@ -5,18 +5,18 @@
     numbers=noenddot,% Keine Punkte am Ende der Gliederungsnummern und davon
                      % abgeleiteten Nummern
     toc=flat, %Flache TOC --- kann man anpassen (auskommentieren)
-    12pt, % Schriftgröße 
-    titlepage, % es wird eine Titelseite verwendet 
-    parskip=full, % Abstand zwischen Absätzen (ganze Zeile) 
-    listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen 
+    12pt, % Schriftgröße
+    titlepage, % es wird eine Titelseite verwendet
+    parskip=full, % Abstand zwischen Absätzen (ganze Zeile)
+    listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen
     listof=flat, % mehr Abstand für grosse Zahlen
-    numbers=noenddot, % kein Punkt am Ende bei Nummern 
+    numbers=noenddot, % kein Punkt am Ende bei Nummern
     %%enlargefirstpage,% Gibt es bei scrartcl nicht!!!!
-    bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen 
-    %index=totoc, % Index im Inhaltsverzeichnis aufführen 
+    bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+    %index=totoc, % Index im Inhaltsverzeichnis aufführen
     %captions=tableheading, % Beschriftung von Tabellen für Ausgabe oberhalb
-                           % der Tabelle formatieren 
-    %draft % Status des Dokuments (final/draft) draft hinzufügen zum anziegen 
+                           % der Tabelle formatieren
+    %draft % Status des Dokuments (final/draft) draft hinzufügen zum anziegen
     %%der zeilen ende
     a4paper,DIV=14,
     BCOR=15mm,
@@ -26,6 +26,8 @@
 \setcounter{secnumdepth}{3}
 
 \usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{textcomp}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -35,10 +37,11 @@
 \usepackage{lastpage}
 \usepackage{listings}
 \usepackage{blindtext}
+\usepackage{float}
 
 %% Aufzählungen nicht so weit einrücken
 \usepackage[inline]{enumitem}
-%\setitemize{leftmargin=*} 
+%\setitemize{leftmargin=*}
 % Listen etwas wenige einrücken, erfordert enumitem
 \setitemize{leftmargin=*}
 
@@ -47,6 +50,8 @@
 \usepackage{xspace}
 
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 %%? \usepackage{textcomp}
 \usepackage[hyphens]{url}
@@ -147,6 +152,64 @@
 %% dritte Variante
 % mit/für pandoc
 \input{tex/00_pandoclisting.tex}
+
+%define Javascript language
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let, const, for, of, object, string, number},
+  % keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  % ndkeywordstyle=\color{darkgray}\bfseries,
+  % identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  % commentstyle=\color{purple}\ttfamily,
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{Dart}{
+	language=Java,
+	morekeywords={*,num,String,var,library,get,set}
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+
+\lstset{style=mystyle}
 
 %% should be last packages
 \usepackage{scrhack}
@@ -271,32 +334,34 @@ Wien, \today
 
 \chapter{Ziele}
 % \renewcommand{\kapitelautor}{}  % bleibt eventuell leer (gemeinsame Arbeit)
+\renewcommand{\kapitelautor}{Autor: Rafael Doja}
+\input{tex/converted/ziele_doj.tex}
 
-Das erste Kapitel stellt die Ziele der DA (inkl. individuelle Ziele
-aller Mitarbeiter) dar.\todo{viel Text schreiben}
+% Das erste Kapitel stellt die Ziele der DA (inkl. individuelle Ziele
+% aller Mitarbeiter) dar.\todo{viel Text schreiben}
 
-Mögliche Gliederung (nach \cite{leitfaden})
+% Mögliche Gliederung (nach \cite{leitfaden})
 
-\begin{itemize}
-\item  Einleitung
-\item   Zielsetzung und Aufgabenstellung des Gesamtprojekts
-\item   individuelle Zielsetzung und Aufgabenstellung mit Terminplan der einzelnen Teammitglieder
-\item   Grundlagen und Methoden (Ist-Situation, Lösungsansätze, konkrete Vorgehensweise)
-\item   Bearbeitung der Aufgabenstellung (technische Beschreibungen, Berechnungen)
-\item   Ergebnisse (Ergebnisdarstellung, kritische Gegenüberstellung mit der Zielsetzung
- und der gewählten Vorgehensweise)
-\end{itemize}
+% \begin{itemize}
+% \item  Einleitung
+% \item   Zielsetzung und Aufgabenstellung des Gesamtprojekts
+% \item   individuelle Zielsetzung und Aufgabenstellung mit Terminplan der einzelnen Teammitglieder
+% \item   Grundlagen und Methoden (Ist-Situation, Lösungsansätze, konkrete Vorgehensweise)
+% \item   Bearbeitung der Aufgabenstellung (technische Beschreibungen, Berechnungen)
+% \item   Ergebnisse (Ergebnisdarstellung, kritische Gegenüberstellung mit der Zielsetzung
+%  und der gewählten Vorgehensweise)
+% \end{itemize}
 
 
-\chapter{Formatierung}
+% \chapter{Formatierung}
 
-% wer hat diese Kapitel geschrieben oder leer
-\renewcommand{\kapitelautor}{Autor: Hans Huber}
+% % wer hat diese Kapitel geschrieben oder leer
+% \renewcommand{\kapitelautor}{Autor: Hans Huber}
 
 %\input{tex/demo_kap1.tex}
 
 
-\chapter{Planung}
+% \chapter{Planung}
 
 % Das komplette nächste Kapitel wird in der externen Datei diplomarbeit2.tex gespeichert.
 % Es wird an dieser Stelle im Dokument eingebaut.
@@ -309,15 +374,7 @@ Mögliche Gliederung (nach \cite{leitfaden})
 
 %\input{tex/demo_fuelltext.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Filip Coja %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Camera Scanner (COJ)}
-\renewcommand{\kapitelautor}{Autor: Filip Coja}
-\input{tex/converted/camerascanner_coj.tex}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rafael Doja %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Ziele}
-\renewcommand{\kapitelautor}{Autor: Rafael Doja}
-\input{tex/converted/ziele_doj.tex}
 
 \chapter{Projektplanung}
 \renewcommand{\kapitelautor}{Autor: Rafael Doja}
@@ -335,6 +392,7 @@ Mögliche Gliederung (nach \cite{leitfaden})
 \renewcommand{\kapitelautor}{Autor: Rafael Doja}
 \input{tex/converted/meilenstein_doj.tex}
 
+
 \chapter{Design (DOJ)}
 \renewcommand{\kapitelautor}{Autor: Rafael Doja}
 \input{tex/converted/design_doj.tex}
@@ -344,6 +402,24 @@ Mögliche Gliederung (nach \cite{leitfaden})
 
 \chapter{Animationsvideo (DOJ)}
 \renewcommand{\kapitelautor}{Autor: Rafael Doja}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Filip Coja %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Camera Scanner (COJ)}
+\renewcommand{\kapitelautor}{Autor: Filip Coja}
+\input{tex/converted/camerascanner_coj.tex}
+
+\chapter{Authentication (COJ)}
+\renewcommand{\kapitelautor}{Autor: Filip Coja}
+\input{tex/converted/auth_coj.tex}
+
+\chapter{PlayStore (COJ)}
+\renewcommand{\kapitelautor}{Autor: Filip Coja}
+\input{tex/converted/playstore_coj.tex}
+
+\chapter{Camera Scanner (COJ)}
+\renewcommand{\kapitelautor}{Autor: Filip Coja}
+\input{tex/converted/camerascanner_coj.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Daniel Kisling %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Produktsuche (KIS)}
@@ -370,25 +446,24 @@ Mögliche Gliederung (nach \cite{leitfaden})
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tobias Seczer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Firebase (SEC)}
+\renewcommand{\kapitelautor}{Autor: Tobias Seczer}
+\input{tex/converted/firebase_sec.tex}
+
+\chapter{Einkaufslisten (SEC)}
+\renewcommand{\kapitelautor}{Autor: Tobias Seczer}
+\input{tex/converted/einkaufslisten_sec.tex}
+
 \chapter{Gruppen (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
 \input{tex/converted/gruppen_sec.tex}
 
-\chapter{Einkaufslisten (SEC)}
-\renewcommand{\kapitelautor}{Autor: Tobias Seczer}
-
 \chapter{Einladungen (SEC)}
-\renewcommand{\kapitelautor}{Autor: Tobias Seczer}
-
-\chapter{Firebase (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
 
 \chapter{Automatische Einkaufsliste (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
-
-
-
-
+\input{tex/converted/automatische_liste_sec.tex}
 
 \appendix
 
