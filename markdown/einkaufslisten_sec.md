@@ -55,4 +55,33 @@ auf eines der Bilder geklickt wird gelangt der Benutzer in die Detailansicht fü
 gibt es zwei Reiter, zum einen wird noch einmal das Bild gezeigt, diesmal aber mit der Funktionalität zu zoomen, und
 zum anderen wird die Liste der erkannten Produkte, inklusive deren Preisen, angezeigt.
 
-# Einkaufslisten bearbeiten
+# Aktionen
+
+## 3 Punk Menü
+
+In der linken oberen Ecke des Bildschirms befindet sich ein 3 Punkt Menü. Dieses hat folgende Unterpunkte:
+
+**Abschließen**
+
+Nach drücken des Abschließen-Buttons wird ein Popup zum Abschließen der Einkaufsliste angezeigt. Der Button ist
+deaktiviert, wenn noch kein Produkt gekauft wurde.
+
+**Umbenennen**
+
+Nach drücken dieses Buttons wird ein Popup zum Umbenennen der Einkaufsliste angezeigt.
+
+**Löschen**
+
+Auch bei diesem Knopf wird ein Popup angezeigt, ob der Benutzer diese Liste auch wirklich löschen will.
+
+## Produkte hinzufügen und entfernen
+
+In der linken unteren Ecke befindet sich ein runder grüner Button mit einem Plus(+) Symbol. Nach betätigen dieses
+Buttons öffnet sich das `SearchItemsView` Widget, in welchem der Benutzer Produkte hinzufügen und entfernen kann
+(\siehe{produkte-zu-einkaufslisten-hinzufuxfcgen}).
+
+## Rechnungen einscannen
+
+Direkt über dem Produkte-hinzufügen-Button befindet sich ein kleinerer blauer Button mit einem Kamera Symbol. 
+Durch drücken dieses Button gelangt der Benutzer zum `CamerScanner` Widget (\siehe{camera-scanner-coj}). Von den erkannten
+Produkte können dann jene ausgewählt werden, die auf der Einkaufsiste abgehakt werden sollen.
