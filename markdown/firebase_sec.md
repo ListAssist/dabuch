@@ -13,6 +13,19 @@ es mithilfe von Streams leicht möglich, Updates in der Datenbank in Echtzeit
 auf der Clientseite zu registrieren. Um Gebrauch von den Echtzeit-Updates zu
 machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 
+Bei den Cloud Functions gibt es ein kleines Problem. Um Ressourcen zu schonen werden
+die Cloud Functions "heruntergefahren". Das bedautet, wenn die Funktion nach einiger Zeit
+aufgerufen wird, wird ein "cold start" durchgeführt. Dieser benötigt eine gewissen Zeit,
+wodurch der Benutzer beim ersten Ausführen der Cloud Function ein paar Sekuden warten muss.
+Wird die Cloud Function jedoch regelmäßig benutzt, sollte dies nicht mehr der Fall sein (\vgl\cite{cloud-function-slow}).
+
+Um die Daten in Flutter auszulesen wird die `cloud_firestore`\footnote{\url{https://pub.dev/packages/cloud_firestore}}
+Bibliothek benutzt. Dadurch können sehr leicht Daten aus Firestore ausgelesen bzw. dort gespeichert werden. Um
+diese Funktionalitäten in der App verwenden zu können, wurde ein Service, `services/db.dart`, dafür erstellt. Generell
+kann mit `.collection(COLLECTION)` die Collection COLLECTION ausgelesen und mit `.document(DOCUMENTID)` das Dokument
+DOCUMENTID dieser Collection ausgelesen werden.
+
+\needspace{0.5\textheight}
 # Firestore Datenstruktur
 
 ## Benutzer
@@ -33,49 +46,52 @@ automatische Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall e
 \label{usersCollection}
 \end{figure}
 
+\needspace{0.3\textheight}
 ### Lists-Subcollection
 
+Die `lists` Subcollection beinhaltet Informationen wie das Datum der Erstellung, den Namen,
+den Typ, ob es sich um eine Abgeschlossene (completed) oder Offene (pending) handelt, und
+ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und der Status. Der
+Status `bought` ist ein Boolean, Anzahl eine Zahl und der Rest sind Strings.
+
 \begin{figure}[H]
-	\begin{minipage}{\textwidth - \picWidth\textwidth - 0.1\textwidth} 
-	    Hier steht der Text, der sich nun links neben der Grafik befindet.
-	\end{minipage}
-	\hfill
-	\begin{minipage}{\picWidth\textwidth}
-        \includegraphics[width=\textwidth, keepaspectratio]{images/seczer/lists.png}
-        \caption{Lists\\Collection}
-        \label{listsCollection} 
-	\end{minipage}
+\centering
+\includegraphics[width=\picWidth\textwidth, keepaspectratio]{images/seczer/lists.png}
+\caption{Lists Collection}
+\label{listsCollection}
 \end{figure}
 
-\needspace{10cm}
+\needspace{0.3\textheight}
 ### Shopping_data-Subcollection 
 
-<!-- Die `shopping_data` Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
+Die `shopping_data` Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
 ein Feld `last`, das mehrere Maps beinhaltet. Diese Maps sind eine reduzierte Version einer
 `list`, wie oben beschrieben, und beinhaltet nur den Zeitpunk des Abschließens und die Produkte
 als Array. Bei den Produkten wird das Feld `bought` nicht mitgespeichert, da sowieso nur gekaufte
-Produkte gespeichert werden. -->
+Produkte gespeichert werden.
 
-\todo{Leerzeichen vor nicht}
 \begin{figure}[H]
-	\begin{minipage}{\textwidth - \picWidth\textwidth - 0.1\textwidth} 
-        Die \passthrough{\lstinline!shopping\_data!} Subcollection hat nur ein
-		Dokument namens \passthrough{\lstinline!data!}. Dieses Dokument enthält
-		ein Feld \passthrough{\lstinline!last!}, das mehrere Maps beinhaltet.
-		Diese Maps sind eine reduzierte Version einer
-		\passthrough{\lstinline!list!}, wie oben beschrieben, und beinhaltet nur
-		den Zeitpunk des Abschließens und die Produkte als Array. Bei den
-		Produkten wird das Feld \passthrough{\lstinline!bought!} nicht
-		mitgespeichert, da sowieso nur gekaufte Produkte gespeichert werden.
-	\end{minipage}
-	\hfill
-	\begin{minipage}{\picWidth\textwidth}
-        \includegraphics[width=\textwidth, keepaspectratio]{images/seczer/shopping_data.png}
-        \caption{Shopping data\\Collection}
-        \label{shoppingDataCollection} 
-	\end{minipage}
+\centering
+\includegraphics[width=\picWidth\textwidth, keepaspectratio]{images/seczer/shopping_data.png}
+\caption{Shopping\_data Collection}
+\label{shoppingDataCollection}
 \end{figure}
 
+\needspace{0.3\textheight}
+### Recipe-Subcollection 
+
+Die `recipe` Subcollection ist ähnlich aufgebaut wie die `lists` Subcollection, mit dem Unterschied,
+dass keine Typ und Erstelldatum, dafür aber eine Beschreibung, gespeichert werden. Die Produkte im
+`products` Array sind gleich Aufgebaut wie bei der `lists` Subcollection. \todo{evtl ohne bought property}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\picWidth\textwidth, keepaspectratio]{images/seczer/recipes.png}
+\caption{Recipes Collection}
+\label{recipesCollection}
+\end{figure}
+
+\needspace{0.3\textheight}
 ## Gruppen
 
 Auch die `groups` Collection verwendet als Dokument-ID einen zufällig generierten String, 
@@ -90,6 +106,7 @@ Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
 \label{groupsCollection}
 \end{figure}
 
+\needspace{0.3\textheight}
 ## Beziehung der Benutzer zu den Gruppen
 
 Welcher Benutzer in welchen Gruppen ist wird in der `groups_user` Collection gespeichert. Als Dokument-ID
@@ -104,6 +121,7 @@ Dokument-ID der Gruppe.
 \label{groupsUserCollection}
 \end{figure}
 
+\needspace{0.3\textheight}
 ## Einladungen
 
 Die `invites` Collection verwendet als Dokument-ID ebenfalls einen zufällig generierten String, 
@@ -117,7 +135,7 @@ wurde. Passend zu der `groupid` wird auch der Name der Gruppe in `groupname` ges
 \label{invitesCollection}
 \end{figure}
 
-\needspace{10cm}
+\needspace{0.3\textheight}
 ## Beliebte Produkte
 
 Die `popular_products` Collection hat nur ein Dokument namens `products`. Dieses Dokument enthält
@@ -131,6 +149,7 @@ den Namen des Produktes.
 \label{popularProductsCollection}
 \end{figure}
 
+\needspace{0.3\textheight}
 # Storage Datenstruktur
 
 Die Struktur der Storage ist sehr simpel aufgebaut. Für Benutzer müssen nur Profilbilder und eingescannte
