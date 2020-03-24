@@ -14,9 +14,9 @@ auf der Clientseite zu registrieren. Um Gebrauch von den Echtzeit-Updates zu
 machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 
 Bei den Cloud Functions gibt es ein kleines Problem. Um Ressourcen zu schonen werden
-die Cloud Functions "heruntergefahren". Das bedautet, wenn die Funktion nach einiger Zeit
+die Cloud Functions "heruntergefahren". Das bedeutet, wenn die Funktion nach einiger Zeit
 aufgerufen wird, wird ein "cold start" durchgeführt. Dieser benötigt eine gewissen Zeit,
-wodurch der Benutzer beim ersten Ausführen der Cloud Function ein paar Sekuden warten muss.
+wodurch der Benutzer beim ersten Ausführen der Cloud Function ein paar Sekunden warten muss.
 Wird die Cloud Function jedoch regelmäßig benutzt, sollte dies nicht mehr der Fall sein (\vgl\cite{cloud-function-slow}).
 
 Um die Daten in Flutter auszulesen wird die `cloud_firestore`\footnote{\url{https://pub.dev/packages/cloud_firestore}}
@@ -32,12 +32,10 @@ DOCUMENTID dieser Collection ausgelesen werden.
 
 Die `users` Collection verwendet als Dokument-ID einen zufällig generierten String, 
 der 28 Zeichen lang ist. Zusätzlich wird dieser generierte String auch in das Feld `uid`
-eingetragen. <!--Die uid wird auch für die Gruppen und Einladungen verwendet.--> Das Feld
-`displayName` speichert den Anzeigenamen des Benutzers. <!--Meldet sich der Benutzer via
-eine Social Media Plattform so wird der Anzeigename der Social Media Plattform verwendet.-->
-Das Feld `photoURL` speichert die URL zu dem Profilbild des Benutzers. In `settings`
-werden alle Einstellungen gespeichert. Das Feld `last_automatically_generated` ist für die
-automatische Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall einzuhalten.
+eingetragen. Das Feld `displayName` speichert den Anzeigenamen des Benutzers. Das Feld 
+`photoURL` speichert die URL zu dem Profilbild des Benutzers. In `settings` werden alle 
+Einstellungen gespeichert. Das Feld `last_automatically_generated` ist für die automatische
+Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall einzuhalten.
 
 \begin{figure}[H]
 \centering
