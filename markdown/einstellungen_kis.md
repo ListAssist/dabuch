@@ -21,31 +21,38 @@ ListTile(
 
 In der rechten oberen Ecke befindet sich außerdem, genau wie in der Sidebar, ein Abmeldebutton.
 
+\needspace{10cm}
+
 #	Konto Einstellungen
 
+Alle Benutzer können ihren Anzeigenamen ändern. Weiters können Benutzer, die sich mit Email und Passwort registriert
+haben, ihre Email, ihr Passwort und ihr Profilbild ändern. Um die Email oder das Passwort eines Benutzers zu ändern,
+muss dieser sich vor Kurzem eingeloggt haben. Deshalb wird der Benutzer aufgefordert sein Passwort einzugeben.
 
+\begin{lstlisting}[language=Dart]
+var user = firebase.auth().currentUser;
+var credential;
 
-Benutzer können ihren Namen, ihre Email, ihr Passwort und ihr Profilbild ändern. 
+// Prompt the user to re-provide their sign-in credentials
 
+user.reauthenticateWithCredential(credential).then(function() {
+  // User re-authenticated.
+}).catch(function(error) {
+  // An error happened.
+});
+\end{lstlisting}
 
-
-
-
-
-
-ZITAT VON DA WÄR SUPA
-
-
-
-
-
+Um das `AuthCredential` zu bekommen wird folgendes verwendet:
+\begin{lstlisting}[language=Dart]
+AuthCredential credential = EmailAuthProvider.getCredential(email: currentEmail, password: password);
+\end{lstlisting}
 
 
 #	App Einstellungen
 
 In den App Einstellungen hat der Benutzer die Möglichkeit den Camera Scanner auf den manuellen oder den automatischen
 Modus zu stellen. Der manuelle Modus lässt den Benutzer nach erfolgreichem Scan aus allen erkannten Produkten, die 
-richtigen herauszufiltern. Der automatische Modus vergleicht alle erkannten Produkte mit den Produkten auf der Einkaufsliste.
+richtigen herausfiltern. Der automatische Modus vergleicht alle erkannten Produkte mit den Produkten auf der Einkaufsliste.
 
 Ebenfalls lässt sich in den App Einstellungen die Automatische Einkaufsliste aktivieren und deaktivieren. Weiters kann man auch
 das Intervall der automatischen Einkaufsliste festlegen.
@@ -60,7 +67,7 @@ Die Implementation war simpel. Es mussten nur die `CircleAvatar` Widgets in der 
 `Hero` Widget umschlossen werden. Außerdem musste beiden `Hero` Widgets der selbe Tag zugeordnet werden.
 
 
-In der `Sidebar`:
+Anwendung in der `Sidebar` und im `SettingsView`:
 \begin{lstlisting}[language=Dart]
 Hero(
     tag: "profilePicture",
@@ -70,14 +77,5 @@ Hero(
 )
 \end{lstlisting}
 
-Im `SettingsView`:
-\begin{lstlisting}[language=Dart]
-Hero(
-    tag: "profilePicture",
-    child: CircleAvatar(
-        backgroundImage: NetworkImage(user.photoUrl),
-        radius: 50,
-    ),
-)
-\end{lstlisting}
+
 
