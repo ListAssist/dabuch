@@ -28,13 +28,13 @@ Um die Echtzeit Authentizierung zu verwenden, war es essentiell einen `StreamPro
 
 Diese Streams können von allen Kindern im Widget Baum in Echtzeit gelesen werden. Aus diesem Grund musste die Authentizierung selbst auch ein Kind des `MaterialApp` Widgets sein. (siehe Code Snippet am Ende des Kapitels)
 
-```java
-    /* Wie man die Echtzeitdaten des Streams auslesen kann. */
-    FirebaseUser user = Provider.of<FirebaseUser>(context);
-    User docUser = Provider.of<User>(context);
-    bool loading = Provider.of<bool>(context);
-```
-
+\begin{lstlisting}[language=Dart]
+/* Wie man die Echtzeitdaten des Streams auslesen kann. */
+FirebaseUser user = Provider.of<FirebaseUser>(context);
+User docUser = Provider.of<User>(context);
+bool loading = Provider.of<bool>(context);
+\end{lstlisting}
+    
 # Probleme
 Es gab zwei größere Probleme, welche etwas Zeit gekostet haben, da diese nicht sehr offensichtlich während der Programmierung waren.
 
@@ -44,21 +44,21 @@ Ein Problem, welches gleich am Anfang aufgetreten ist war, dass die Twitter Inte
 ## State Handling
 Hier war das Problem, den Unterschied zwischen eines `FirebaseUser` Users und eines selbst erstellten `User` zu handlen. Dies ist sehr wichtig, da der `User` erst geladen wird, nachdem der `FirebaseUser` nicht `null` ist. Wenn aber das UI  sofort geändert wird, nachdem der `FirebaseUser` existiert, wird eben ein Fehler geworfen, da der `User` nicht existiert. Dies konnte mit einer einfachen Abfrage gelöst werden.
 
-```java
-    return AnimatedSwitcher(
-        duration: Duration(milliseconds: 600),
-        child: user != null
-            ? Scaffold(
-                key: mainScaffoldKey,
-                body: docUser != null ? Body() : null,
-                drawer: docUser != null ? Sidebar() : null,
-              )
-            : Scaffold(
-                key: authScaffoldKey,
-                body: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 600),
-                  child: loading != null && loading ? SpinKitDoubleBounce(color: Colors.blueAccent) : AuthenticationPage(),
-                ),
-                resizeToAvoidBottomInset: false,
-        ));
-```
+\begin{lstlisting}[language=Dart]
+return AnimatedSwitcher(
+    duration: Duration(milliseconds: 600),
+    child: user != null
+        ? Scaffold(
+            key: mainScaffoldKey,
+            body: docUser != null ? Body() : null,
+            drawer: docUser != null ? Sidebar() : null,
+          )
+        : Scaffold(
+            key: authScaffoldKey,
+            body: AnimatedSwitcher(
+              duration: Duration(milliseconds: 600),
+              child: loading != null && loading ? SpinKitDoubleBounce(color: Colors.blueAccent) : AuthenticationPage(),
+            ),
+            resizeToAvoidBottomInset: false,
+    ));
+\end{lstlisting}

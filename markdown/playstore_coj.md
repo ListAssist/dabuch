@@ -24,11 +24,16 @@ Um die App zu builden muss nur `flutter build run` in der command line eingegebe
 
 verwendet. Dies brinngt Optimierungen mit sich, welche zum Beispiel die App Größe beinflussen. 
 
-| Build Methode | Größe   |
-|---------------|---------|
-| Standard      | 27.6 Mb |
-| Für Android   | 11.8 Mb |
-
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Build Methode & Größe\tabularnewline
+\midrule
+\endhead
+Standard & 27.6 Mb\tabularnewline
+Für Android & 11.8 Mb\tabularnewline
+\bottomrule
+\caption{Vergleich zwischen nicht optimiertem Build und Android Build}
+\end{longtable}
 
 ## Veröffentlichung
 Nachdem ein App Bundle erstellt wurde, kann, nachdem ein Google Developer Account erstellt wurde, die App auf dem PlayStore hochgeladen werden. Es sind mehrere "Tracks" verfügbar.
