@@ -178,7 +178,10 @@ Neural Network (RNN) durchgemacht. Diese Art von neuronalen Netzwerken wird vora
 Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM) Layer.
 Da ein RNN Aktienpreise vorhersagen kann, wäre es auch möglich, dieses für Produktvorhersagen zu trainieren.
 
-# Warum Algorithmus nicht AI
+# Unterschied zwischen Algorithmus und AI
+
+Eine AI benötigt um gut zu funktionieren extrem viele Trainingsdaten. Auch für ein akzeptables Level werden sehr viele Trainingsdaten
+benötigt. 
 
 Da eine AI auch sehr viele Trainingsdaten benötigt, um gut zu funktionieren, wurde anstelle einer AI ein Algorithmus verwendet.
 Außerdem ist eine AI in diesem Umfang gar nicht nötig. Der Algorithmus ist für diese Aufgabe besser geeignet, da man keine Trainingsdaten
