@@ -94,3 +94,53 @@ dem `members` Array entfernt und die Gruppen-ID aus dem `groups_user` Dokument d
 Ausnahme ist der Ersteller der Gruppe. Wenn dieser die Gruppe verlässt, wird er aus dem `creator` Feld
 gelöscht und der nächste Benutzer im `members` Array wird als `creator` eingetragen. Sollte der Ersteller
 der Gruppe das letzte Mitglied der Gruppe sein, wird die Gruppe inklusive Subcollections gelöscht.
+
+\needspace{0.4\textheight}
+# Benutzernamen in der Gruppe aktualisieren
+
+Der Benutzer kann, sofern er mit Email und Passwort und keinem Social Media Login angemeldet ist, seinen
+Namen ändern. Da jedoch die Dokumentstruktur der Gruppe so konzipiert wurde, keine BenutzerIDs zu speicher,
+da sonst für jede Gruppe jeder Benutzer gelesen werden muss, sprich bei einer Gruppe mit 20 Personen jedes 
+mal 20 Dokumente lesen, wenn die Gruppe geöffnet wird, ändern sich die Namen im Feld `members` auch nicht.
+Die Namensänderung in der Gruppenliste erfolgt daher per Cloud-Function. Zusätzlich zu Cloud-Function, die
+über HTTP aufrufbar sind, gibt es auch Trigger, die eine Funktion ausführen. Für das umbenennen wurde der
+`onWrite` Trigger verwendet. Dadurch wird jedes mal, wenn das Benuterdokument beschrieben wird, die Funktion
+`syncUser` aufgerufen. Um nicht unnötig jedes mal zu schreiben, wird am Anfang überprüft, ob sich Name oder
+Bild geändert haben.
+
+\begin{lstlisting}[language=JavaScript]
+const name = change.before.data()["displayName"];
+const newName = change.after.data()["displayName"];
+const pic = change.before.data()["photoURL"];
+const newPic = change.after.data()["photoURL"];
+const uid = change.before.ref.id;
+
+if(name === newName && pic === newPic){
+    return;
+}
+
+const groupsDoc = await db.collection("groups_user").doc(uid).get();
+const groups: any[] = groupsDoc.data()["groups"];
+for(const group of groups) {
+    const grp = await db.collection("groups").doc(group).get();
+    const newGroup = grp.data();
+
+    delete newGroup["title"];
+    delete newGroup["created"];
+    if(newGroup["creator"]["uid"] === uid){
+        newGroup["creator"]["displayName"] = newName || "";
+        newGroup["creator"]["photoURL"] = newPic || null;
+    }else {
+        delete newGroup["creator"];
+    }
+
+    newGroup["members"].forEach(e => {
+        if(e["uid"] === uid){
+            e["displayName"] = newName || "";
+            e["photoURL"] = newPic || null;
+        }
+    });
+    await db.collection("groups").doc(group).set(newGroup, { merge: true });
+}
+
+\end{lstlisting}
