@@ -104,7 +104,7 @@ da sonst für jede Gruppe jeder Benutzer gelesen werden muss, sprich bei einer G
 mal 20 Dokumente lesen, wenn die Gruppe geöffnet wird, ändern sich die Namen im Feld `members` auch nicht.
 Die Namensänderung in der Gruppenliste erfolgt daher per Cloud-Function. Zusätzlich zu Cloud-Function, die
 über HTTP aufrufbar sind, gibt es auch Trigger, die eine Funktion ausführen. Für das umbenennen wurde der
-`onWrite` Trigger verwendet. Dadurch wird jedes mal, wenn das Benuterdokument beschrieben wird, die Funktion
+`onWrite` Trigger verwendet. Dadurch wird jedes mal, wenn das Benutzerdokument beschrieben wird, die Funktion
 `syncUser` aufgerufen. Um nicht unnötig jedes mal zu schreiben, wird am Anfang überprüft, ob sich Name oder
 Bild geändert haben.
 

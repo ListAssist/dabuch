@@ -83,5 +83,5 @@ Buttons öffnet sich das `SearchItemsView` Widget, in welchem der Benutzer Produ
 ## Rechnungen einscannen
 
 Direkt über dem Produkte-hinzufügen-Button befindet sich ein kleinerer blauer Button mit einem Kamera Symbol. 
-Durch drücken dieses Button gelangt der Benutzer zum `CamerScanner` Widget (\siehe{camera-scanner-coj}). Von den erkannten
-Produkte können dann jene ausgewählt werden, die auf der Einkaufsiste abgehakt werden sollen.
+Durch drücken dieses Button gelangt der Benutzer zum `CameraScanner` Widget (\siehe{camera-scanner-coj}). Von den erkannten
+Produkte können dann jene ausgewählt werden, die auf der Einkaufsliste abgehakt werden sollen.

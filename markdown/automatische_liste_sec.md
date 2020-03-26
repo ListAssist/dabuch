@@ -178,7 +178,7 @@ Der gleiche Code wird auch für Gruppen verwendet, mit dem Unterschied, dass ans
 die Gruppeneinstellungen geladen werden und die Cloud-Function mit der GruppenID aufgerufen wird.
 
 \needspace{12cm}
-# Vorschläge mit AI
+# Vorschläge mit künstlicher Intelligenz (AI)
 
 Beim Überlegen, wie die AI aussehen sollte, gab es einige Schwierigkeiten mit der AI. Mit einem Convolutional Neural Network
 (CNN) ist diese Art von AI nicht möglich. Im Unterricht wurden CNN Grundlagen beigebracht, jedoch nur im Zusammenhang
