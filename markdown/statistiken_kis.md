@@ -36,22 +36,18 @@ Verzögerungen beim Laden der Daten kommen kann, wird, bei fehlenden Daten, ein 
 Die `animate` Variable bewirkt bei `true`, dass das Diagramm beim Eintritt in das UI animiert wird.
 
 \begin{lstlisting}[language=Dart]
-    Column(
-        children: <Widget>[
-            Text(
-                "Meistgekaufte Produkte",
-                style: TextStyle(fontSize: 18),
+    Text(
+        "Meistgekaufte Produkte",
+        style: TextStyle(fontSize: 18),
+    ),
+    lists != null
+        ? Container(
+            height: 250,
+            padding: EdgeInsets.all(20),
+            child: BarChart(
+                _getMostBoughtProductData(lists, completedLists),
+                animate: true,
             ),
-            lists != null
-                ? Container(
-                    height: 250,
-                    padding: EdgeInsets.all(20),
-                    child: BarChart(
-                        _getMostBoughtProductData(lists, completedLists),
-                        animate: true,
-                    ),
-                )
-                : ShoppyShimmer(),
-        ]
-    )
-\end
+        )
+        : ShoppyShimmer(),
+\end{lstlisting}
