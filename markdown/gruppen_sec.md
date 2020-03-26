@@ -43,10 +43,10 @@ Wichtig ist dabei dieser Teil: `.where(FieldPath.documentId, whereIn: snap.data[
 Funktionalität wurde jedoch erst im Laufe der Durchführung hinzugefügt. Deswegen wurde zu Beginn nur eine 
 Gruppe geladen, später als diese Funktionalität hinzugefügt wurde, wurde dann die Liste der Gruppen gestreamt.
 
-Zudem wurde kein Dart-Stream verwendet, sondern ein Observable von `rxdart`. Das hat den Vorteil, dass
-mit der `switchMap` Methode der Datentyp des Stream geändert werden kann, was mit einem normalen `map` vom
-Dart-Stream nicht möglich ist. Mithilfe von `switchMap` wird das String-Array der GruppenIDs zu einem Array von
-Gruppen umgewandelt.
+Zudem wurde kein Dart-Stream verwendet, sondern ein Observable von `rxdart`\footnote{\url{https://pub.dev/packages/rxdart}}. 
+Das hat den Vorteil, dass mit der `switchMap` Methode der Datentyp des Stream geändert werden kann, was mit
+einem normalen `map` vom Dart-Stream nicht möglich ist. Mithilfe von `switchMap` wird das String-Array 
+der GruppenIDs zu einem Array von Gruppen umgewandelt.
 
 # Einkaufslisten in Gruppen
 

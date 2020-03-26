@@ -52,8 +52,10 @@ Object.keys(itemFrequency).forEach(i => {
     next.setDate(next.getDate() + itemFrequency[i]);
     const timeDiffToToday = Math.ceil(Math.floor(today - next) / (1000 * 60 * 60 * 24));
 
-    // (itemFrequency[i] <= timeSpan/2) damit zu selten gekaufte Produkte nicht vorgeschlagen werden
-    // timeDiffToToday + 5 <= 2 damit ein kleiner Puffer für die Tage davor gegeben ist 
+    // (itemFrequency[i] <= timeSpan/2) damit zu selten gekaufte 
+    // Produkte nicht vorgeschlagen werden
+    // timeDiffToToday + 5 <= 2 damit ein kleiner Puffer 
+    // für die Tage davor gegeben ist 
     if ((timeDiffToToday >= 0 || timeDiffToToday + 5 <= 2) 
             && (itemFrequency[i] <= timeSpan/2)) {
         recommendation.push(
@@ -75,7 +77,9 @@ function getLastDateWithItem(lastLists: object[], name: string) {
 
     lastLists.forEach((el, index) => {
         if (el["items"].map(i => i["name"]).includes(name)) {
-            lastPossibilities.push(lastLists[index]["completed"].toDate());
+            lastPossibilities.push(
+                lastLists[index]["completed"].toDate()
+            );
         }
     });
 
