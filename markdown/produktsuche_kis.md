@@ -32,7 +32,7 @@ durchsuchen und diese von dort aus hinzufügen.
 
 Fügt ein Benutzer Produkte zu einer Einkaufsliste hinzu, wird das `Produkt` Model zu einem `Item` und in der `items` 
 Subcollection der `lists` Collection eines `user`s gespeichert. Ein `Item` hat neben
-dem `name` und der `category` auch einen `count`, wie oft sich das `Item` auf der Einakufsliste befindet. Ebenfalls haben `Item`s 
+dem `name` und der `category` auch einen `count`, wie oft sich das `Item` auf der Einkaufsliste befindet. Ebenfalls haben `Item`s 
 eine `price` Variable und eine boolean Variable `bought`, welche true ist, wenn der Benutzer das `Item` von der Einkaufsliste gestrichen hat.
 
 Der `SearchItemsView` wird beim Hinzufügen von Produkten zu Einkaufslisten und ebenfalls bei Rezepten verwendet. Anfangs gab es dafür 2 eigene Widgets, jedoch 
