@@ -12,14 +12,14 @@ den Optionen zum Bearbeiten und Löschen der Liste angezeigt.
 
 Bei den abgeschlossenen Einkaufslisten stehen als Listeneinträge der Name der Einkaufsliste und darunter,
 in der Form "Erledigt am DD.MM.YYYY", wann der Einkauf abgeschlossen wurde. Bei langem gedrückt halten auf
-einen Eintrag wird ein Popup-Menü mit den Optionen zum Kopieren\todo{Noch programmieren} und Löschen der Liste angezeigt. 
+einen Eintrag wird ein Popup-Menü mit den Optionen zum Kopieren und Löschen der Liste angezeigt. 
 
 # Offene Einkaufslisten
 
-Bei den offenen Einkaufslisten werden der Text, wie viele Produkte bereits gekauft wurden (\siehe{listenansicht-der-einkaufslisten})
+Bei den offenen Einkaufslisten werden der Text, wie viele Produkte bereits gekauft wurden
 und die Liste der zu kaufenden Produkte angezeigt. Die Liste der Produkte ist eine `ListView`, die `CheckboxListTile`s beinhaltet.
 Die `CheckboxListTile`s sind wie folgt aufgebaut: An erster Stelle ist die Checkbox, danach kommen der Produktname und darunter die Anzahl der
-Produkte, die zu kaufen sind. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
+Produkte, die zu kaufen sind und die Kategorie. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
 
 Nach abschließen einer Einkaufsliste wird diese in dem "Erledigt" Bereich angezeigt. Die
 eingescannten Rechnungen können dann inkl. ihrer erkannten Produkte und Preise angezeigt werden.
@@ -59,7 +59,7 @@ zum anderen wird die Liste der erkannten Produkte, inklusive deren Preisen, ange
 
 ## 3 Punk Menü
 
-In der linken oberen Ecke des Bildschirms befindet sich ein 3 Punkt Menü. Dieses hat folgende Unterpunkte:
+In der rechten oberen Ecke des Bildschirms befindet sich ein 3 Punkt Menü. Dieses hat folgende Unterpunkte:
 
 **Abschließen**
 
@@ -76,7 +76,7 @@ Auch bei diesem Knopf wird ein Popup angezeigt, ob der Benutzer diese Liste auch
 
 ## Produkte hinzufügen und entfernen
 
-In der linken unteren Ecke befindet sich ein runder grüner Button mit einem Plus(+) Symbol. Nach betätigen dieses
+In der rechten unteren Ecke befindet sich ein runder grüner Button mit einem Plus(+) Symbol. Nach betätigen dieses
 Buttons öffnet sich das `SearchItemsView` Widget, in welchem der Benutzer Produkte hinzufügen und entfernen kann
 (\siehe{produkte-zu-einkaufslisten-hinzufuxfcgen}).
 

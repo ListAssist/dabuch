@@ -27,7 +27,7 @@ targetemails.map((target: string) => db.collection("users")
 );
 \end{lstlisting}
 
-Der Eingeladene Benutzer erhält dann, in Echtzeit, die Einladung in die Gruppe. Ihm bleiben die
+Der Eingeladene Benutzer erhält dann in Echtzeit die Einladung in die Gruppe. Ihm bleiben die
 Möglichkeiten, die Einladung abzulehnen oder anzunehmen. Wenn der Benutzer die Einladung annimmt,
 wird er in das `members` Array der entsprechenden Gruppe hinzugefügt und in seinem `groups_user`
 Dokument wird die GruppenID hinzugefügt. Beim ablehnen wird dies nicht gemacht. Es wird nur das Dokument

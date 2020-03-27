@@ -48,9 +48,8 @@ Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall einzuhalten.
 ### Lists-Subcollection
 
 Die `lists` Subcollection beinhaltet Informationen wie das Datum der Erstellung, den Namen,
-den Typ, ob es sich um eine Abgeschlossene (completed) oder Offene (pending) handelt, und
-ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und der Status. Der
-Status `bought` ist ein Boolean, Anzahl eine Zahl und der Rest sind Strings.
+den Typ, ob es sich um eine abgeschlossene (completed) oder offene (pending) handelt, und
+ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und der Status.
 
 \begin{figure}[H]
 \centering
@@ -64,7 +63,7 @@ Status `bought` ist ein Boolean, Anzahl eine Zahl und der Rest sind Strings.
 
 Die `shopping_data` Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
 ein Feld `last`, das mehrere Maps beinhaltet. Diese Maps sind eine reduzierte Version einer
-`list`, wie oben beschrieben, und beinhaltet nur den Zeitpunk des Abschließens und die Produkte
+`list`, wie oben beschrieben, und beinhalten nur den Zeitpunk des Abschließens und die Produkte
 als Array. Bei den Produkten wird das Feld `bought` nicht mitgespeichert, da sowieso nur gekaufte
 Produkte gespeichert werden.
 
@@ -80,7 +79,7 @@ Produkte gespeichert werden.
 
 Die `recipe` Subcollection ist ähnlich aufgebaut wie die `lists` Subcollection, mit dem Unterschied,
 dass keine Typ und Erstelldatum, dafür aber eine Beschreibung, gespeichert werden. Die Produkte im
-`products` Array sind gleich Aufgebaut wie bei der `lists` Subcollection. \todo{evtl ohne bought property}
+`products` Array sind gleich Aufgebaut wie bei der `lists` Subcollection.
 
 \begin{figure}[H]
 \centering
