@@ -106,7 +106,7 @@ match /groups/{groupId}/shopping_data/data {
 \end{lstlisting}
 
 ### Group Lookup
-Wie bereits erklärt \siehe{beziehung-der-benutzer-zu-den-gruppen}, gibt es eine Lookup-Collection für die User, in welcher gespeichert wird, in welcher Gruppe man sich befindet.
+Wie es später noch erklärt wird \siehe{beziehung-der-benutzer-zu-den-gruppen}, existiert es eine Lookup-Collection für User, in welcher gespeichert wird, in welcher Gruppe man sich befindet.
 
 Hier ist es wichtig **nur** Lesezugriff zu vergeben, da ansonsten der User sich selbst in Gruppen hinzufügen kann.
 

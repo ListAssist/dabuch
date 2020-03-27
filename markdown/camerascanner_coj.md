@@ -8,16 +8,14 @@ Die Extraktion dieser Informationen ist nicht trivial, vor allem, wenn man davon
 Die Extraktion beinhaltet auch viele Zwischenschritte die wie folgt aussehen.
 
 ## Rechnungserkennung
-Bei der Rechnungserkennung wird versucht, die Rechnung vom Hintergrund des Bildes zu extrahieren. Durch lösen dieses Problems, kommen wir zum nächsten Punkt.
-
-Diese Erkennung kann mit vielen Methoden erzielt werden, die untereinander auskombiniert werden können.
+Bei der Rechnungserkennung wird versucht, die Rechnung vom Hintergrund des Bildes zu extrahieren. Diese Erkennung kann mit vielen Methoden erzielt werden, die untereinander auskombiniert werden können.
 
 Folgende Optionen liegen für das Thresholding vor:
 
 * normale Thresholding Algorithmen
 * Holistically Nested Edge Detection als Threshold
 
-Zu notieren ist, dass hier ein Gausscher Blur noch angewendet werden muss um die Performance zu verbessern.
+Zu erwähnen ist, dass hier ein Gausscher Blur noch angewendet werden muss um die Performance zu verbessern.
 
 Das Ergebnis kann dann mit folgenden Edge Detections noch verbunden werden:
 
@@ -41,7 +39,9 @@ Es hat sich gezeigt, dass die beste Kombination folgende ist:
 * `findContours()` mit `approxPolyDP()` und als Fallback `minAreaRect()`
 * Vier Punkt Transformation um erkannten Teil des Bildes auszuschneiden
 
-Dies ist aber noch immer keine universelle Lösung für das Problem.
+Um diese Reihe an Transformationen und Bild Manipulationen anzuwenden, wurde die Bibliothek OpenCV verwendet. Essenziell ist es aber, die Funktion und Logik hinter diesen Transformationen zu verstehen. Aus diesem Grund wurden auch ein paar dieser Methoden, aus Interesse, selbst implementiert aber nicht verwendet, da diese nicht so perfomant wie die eingebauten Funktionen sind. Jede Funktion genau zu erklären, würden den Rahmen des Diplomarbeitsbuches sprengen.  
+
+Wichtig ist aber noch immer keine universelle Lösung für das Problem.
 
 ## Wichtige Teile erkennen
 Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise erkannt werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
@@ -81,7 +81,7 @@ Danach wird die Durchschnittliche X-Koordinate der Linken und Rechten Seite bere
 Falls keine Linien erkannt werden, wird einfach das Input Bild weiterverwendet. Aus diesem wird dann der Text erkannt.
 
 ## Texterkennung
-Texterkennung oder auch "Optical character recognition" (OCR) ist das grundlegende Problem in dieser Aufgabenstellung. Die Preise als auch die Namen der Produkte müssen ausgelesen werden. Um dies zu realisieren, wurde \cite{tesseract} Googles Tesseract Engine verwendet. Die Engine ist open source und wird von Google weiterentwickelt. Diese besteht aus mehreren \cite{lstm} LSTM Netzwerken, welche für verschiedene Aufgaben zuständig sind.
+Texterkennung oder auch "Optical character recognition" (OCR) ist das grundlegende Problem in dieser Aufgabenstellung. Die Preise als auch die Namen der Produkte müssen ausgelesen werden. Um dies zu realisieren, wurde Googles Tesseract Engine verwendet. Die Engine ist open source und wird von Google weiterentwickelt. Diese besteht aus mehreren LSTM Netzwerken, welche für verschiedene Aufgaben zuständig sind. (vgl. \cite{tesseract_lstm})
 
 Um die Daten aus der Engine schön formatiert zu erhalten, wird die `pytesseract` Bibliothek verwendet, welche eine Abstraktion der Tesseract Engine ist.
 
@@ -109,10 +109,16 @@ POST & /prediction & Bild & Automatic\tabularnewline
 \caption{Endpunkt Struktur der REST API}
 \end{longtable}
 
-Flasks Development Server ist nicht für Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. \cite{flask_gunicorn} Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. \cite{gunicorn_nginx} Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server geproxied werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend} Diese ganze Umgebung ist mit Docker Containern realisiert.
+Flasks Development Server ist nicht für Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. (vgl. \cite{flask_gunicorn}) Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. (vgl. \cite{gunicorn_nginx}) Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server geproxied werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend} Diese ganze Umgebung ist mit Docker Containern realisiert.
 
-![Backend Flow\label{backend}](images/coja/backend.png)
-\cite{backend_handy}
+\begin{figure}[H]
+\centering
+\includegraphics{images/coja/backend.png}
+\caption{Backend Flow}
+\label{backend}
+\end{figure}
+
+Quellen für \abb{backend} siehe \cite{backend_handy}
 \cite{backend_cloudflare}
 \cite{backend_arrow}
 \cite{backend_rbpi}
@@ -140,7 +146,7 @@ Aus diesem Grund wurde der Camera Scanner in drei Modi unterteilt:
 wobei der **Editor** Modus auch in Kombination mit den anderen zwei Modi verwendet werden kann.
 
 ### Editor
-Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um ein perfomanten und flüssigen
+Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um einen perfomanten und flüssigen
 Editor zur Verfügung zu stellen, wurde das `image_cropper` Paket verwendet, welche das Foto nativ
 auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin
 den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
@@ -166,7 +172,7 @@ Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich b
 
 Wobei diese Detections die Selektion Rot aufleuchten lassen, um dem User zu zeigen, dass hier eine Grenze gesetzt ist.
 
-Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen wie Pixel Werte, Koordinaten uvm.! Um einen Canvas zu erstellen wurde das `PolygonPainter` Widget ausprogrammiert, welches vom `CustomPainter` ableitet. \abb{polypainter} Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist, dass das Quadliteral convex ist. (Jeder Winkel ist kleiner als 180°) \cite{convex}
+Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen wie Pixel Werte, Koordinaten uvm.! Um einen Canvas zu erstellen wurde das `PolygonPainter` Widget ausprogrammiert, welches vom `CustomPainter` ableitet. \abb{polypainter} Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist, dass das Quadliteral convex ist. (Jeder Winkel ist kleiner als 180°)
 
 ![PolygonPainter Klassenstruktur \label{polypainter}](images/coja/polygonpainter.png)
 
@@ -197,7 +203,7 @@ Weiters werden erkannte Preise über 1000€ nicht angenommen und Produktnamen o
 
 **Abhaken der Produkte**
 
-Falls der Camera Scanner für das Abhaken der Produkte verantwortlich ist, wird zwischen jedem Erkannten und Existierendem Produkt eine **String Distanz** berechnet. Hier wurde der *Sorensen-Dice* Algorithmus verwendet, welcher im Vergleich zu *Distanz* basierten Algorithmen, wie der *Levensthein Distanz*, das Auftreten von Charactersequenzen mit der Länge von 2 als Metrik nimmt. \cite{string_algs} Diese Formel beschreibt diesen Algorithmus.
+Falls der Camera Scanner für das Abhaken der Produkte verantwortlich ist, wird zwischen jedem Erkannten und Existierendem Produkt eine **String Distanz** berechnet. Hier wurde der *Sorensen-Dice* Algorithmus verwendet, welcher im Vergleich zu *Distanz* basierten Algorithmen, wie der *Levensthein Distanz*, das Auftreten von Charactersequenzen mit der Länge von 2 als Metrik nimmt. (vgl. \cite{string_algs}) Diese Formel beschreibt diesen Algorithmus.
 
 $$
     D = \frac{2 * \abs{X \cap Y}}{\abs{X} + \abs{Y}}
