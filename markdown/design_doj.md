@@ -1,8 +1,8 @@
 # Logo
 
-## Vorwort
+## Grundgedanke
 
-Ein Logo hat die Funktion ein Unternehmen, ein Produkt oder aber auch ein Brand zu repräsentieren. Überlicher Weise wird ein Logo graphisch dargestellt. In unserem Fall diente das Logo als Markenzeichen der App und als Symbol unserer Diplomarbeit. Es war wichtig sich auf ein Logo zu einigen, welches einheitlich zum Design der App passt. Es sollte zum einen einfach gestaltet, aber auch zum anderen innovativ sein. Oftmals werden entweder Buchtsaben oder Wörter verwendet. Das Logo in diesem Projekt wurde im Programm AdobeXD gestaltet.
+Ein Logo hat die Funktion ein Unternehmen, ein Produkt oder aber auch ein Brand zu repräsentieren. Überlicher Weise wird ein Logo graphisch dargestellt. In unserem Fall diente das Logo als Markenzeichen der App und als Symbol unserer Diplomarbeit. Es war wichtig sich auf ein Logo zu einigen, welches einheitlich zum Design der App passt. Es sollte zum einen einfach gestaltet, aber auch zum anderen innovativ sein. Oftmals werden entweder Buchtsaben oder Wörter verwendet. Das Logo in diesem Projekt wurde im Programm Adobe XD gestaltet.
 
 ## Erster Entwurf
 
@@ -28,7 +28,7 @@ Aufgrund des Feedbacks vom ersten Entwurf, entschied ich mich das Kürzel der Di
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.2\textwidth, keepaspectratio]{images/doja/logo.png}
+\includegraphics[width=0.3\textwidth, keepaspectratio]{images/doja/logo.png}
 \caption{Zweiter Entwurf Einkaufswagenlogo}
 \label{einkaufswagenLogo2}
 \end{figure}
@@ -40,7 +40,7 @@ Zwar war das Design des Einkaufswagens deutlich anschaulicher als das der Einkau
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.2\textwidth, keepaspectratio]{images/doja/logo_final.png}
+\includegraphics[width=0.3\textwidth, keepaspectratio]{images/doja/logo_final.png}
 \caption{Finales Logo}
 \label{listAssistLogo}
 \end{figure}
@@ -48,4 +48,14 @@ Zwar war das Design des Einkaufswagens deutlich anschaulicher als das der Einkau
 
 # App
 
+## Grundgedanke
 
+Beim Designen einer App geht es vorerst darum, eine gute Farbwahl zu treffen. Der Farbton ist auch gleichzeitig der Grundstein für die einzelnen Seiten der App. Es ist wichtig die einzelnen Seiten einheitlich zu gestalten. Außerdem sollte es noch mit der Farbe und dem Design des Logos zusammenpassen. Die Seiten sollten übersichtlich gestaltet sein, damit sich der User wohl fühlt und sich schnell mit der App vertraut machen kann. Mit dem Programm Adobe XD wurden die einzelnen Seiten designt.
+
+## Erster Entwurf
+
+Grundsätzlich erscheint die App im blauen Farbton, auf den wir uns geeinigt haben. Anschließend musste ich mir überlegen, wie die App designt werden muss, damit sie sowohl einer App, als auch einer Einkaufliste gleicht. Da es verschiedene Seiten einer App gibt, mussten diese natürlich seperat designed werden. Die Anzahl der Seiten richtet sich nach den Features, die die Applikation anbietet. Aufgrund der Funktionen mussten ein Anmelden- und Registirierungs-Screen gestaltet werden. Weiters noch die verschiedenen Ansichten wie unter anderem die Liste der einzelnen Einkaufslisten, die Gruppenansicht, oder auch die Ansicht, wenn eine neue Einkaufliste erstellt wird oder ein Produkt hinzugefügt wird. Außerdem hab ich beim ersten Versuch probiert das Logo so oft wie möglich in der App einzubinden. Diese Idee wurde aber in der Endversion wieder verworfen, weil das Logo eigentlich bei keiner bekannten App immer erscheint. Beim ersten Entwurf sind zu viele Seiten mit einem blauem Hintergrund gestaltet, was nicht gut aussgesehen hat.
+
+## Finaler Entwurf
+
+Nach einer Rücksprache mit dem Hauptbetreuer und den einzelnen Teammitgliedern, wurde das Logo aus den Ansichten rausgenommen. Außerdem wurden die Seiten, die einen blauen Hintergrund haben, minimiert. Das Design wurde dennoch simpel gehalten, um den Fokus auf die Funktionalität zu legen.
