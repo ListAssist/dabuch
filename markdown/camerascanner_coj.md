@@ -114,7 +114,7 @@ Flasks Development Server ist nicht für Produktionsumgebung geeignet. Aus diese
 \begin{figure}[H]
 \centering
 \includegraphics{images/coja/backend.png}
-\caption{Backend Flow}
+\caption{Backend Flow.}
 \label{backend}
 \end{figure}
 
@@ -174,7 +174,12 @@ Wobei diese Detections die Selektion Rot aufleuchten lassen, um dem User zu zeig
 
 Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen wie Pixel Werte, Koordinaten uvm.! Um einen Canvas zu erstellen wurde das `PolygonPainter` Widget ausprogrammiert, welches vom `CustomPainter` ableitet. \abb{polypainter} Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Wichtig zu notieren ist, dass das Quadliteral convex ist. (Jeder Winkel ist kleiner als 180°)
 
-![PolygonPainter Klassenstruktur \label{polypainter}](images/coja/polygonpainter.png)
+\begin{figure}[H]
+\centering
+\includegraphics{images/coja/polygonpainter.png}
+\caption{PolygonPainter Klassenstruktur.}
+\label{polypainter}
+\end{figure}
 
 
 #### Anforderungen
@@ -276,6 +281,6 @@ Zuletzt wäre es möglich, ein Long-Short-Term-Memory (LSTM) Netzwerk zu trainie
 \begin{figure}[H]
 \centering
 \includegraphics{images/coja/camera_scanner.png}
-\caption{CameraScanner Widget Klassenstruktur}
+\caption{CameraScanner Widget Klassenstruktur.}
 \label{camerascanner_struct}
 \end{figure}
