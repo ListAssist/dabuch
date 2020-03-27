@@ -75,20 +75,35 @@ Diese Idee wurde aber in der Endversion wieder verworfen, weil das Logo eigentli
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.2\textwidth, keepaspectratio]{images/doja/Gruppenauswahl.png}
+\includegraphics[width=0.25\textwidth, keepaspectratio]{images/doja/Gruppen.png}
 \caption{Erster Entwurf der Gruppenansicht}
-\label{Gruppenansicht_v1}
+\label{Gruppen_v1}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.2\textwidth, keepaspectratio]{images/doja/Sidebar.png}
-\caption{Erster Entwurf der Sidebar}
-\label{Sidebar_v1}
+\includegraphics[width=0.25\textwidth, keepaspectratio]{images/doja/Gruppenansicht.png}
+\caption{Erster Entwurf der Einkaufslistenansicht}
+\label{Einkaufsliste_v1}
 \end{figure}
 
 
-## Finaler Entwurf
+## Überarbeiteter Entwurf
 
-Nach einer Rücksprache mit dem Hauptbetreuer und den einzelnen Teammitgliedern, wurde das Logo aus den Ansichten rausgenommen. Außerdem wurden die Seiten, die einen blauen Hintergrund haben, minimiert. Das Design wurde dennoch simpel gehalten, um den Fokus auf die Funktionalität zu legen.
+Nach einer Rücksprache mit dem Hauptbetreuer und den einzelnen Teammitgliedern, wurde das Logo aus den Ansichten rausgenommen. Außerdem wurde die Anzahl der Seiten, die einen blauen Hintergrund haben, minimiert. Das Design wurde dennoch simpel gehalten, um den Fokus auf die Funktionalität zu legen.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.25\textwidth, keepaspectratio]{images/doja/Gruppe_v2.png}
+\caption{Überarbeiteter Entwurf der Gruppenansicht}
+\label{Gruppen_v2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.25\textwidth, keepaspectratio]{images/doja/Einkauflisten.png}
+\caption{Überarbeiteter Entwurf der Einkaufslistenansicht}
+\label{Einkaufsliste_v2}
+\end{figure}
