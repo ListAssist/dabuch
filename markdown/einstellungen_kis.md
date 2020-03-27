@@ -2,7 +2,7 @@
 
 Die Einstellungen bestehen aus fünf Hauptkategorien, nämlich den Konto Einstellungen, den App Einstellungen, dem 
 Datenschutz Bereich, dem "Fehler melden" Bereich und dem Info Bereich. Anfangs gab es noch eine sechste Kategorie,
-die Benachrichtigungseinstellungen, da jedoch die Implementierung von App Benachrichtigungen (z.B. bei Einaldungen in
+die Benachrichtigungseinstellungen, da jedoch die Implementierung von App Benachrichtigungen (z.B. bei Einladungen in
 eine Gruppe) sehr zeitaufwendig gewesen wäre und diese kein Hauptziel darstellte, wurde sie nicht umgesetzt.
 
 Die Buttons "Datenschutz" und "Info" führen auf die Projektwebseite und der "Fehler melden" Button führt auf das Git Repository.
@@ -77,5 +77,10 @@ Hero(
 )
 \end{lstlisting}
 
-
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/SettingsView.jpg}
+\caption{Einstellungen}
+\label{einstellungen}
+\end{figure}
 

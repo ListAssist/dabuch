@@ -22,15 +22,6 @@ den Balken haben. Dies wurde mit der `sublist` Methode gelöst.
 
 \needspace{10cm}
 
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/StatisticsView.jpg}
-\caption{Statistiken}
-\label{statistiken}
-\end{figure}
-
-
 Die Skalierung der Balken wird automatisch von `charts_flutter` gemacht. Da es bei schlechter Internetverbindung zu
 Verzögerungen beim Laden der Daten kommen kann, wird, bei fehlenden Daten, ein Shimmer anstelle eines leeren Diagramms angezeigt.
 Die `animate` Variable bewirkt bei `true`, dass das Diagramm beim Eintritt in das UI animiert wird.
@@ -51,3 +42,10 @@ Die `animate` Variable bewirkt bei `true`, dass das Diagramm beim Eintritt in da
         )
         : ShoppyShimmer(),
 \end{lstlisting}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/StatisticsView.jpg}
+\caption{Statistiken}
+\label{statistiken}
+\end{figure}

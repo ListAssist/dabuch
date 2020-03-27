@@ -12,7 +12,7 @@ Recipes haben einen `name`, eine `description` und ein `items` Array.
 
 In der App werden Rezepte mithilfe von `Card` Widgets dargestellt. Um Platz zu sparen 
 und möglichst viele Rezepte gleichzeitig anzuzeigen wurden `ExpansionTile`s innerhalb 
-der `Card`s verwendet. Die `ExpansionTile`s zeigen am Anfang nur den Rezpetnamen an und 
+der `Card`s verwendet. Die `ExpansionTile`s zeigen am Anfang nur den Rezeptnamen an und 
 lassen sich mit einem Klick aufklappen, um die alle Details der Rezepte anzuzeigen. Klickt
 der Benutzer auf den "Liste erstellen" Button wird eine Einkaufsliste mit allen Produkten
 des Rezepts erstellt. 
@@ -46,8 +46,8 @@ FloatingActionButton.extended(
 	\hfill
     \begin{minipage}{\mypicWidth\textwidth}
         \includegraphics[width=\textwidth, keepaspectratio]{images/kisi/RecipeView2.jpg}
-        \caption{Rezepte-View2}
-        \label{rezepte-view2} 
+        \caption{Rezept ohne Zutaten}
+        \label{Rezept ohne Zutaten} 
 	\end{minipage}
 \end{figure}
 
@@ -55,7 +55,7 @@ FloatingActionButton.extended(
 
 Grundsätzlich werden Rezepte auf die selbe Art wie Einkaufslisten erstellt. Der einzige
 Unterschied ist, dass man bei Rezepten eine Beschreibung hinzufügen kann. Für das Suchen und 
-Hinzufügen von Produkten wurde deshalb auch das selbe Widget, das auch bei den Einkaufslisten
+Hinzufügen von Produkten wurde deshalb auch das selbe Widget, das bei den Einkaufslisten
 verwendet wird, eingesetzt.
 
 \needspace{10cm}
