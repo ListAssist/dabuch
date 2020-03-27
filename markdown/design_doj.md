@@ -56,6 +56,23 @@ Beim Designen einer App geht es vorerst darum, eine gute Farbwahl zu treffen. De
 
 Grundsätzlich erscheint die App im blauen Farbton, auf den wir uns geeinigt haben. Anschließend musste ich mir überlegen, wie die App designt werden muss, damit sie sowohl einer App, als auch einer Einkaufliste gleicht. Da es verschiedene Seiten einer App gibt, mussten diese natürlich seperat designed werden. Die Anzahl der Seiten richtet sich nach den Features, die die Applikation anbietet. Aufgrund der Funktionen mussten ein Anmelden- und Registirierungs-Screen gestaltet werden. Weiters noch die verschiedenen Ansichten wie unter anderem die Liste der einzelnen Einkaufslisten, die Gruppenansicht, oder auch die Ansicht, wenn eine neue Einkaufliste erstellt wird oder ein Produkt hinzugefügt wird. Außerdem hab ich beim ersten Versuch probiert das Logo so oft wie möglich in der App einzubinden. Diese Idee wurde aber in der Endversion wieder verworfen, weil das Logo eigentlich bei keiner bekannten App immer erscheint. Beim ersten Entwurf sind zu viele Seiten mit einem blauem Hintergrund gestaltet, was nicht gut aussgesehen hat.
 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\textwidth, keepaspectratio]{images/doja/Gruppenauswahl.png}
+\caption{Erster Entwurf der Gruppenansicht}
+\label{Gruppenansicht_v1}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\textwidth, keepaspectratio]{images/doja/Sidebar.png}
+\caption{Erster Entwurf der Sidebar}
+\label{Sidebar_v1}
+\end{figure}
+
+
 ## Finaler Entwurf
 
 Nach einer Rücksprache mit dem Hauptbetreuer und den einzelnen Teammitgliedern, wurde das Logo aus den Ansichten rausgenommen. Außerdem wurden die Seiten, die einen blauen Hintergrund haben, minimiert. Das Design wurde dennoch simpel gehalten, um den Fokus auf die Funktionalität zu legen.

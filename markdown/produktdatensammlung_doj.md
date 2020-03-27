@@ -1,6 +1,6 @@
 # Sinn der Produktdatensammlung
 
-Damit ein Kunde überhaupt nach einem bestimmten Produkt suchen kann, müssen natürlich Daten vorhanden sein. Theoretisch könnten User die Daten zwar immer selbst eintragen aber das wäre eigentlich nicht der Sinn der App. Der Sinn ist es natürlich dem Endnutzer das Leben zu vereinfachen, weshalb es unsere Aufgabe war, nach einer Quelle zu suchen die uns mdie Daten liefert.
+Damit ein Kunde überhaupt nach einem bestimmten Produkt suchen kann, müssen natürlich Daten vorhanden sein. Theoretisch könnten User die Daten zwar immer selbst eintragen aber das wäre eigentlich nicht der Sinn der App. Der Sinn ist es natürlich dem Endnutzer das Leben zu vereinfachen, weshalb es unsere Aufgabe war, nach einer Quelle zu suchen die uns die Daten liefert.
 
 # Ursprüngliche Idee
 
