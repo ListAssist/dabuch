@@ -4,10 +4,11 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=5cm, keepaspectratio]{images/doja/umweltanalyse.png}
+\includegraphics{images/doja/umweltanalyse.png}
 \caption{Bild der Umfeldanalyse}
 \end{figure}
 
+\needspace{10cm}
 # Beschreibung der wichtigsten Umfelder
 
 | # | Bezeichnung | Beschreibung |Bewertung | Marketingmaßnahmen |
