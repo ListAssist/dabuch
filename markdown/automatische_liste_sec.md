@@ -123,7 +123,7 @@ es keine Einheitlichen Preise gibt. Die Preise werden vom Benutzer selbst einget
 Daher ist es möglich, einmal ein Produkt um 12 Euro zu kaufen und einmal um 5 Euro. Es könnte natürlich der 
 erste Preis, oder ein Durchschnittspreis, verwendet werden, jedoch wurde darauf aus zeitlichen Gründen verzichtet.
 Dieses Problem gibt es in schwächerer Form auch bei den Kategorien. Prinzipiell hat ein Produkt nur eine Kategorie,
-jedoch kann das Produkt auch als "Selbst erstellt", oder als "Gescannt\todo{FRAGEN}", eingefügt werden. Es wäre 
+jedoch kann das Produkt auch als "Selbst erstellt", oder als "Gescannt", eingefügt werden. Es wäre 
 möglich, diese Kategorien zu ignorieren und die übrig gebliebene zu verwenden. Das würde allerdings nicht
 funktionieren, wenn das Produkt nie mit der richtigen Kategorie gekauft wurde. 
 
