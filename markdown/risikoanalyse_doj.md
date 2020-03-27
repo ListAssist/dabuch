@@ -10,7 +10,7 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=6cm,height=\textheight]{images/doja/risikoanalyse.png}
+\includegraphics{images/doja/risikoanalyse.png}
 \caption{Bild des Risikoportfolios\label{King Bild}}
 \end{figure}
 
