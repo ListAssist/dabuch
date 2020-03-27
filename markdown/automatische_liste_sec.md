@@ -52,8 +52,10 @@ Object.keys(itemFrequency).forEach(i => {
     next.setDate(next.getDate() + itemFrequency[i]);
     const timeDiffToToday = Math.ceil(Math.floor(today - next) / (1000 * 60 * 60 * 24));
 
-    // (itemFrequency[i] <= timeSpan/2) damit zu selten gekaufte Produkte nicht vorgeschlagen werden
-    // timeDiffToToday + 5 <= 2 damit ein kleiner Puffer für die Tage davor gegeben ist 
+    // (itemFrequency[i] <= timeSpan/2) damit zu selten gekaufte 
+    // Produkte nicht vorgeschlagen werden
+    // timeDiffToToday + 5 <= 2 damit ein kleiner Puffer 
+    // für die Tage davor gegeben ist 
     if ((timeDiffToToday >= 0 || timeDiffToToday + 5 <= 2) 
             && (itemFrequency[i] <= timeSpan/2)) {
         recommendation.push(
@@ -75,7 +77,9 @@ function getLastDateWithItem(lastLists: object[], name: string) {
 
     lastLists.forEach((el, index) => {
         if (el["items"].map(i => i["name"]).includes(name)) {
-            lastPossibilities.push(lastLists[index]["completed"].toDate());
+            lastPossibilities.push(
+                lastLists[index]["completed"].toDate()
+            );
         }
     });
 
@@ -114,13 +118,22 @@ return Promise.all([
 });
 \end{lstlisting}
 
+Bei den vorgeschlagenen Produkten werden keine Preise oder Kategorien gespeichert. Der Grund dafür ist, dass 
+es keine Einheitlichen Preise gibt. Die Preise werden vom Benutzer selbst eingetragen bzw. vom Rechnungsscanner.
+Daher ist es möglich, einmal ein Produkt um 12 Euro zu kaufen und einmal um 5 Euro. Es könnte natürlich der 
+erste Preis, oder ein Durchschnittspreis, verwendet werden, jedoch wurde darauf aus zeitlichen Gründen verzichtet.
+Dieses Problem gibt es in schwächerer Form auch bei den Kategorien. Prinzipiell hat ein Produkt nur eine Kategorie,
+jedoch kann das Produkt auch als "Selbst erstellt", oder als "Gescannt\todo{FRAGEN}", eingefügt werden. Es wäre 
+möglich, diese Kategorien zu ignorieren und die übrig gebliebene zu verwenden. Das würde allerdings nicht
+funktionieren, wenn das Produkt nie mit der richtigen Kategorie gekauft wurde. 
+
+\needspace{15cm}
 # Implementierung in die App
 
 Die Überprüfung, ob bereits die vom Benutzer eingestellte Dauer vergangen ist, erfolgt nicht nur in der
 Cloud-Function, sondern auch auf der Clientseite, in der App, selbst. Dazu wird der folgende Code in der
 Einkaufslisten-View verwendet:
 
-\needspace{10cm}
 \begin{lstlisting}[language=Dart]
 User user = Provider.of<User>(context);
 if(user.settings != null) {
@@ -169,7 +182,7 @@ Der gleiche Code wird auch für Gruppen verwendet, mit dem Unterschied, dass ans
 die Gruppeneinstellungen geladen werden und die Cloud-Function mit der GruppenID aufgerufen wird.
 
 \needspace{12cm}
-# Vorschläge mit AI
+# Vorschläge mit künstlicher Intelligenz (AI)
 
 Beim Überlegen, wie die AI aussehen sollte, gab es einige Schwierigkeiten mit der AI. Mit einem Convolutional Neural Network
 (CNN) ist diese Art von AI nicht möglich. Im Unterricht wurden CNN Grundlagen beigebracht, jedoch nur im Zusammenhang
@@ -178,8 +191,11 @@ Neural Network (RNN) durchgemacht. Diese Art von neuronalen Netzwerken wird vora
 Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM) Layer.
 Da ein RNN Aktienpreise vorhersagen kann, wäre es auch möglich, dieses für Produktvorhersagen zu trainieren.
 
-# Warum Algorithmus nicht AI
+# Unterschied zwischen Algorithmus und AI
 
-Da eine AI auch sehr viele Trainingsdaten benötigt, um gut zu funktionieren, wurde anstelle einer AI ein Algorithmus verwendet.
-Außerdem ist eine AI in diesem Umfang gar nicht nötig. Der Algorithmus ist für diese Aufgabe besser geeignet, da man keine Trainingsdaten
-benötigt und er zudem schneller funktioniert.
+Der Vorteil einer AI ist, dass sie sich auch an den Benutzer anpassen kann und dazulernt. Der Algorithmus funktioniert bei
+jedem Benutzer gleich und ist daher nicht so individuell wie eine AI. Eine AI benötigt jedoch, um gut zu funktionieren, extrem
+viele Trainingsdaten. Auch für ein akzeptables Level werden sehr viele Trainingsdaten benötigt. Aus diesen Gründen wurde 
+entschieden, für die automatischen Einkaufslisten Vorschläge einen Algorithmus zu verwenden. Außerdem ist eine AI in diesem
+Umfang gar nicht nötig. Der Algorithmus ist für diese Aufgabe besser geeignet, da man keine Trainingsdaten benötigt und er
+zudem schneller funktioniert. Zudem verbraucht der Algorithmus auch nicht so viele Ressourcen wie eine AI.

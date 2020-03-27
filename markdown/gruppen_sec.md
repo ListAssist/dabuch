@@ -2,8 +2,8 @@
 
 Die Gruppen funktionieren wie alles andere auch in Echtzeit. Da die Firestore Security Rules
 keine komplizierteren Sachen, wie zum Beispiel überprüfen, ob ein User in einem Array vorhanden
-ist um die Gruppe zu bearbeiten, wurden Updates/Creates mit Cloud-Functions geregelt. Dadurch hat
-man eine bessere Kontrolle. 
+ist, um die Gruppe zu bearbeiten, decken können, wurden Updates/Creates mit Cloud-Functions 
+geregelt. Dadurch hat man eine bessere Kontrolle.
 
 # Gruppen des Benutzers streamen
 
@@ -43,9 +43,10 @@ Wichtig ist dabei dieser Teil: `.where(FieldPath.documentId, whereIn: snap.data[
 Funktionalität wurde jedoch erst im Laufe der Durchführung hinzugefügt. Deswegen wurde zu Beginn nur eine 
 Gruppe geladen, später als diese Funktionalität hinzugefügt wurde, wurde dann die Liste der Gruppen gestreamt.
 
-Zudem wurde kein Dart-Stream verwendet, sondern ein Observable von `rxdart`. Das hat den Vorteil, dass
-mit der `switchMap` Methode der Datentyp des Stream geändert werden kann, was mit einem normalen `map` vom
-Dart-Stream nicht möglich ist.
+Zudem wurde kein Dart-Stream verwendet, sondern ein Observable von `rxdart`\footnote{\url{https://pub.dev/packages/rxdart}}. 
+Das hat den Vorteil, dass mit der `switchMap` Methode der Datentyp des Stream geändert werden kann, was mit
+einem normalen `map` vom Dart-Stream nicht möglich ist. Mithilfe von `switchMap` wird das String-Array 
+der GruppenIDs zu einem Array von Gruppen umgewandelt.
 
 # Einkaufslisten in Gruppen
 
@@ -55,29 +56,29 @@ auch in die Widgets der Gruppen kopiert werden. Deswegen, da es bereits die Widg
 einfach wiederverwendet. Das erspart sowohl die erneute Programmierung des Widgets
 als auch Probleme mit der Einheitlichkeit, da man bei einer Änderung beide Widgets
 wieder anpassen müsste. Die einzigen Änderungen waren ein Parameter, der angibt ob es sich um eine
-Gruppe handelt und, falls es sich um eine Gruppe handelt, wurde die `uid` durch die Gruppen-ID ersetzt
+Gruppe handelt, und, falls es sich um eine Gruppe handelt, wurde die `uid` durch die Gruppen-ID ersetzt
 und die Liste musste anders geladen bzw. weitergegeben werden. Das gleiche Prinzip wurde
 auch für die erledigten Einkäufe verwendet. 
 
 # Übersicht der Benutzer in einer Gruppe
 
 Die Liste der Benutzer einer Gruppe ist ein Array von Maps, die den Namen, eine UID und eine 
-URL für das Profilbild enthalten. Mit der "map" methode werden aus den einzelnen Maps Widgets
-erstellt. Die Darstellung ist ein einfaches "Row" Widget mit einem Profilbild vorne, und dem Namen
+URL für das Profilbild enthalten. Mit der `map` Methode werden aus den einzelnen Maps Widgets
+erstellt. Die Darstellung ist ein einfaches `Row` Widget mit einem Profilbild vorne, und dem Namen
 nach dem Profilbild. Falls ein Benutzer keine URL für ein Profilbild besitzt oder während das Bild lädt,
-wird ein selbst erstelltes Standard Profilbild angezeigt. Da der Besitzer der Gruppe ebenfalls in der Liste
-der Mitglieder ist, wird der Besitzer vor dem "mappen" entfernt und er bekommt eine etwas andere Darstellung,
-nämlich mit einem grünen "Gruppenersteller" nach seinem Namen. Sollte der Name zu lang sein um ihn richtig
+wird ein selbst erstelltes Standardprofilbild angezeigt. Da der Besitzer der Gruppe ebenfalls in der Liste
+der Mitglieder ist, wird der Besitzer vor dem mappen entfernt und er bekommt eine etwas andere Darstellung,
+nämlich mit einem grünen Text "Gruppenersteller" nach seinem Namen. Sollte der Name zu lang sein um ihn richtig
 darzustellen, wird mittels der Einstellung `overflow: TextOverflow.ellipsis` der Text gekürzt und mit ...
 am Ende dargestellt.
 
 # Gruppe bearbeiten
 
 Der Ersteller der Gruppe kann diese auch bearbeiten. Das beinhaltet das Umbenennen der Gruppe, das
-Entfernen von Benutzern aus der Gruppe und das Einstellen ob und wie oft eine automatische
+Entfernen von Benutzern aus der Gruppe und das Einstellen, ob und wie oft eine automatische
 Einkaufsliste erstellt werden soll. Das aktualisierte Gruppen-Objekt wird dann einer Cloud-Function
 übergeben. Dort werden dann der Name, die Einstellungen und die aktualisierte Mitgliederliste
-auf in die Gruppe hochgeladen. Die entfernten Benutzer werden im `members` Array entfernt und
+auf Firestore in die Gruppe hochgeladen. Die entfernten Benutzer werden im `members` Array entfernt und
 die Gruppen-ID wird aus dem Dokument des Benutzers in `groups_user` entfernt.
 
 # Gruppe löschen
@@ -89,7 +90,57 @@ die Gruppe bei jedem Benutzer der in der Gruppe war aus dem Dokument von `groups
 # Gruppe verlassen
 
 Jedes Mitglied einer Gruppe kann diese natürlich auch verlassen. In diesem Fall wird der Benutzer aus
-dem `members` Array entfernt und die Gruppen-ID aus dem `groups_user` Dokument des Users entfernt. Eine
-Ausnahme ist der Ersteller der Gruppe. Wenn dieser die Gruppe verlässt, wird zusätzlich der nächste 
-Benutzer im `members` Array als `creator` eingetragen. Sollte der Ersteller der Gruppe das letzte Mitglied
-der Gruppe sein, wird die Gruppe inklusive Subcollections gelöscht.
+dem `members` Array entfernt und die GruppenID aus dem `groups_user` Dokument des Users entfernt. Eine
+Ausnahme ist der Ersteller der Gruppe. Wenn dieser die Gruppe verlässt, wird er aus dem `creator` Feld
+gelöscht und der nächste Benutzer im `members` Array wird als `creator` eingetragen. Sollte der Ersteller
+der Gruppe das letzte Mitglied der Gruppe sein, wird die Gruppe inklusive Subcollections gelöscht.
+
+\needspace{0.4\textheight}
+# Benutzernamen in der Gruppe aktualisieren
+
+Der Benutzer kann, sofern er mit Email und Passwort und keinem Social Media Login angemeldet ist, seinen
+Namen ändern. Da jedoch die Dokumentstruktur der Gruppe so konzipiert wurde, keine BenutzerIDs zu speicher,
+da sonst für jede Gruppe jeder Benutzer gelesen werden muss, sprich bei einer Gruppe mit 20 Personen jedes 
+mal 20 Dokumente lesen, wenn die Gruppe geöffnet wird, ändern sich die Namen im Feld `members` auch nicht.
+Die Namensänderung in der Gruppenliste erfolgt daher per Cloud-Function. Zusätzlich zu Cloud-Function, die
+über HTTP aufrufbar sind, gibt es auch Trigger, die eine Funktion ausführen. Für das Umbenennen wurde der
+`onWrite` Trigger verwendet. Dadurch wird jedes mal, wenn das Benutzerdokument beschrieben wird, die Funktion
+`syncUser` aufgerufen. Um nicht unnötig jedes mal zu schreiben, wird am Anfang überprüft, ob sich Name oder
+Bild geändert haben.
+
+\begin{lstlisting}[language=JavaScript]
+const name = change.before.data()["displayName"];
+const newName = change.after.data()["displayName"];
+const pic = change.before.data()["photoURL"];
+const newPic = change.after.data()["photoURL"];
+const uid = change.before.ref.id;
+
+if(name === newName && pic === newPic){
+    return;
+}
+
+const groupsDoc = await db.collection("groups_user").doc(uid).get();
+const groups: any[] = groupsDoc.data()["groups"];
+for(const group of groups) {
+    const grp = await db.collection("groups").doc(group).get();
+    const newGroup = grp.data();
+
+    delete newGroup["title"];
+    delete newGroup["created"];
+    if(newGroup["creator"]["uid"] === uid){
+        newGroup["creator"]["displayName"] = newName || "";
+        newGroup["creator"]["photoURL"] = newPic || null;
+    }else {
+        delete newGroup["creator"];
+    }
+
+    newGroup["members"].forEach(e => {
+        if(e["uid"] === uid){
+            e["displayName"] = newName || "";
+            e["photoURL"] = newPic || null;
+        }
+    });
+    await db.collection("groups").doc(group).set(newGroup, { merge: true });
+}
+
+\end{lstlisting}

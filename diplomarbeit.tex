@@ -4,7 +4,7 @@
     twoside,
     numbers=noenddot,% Keine Punkte am Ende der Gliederungsnummern und davon
                      % abgeleiteten Nummern
-    toc=flat, %Flache TOC --- kann man anpassen (auskommentieren)
+    %toc=flat, %Flache TOC --- kann man anpassen (auskommentieren)
     12pt, % Schriftgröße
     titlepage, % es wird eine Titelseite verwendet
     parskip=full, % Abstand zwischen Absätzen (ganze Zeile)
@@ -172,7 +172,7 @@
 
 \lstdefinelanguage{Dart}{
 	language=Java,
-	morekeywords={*,num,String,var,library,get,set,Item,PossibleItem,Map,List,removeAt,containsKey,indexOf,add,allow}
+	morekeywords={*,num,String,var,library,get,set,await,Item,PossibleItem,Map,List,removeAt,containsKey,indexOf,add,allow}
 }
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -406,7 +406,8 @@ Wien, \today
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Filip Coja %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Camera Scanner (COJ)}
+\hypertarget{camera-scanner-coj}{%
+\chapter{Camera Scanner (COJ)}\label{camera-scanner-coj}}
 \renewcommand{\kapitelautor}{Autor: Filip Coja}
 \input{tex/converted/camerascanner_coj.tex}
 
@@ -461,6 +462,7 @@ Wien, \today
 
 \chapter{Einladungen (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
+\input{tex/converted/einladungen_sec.tex}
 
 \chapter{Automatische Einkaufsliste (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
