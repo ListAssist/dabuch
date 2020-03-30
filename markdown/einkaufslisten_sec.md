@@ -5,13 +5,13 @@ Bei beiden Listenarten gelangt man über einen Klick auf einen Eintrag in die De
 Liste. Die Inhalte dieser Detailansichten werden in den nachfolgenden Unterkapiteln beschrieben.
 
 Bei den offenen Einkaufslisten stehen als Listeneinträge der Name der Einkaufsliste und darunter,
-in der Form "X/Y eingekauft", wie viele Produkte bereits von den insgesamten Produkten gekauft wurden.
+in der Form "X/Y eingekauft", wie viele Produkte bereits von der Gesamtanzahl der Produkte gekauft wurden.
 Dabei wird die Stückzahl der Produkte nicht beachtet, sprich, wenn auf der Einkaufsliste "4x Milch" steht,
-zählt dieser Eintrag nur als 1 Produkt. Bei langem gedrückt halten auf einen Eintrag wird ein Popup-Menü mit
+zählt dieser Eintrag nur als 1 Produkt. Bei langem Gedrückthalten auf einen Eintrag wird ein Popup-Menü mit
 den Optionen zum Bearbeiten und Löschen der Liste angezeigt. 
 
 Bei den abgeschlossenen Einkaufslisten stehen als Listeneinträge der Name der Einkaufsliste und darunter,
-in der Form "Erledigt am DD.MM.YYYY", wann der Einkauf abgeschlossen wurde. Bei langem gedrückt halten auf
+in der Form "Erledigt am DD.MM.YYYY", wann der Einkauf abgeschlossen wurde. Bei langem Gedrückthalten auf
 einen Eintrag wird ein Popup-Menü mit den Optionen zum Kopieren und Löschen der Liste angezeigt. 
 
 # Offene Einkaufslisten
@@ -21,16 +21,16 @@ und die Liste der zu kaufenden Produkte angezeigt. Die Liste der Produkte ist ei
 Die `CheckboxListTile`s sind wie folgt aufgebaut: An erster Stelle ist die Checkbox, danach kommen der Produktname und darunter die Anzahl der
 Produkte, die zu kaufen sind und die Kategorie. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
 
-Nach abschließen einer Einkaufsliste wird diese in dem "Erledigt" Bereich angezeigt. Die
+Nach Abschließen einer Einkaufsliste wird diese in dem "Erledigt" Bereich angezeigt. Die
 eingescannten Rechnungen können dann inkl. ihrer erkannten Produkte und Preise angezeigt werden.
 
 \needspace{4cm}
 # Abgeschlossene Einkaufslisten
 
-Bei den abgeschlossenen Einkaufslisten werden die sowohl die Produkte, die gekauft wurden, als auch
+Bei den abgeschlossenen Einkaufslisten werden sowohl die Produkte, die gekauft wurden, als auch
 die Produkte, die nicht gekauft wurden, separat angezeigt. Ebenso werden die Anzahl der gekauften
-Produkte und der Preis, den der Benutzer eingestellt hat bzw. ein Preis von 0,- € falls
-kein Preis eingestellt wurde angezeigt. Ganz oben steht ein Text, wann der Einkauf abgeschlossen
+Produkte und der Preis, den der Benutzer eingestellt hat bzw. ein Preis von 0,- €, falls
+kein Preis eingestellt wurde, angezeigt. Ganz oben steht ein Text, wann der Einkauf abgeschlossen
 wurde. 
 
 Die abgeschlossenen Einkaufslisten können, wie die offenen Einkaufslisten, ebenfalls gelöscht werden.
@@ -40,7 +40,7 @@ oder gekaufte und nicht gekaufte Produkte kopiert werden sollen. Lässt der Benu
 Feld für den Namen leer, wird der Name der abgeschlossenen Einkaufsliste verwendet.
 
 Um all dies zu realisieren, werden die Produkte in gekaufte und nicht gekaufte Produkte eingeteilt.
-Eine Liste von `Item` `allItems` wird aus der Datenbank geladen, falls der User sowohl gekaufte als
+Eine Liste von `Item` `allItems` wird aus der Datenbank geladen, falls der User sowohl gekaufte als auch
 nicht gekaufte Produkte kopieren will. Zwei weitere Listen, `completedItems` und `uncompletedItems`
 werden erstellt, indem zuerst alle Items in diese Listen kopiert werden und dann mit
 `removeWhere((item) => !item.bought)` die nicht gekauften bzw. mit `removeWhere((item) => item.bought)`
@@ -51,28 +51,28 @@ die gekauften Produkte entfernt werden.
 Die eingescannten Rechnungen können in der Detailansicht der abgeschlossenen Einkaufsliste angesehen werden, sofern
 Rechnungen für eine Einkaufsliste eingescannt wurden. Die Rechnungen werden dann als Carousel dargestellt. Dafür
 wurde die Bibliothek `carousel_slider`\footnote{\url{https://pub.dev/packages/carousel_slider}} verwendet. Sobald
-auf eines der Bilder geklickt wird gelangt der Benutzer in die Detailansicht für diese Rechnung. In dieser Ansicht
+auf eines der Bilder geklickt wird, gelangt der Benutzer in die Detailansicht für diese Rechnung. In dieser Ansicht
 gibt es zwei Reiter, zum einen wird noch einmal das Bild gezeigt, diesmal aber mit der Funktionalität zu zoomen, und
-zum anderen wird die Liste der erkannten Produkte, inklusive deren Preisen, angezeigt.
+zum anderen wird die Liste der erkannten Produkte, inklusive deren Preise, angezeigt.
 
 # Aktionen
 
-## 3 Punk Menü
+## 3 Punkt Menü
 
 In der rechten oberen Ecke des Bildschirms befindet sich ein 3 Punkt Menü. Dieses hat folgende Unterpunkte:
 
 **Abschließen**
 
-Nach drücken des Abschließen-Buttons wird ein Popup zum Abschließen der Einkaufsliste angezeigt. Der Button ist
+Nach Drücken des Abschließen-Buttons wird ein Popup zum Abschließen der Einkaufsliste angezeigt. Der Button ist
 deaktiviert, wenn noch kein Produkt gekauft wurde.
 
 **Umbenennen**
 
-Nach drücken dieses Buttons wird ein Popup zum Umbenennen der Einkaufsliste angezeigt.
+Nach Drücken dieses Buttons wird ein Popup zum Umbenennen der Einkaufsliste angezeigt.
 
 **Löschen**
 
-Auch bei diesem Knopf wird ein Popup angezeigt, ob der Benutzer diese Liste auch wirklich löschen will.
+Auch bei diesem Knopf wird ein Popup mit der Frage, ob der Benutzer diese Liste auch wirklich löschen will, angezeigt.
 
 ## Produkte hinzufügen und entfernen
 
@@ -83,5 +83,5 @@ Buttons öffnet sich das `SearchItemsView` Widget, in welchem der Benutzer Produ
 ## Rechnungen einscannen
 
 Direkt über dem Produkte-hinzufügen-Button befindet sich ein kleinerer blauer Button mit einem Kamera Symbol. 
-Durch drücken dieses Button gelangt der Benutzer zum `CameraScanner` Widget (\siehe{camera-scanner-coj}). Von den erkannten
+Durch Drücken dieses Buttons gelangt der Benutzer zum `CameraScanner` Widget (\siehe{camera-scanner-coj}). Von den erkannten
 Produkte können dann jene ausgewählt werden, die auf der Einkaufsliste abgehakt werden sollen.
