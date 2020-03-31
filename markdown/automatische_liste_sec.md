@@ -39,7 +39,7 @@ das Datum des letzten Einkaufs gesucht. Danach wird überprüft, ob das Produkt
 demnächst gekauft werden muss bzw. ob es unmittelbar vor heute gekauft werden hätte sollen.
 Um die Anzahl der Produkte miteinzubeziehen wird der Zeitabstand zwischen dem nächsten Einkauf
 des Produktes und dem heutigen Datum durch die Häufigkeit des Produktes gerechnet. Beispielsweise,
-wenn das Produkt das nächste mal in 5 Tagen gekauft werden soll, es in die Kriterien für den
+wenn das Produkt das nächste Mal in 5 Tagen gekauft werden soll, es in die Kriterien für den
 Vorschlag fällt, aber das Produkt alle 2 Tage gekauft wurde, wird das Produkt mit einer Stückzahl
 von 2 vorgeschlagen.
 
@@ -122,7 +122,7 @@ Bei den vorgeschlagenen Produkten werden keine Preise oder Kategorien gespeicher
 es keine einheitlichen Preise gibt. Die Preise werden vom Benutzer selbst bzw. vom Rechnungsscanner eingetragen.
 Daher ist es möglich, Produkte zu unterschiedlichen Preisen einzukaufen. Es könnte beispielsweise der Preis, zu dem
 das Produkt das erste Mal gekauft wurde, oder ein Durschnittspreis hinterlegt werden. Darauf wurde jedoch aus 
-Zeitgründen verzichtet.Dieses Problem gibt es in schwächerer Form auch bei den Kategorien. Prinzipiell hat ein 
+Zeitgründen verzichtet. Dieses Problem gibt es in schwächerer Form auch bei den Kategorien. Prinzipiell hat ein 
 Produkt nur eine Kategorie, jedoch kann das Produkt auch als "Selbst erstellt", oder als "Gescannt", eingefügt 
 werden. Es wäre möglich, diese Kategorien zu ignorieren und die übrig gebliebene zu verwenden. Das würde allerdings 
 nicht funktionieren, wenn das Produkt nie mit der richtigen Kategorie gekauft wurde.
@@ -131,7 +131,7 @@ nicht funktionieren, wenn das Produkt nie mit der richtigen Kategorie gekauft wu
 # Implementierung in die App
 
 Die Überprüfung, ob bereits die vom Benutzer eingestellte Dauer vergangen ist, erfolgt nicht nur in der
-Cloud-Function, sondern auch auf der Clientseite, in der App, selbst. Dazu wird der folgende Code in der
+Cloud-Function, sondern auch auf der Clientseite, in der App selbst. Dazu wird der folgende Code in der
 Einkaufslisten-View verwendet:
 
 \begin{lstlisting}[language=Dart]

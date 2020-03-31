@@ -30,7 +30,7 @@ DOCUMENTID dieser Collection ausgelesen werden.
 
 ## Benutzer
 
-Die `users` Collection verwendet als Dokument-ID einen zufällig generierten String, 
+Die `users`-Collection verwendet als Dokument-ID einen zufällig generierten String, 
 der 28 Zeichen lang ist. Zusätzlich wird dieser generierte String auch in das Feld `uid`
 eingetragen. Das Feld `displayName` speichert den Anzeigenamen des Benutzers. Das Feld 
 `photoURL` speichert die URL zu dem Profilbild des Benutzers. In `settings` werden alle 
@@ -47,7 +47,7 @@ Einkaufsliste wichtig, um das vom Benutzer eingestellte Intervall einzuhalten.
 \needspace{0.3\textheight}
 ### Lists-Subcollection
 
-Die `lists` Subcollection beinhaltet Informationen wie das Datum der Erstellung, den Namen,
+Die `lists`-Subcollection beinhaltet Informationen wie das Datum der Erstellung, den Namen,
 den Typ, ob es sich um eine abgeschlossene (completed) oder offene (pending) Liste handelt, und
 ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und der Status gespeichert.
 
@@ -61,7 +61,7 @@ ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und de
 \needspace{0.3\textheight}
 ### Shopping_data-Subcollection 
 
-Die `shopping_data` Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
+Die `shopping_data`-Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
 ein Feld `last`, das mehrere Maps beinhaltet. Diese Maps sind eine reduzierte Version einer
 `list`, wie oben beschrieben, und beinhalten nur den Zeitpunk des Abschließens und die Produkte
 als Array. Bei den Produkten wird das Feld `bought` nicht mitgespeichert, da sowieso nur gekaufte
@@ -77,9 +77,9 @@ Produkte gespeichert werden.
 \needspace{0.3\textheight}
 ### Recipe-Subcollection 
 
-Die `recipe` Subcollection ist ähnlich aufgebaut wie die `lists` Subcollection, mit dem Unterschied,
+Die `recipe`-Subcollection ist ähnlich aufgebaut wie die `lists`-Subcollection, mit dem Unterschied,
 dass kein Typ und Erstelldatum, dafür aber eine Beschreibung, gespeichert werden. Die Produkte im
-`products` Array sind gleich aufgebaut wie bei der `lists` Subcollection.
+`products`-Array sind gleich aufgebaut wie bei der `lists`-Subcollection.
 
 \begin{figure}[H]
 \centering
@@ -91,7 +91,7 @@ dass kein Typ und Erstelldatum, dafür aber eine Beschreibung, gespeichert werde
 \needspace{0.3\textheight}
 ## Gruppen
 
-Auch die `groups` Collection verwendet als Dokument-ID einen zufällig generierten String, 
+Auch die `groups`-Collection verwendet als Dokument-ID einen zufällig generierten String, 
 der 28 Zeichen lang ist. Anders als bei den Benutzern wird dieser nicht zusätzlich in einem Feld
 gespeichert. Die Maps von den Feldern `members` und `creator` sind leicht abgeänderte Benutzer-Elemente.
 Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
@@ -106,8 +106,8 @@ Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
 \needspace{0.3\textheight}
 ## Beziehung der Benutzer zu den Gruppen
 
-Welcher Benutzer in welchen Gruppen ist wird in der `groups_user` Collection gespeichert. Als Dokument-ID
-verwendet sie die `uid` des Benutzers. In den jeweiligen Dokumenten gibt es nur ein `groups` Feld, welches
+Welcher Benutzer in welchen Gruppen ist wird in der `groups_user`-Collection gespeichert. Als Dokument-ID
+verwendet sie die `uid` des Benutzers. In den jeweiligen Dokumenten gibt es nur ein `groups`-Feld, welches
 die IDs der Gruppen beinhaltet, denen der Benutzer angehört. Die ID der Gruppe ist die zufällig generierte
 Dokument-ID der Gruppe.
 
@@ -121,7 +121,7 @@ Dokument-ID der Gruppe.
 \needspace{0.3\textheight}
 ## Einladungen
 
-Die `invites` Collection verwendet als Dokument-ID ebenfalls einen zufällig generierten String, 
+Die `invites`-Collection verwendet als Dokument-ID ebenfalls einen zufällig generierten String, 
 der 28 Zeichen lang ist. Das Feld `groupid` beinhaltet die ID der Gruppe, in die der Benutzer eingeladen
 wurde. Passend zu der `groupid` wird auch der Name der Gruppe in `groupname` gespeichert.
 
@@ -135,7 +135,7 @@ wurde. Passend zu der `groupid` wird auch der Name der Gruppe in `groupname` ges
 \needspace{0.3\textheight}
 ## Beliebte Produkte
 
-Die `popular_products` Collection hat nur ein Dokument namens `products`. Dieses Dokument enthält
+Die `popular_products`-Collection hat nur ein Dokument namens `products`. Dieses Dokument enthält
 ein Feld `products`, das mehrere Maps beinhaltet. Diese Maps speichern sowohl die Kategorie als auch
 den Namen des Produktes. 
 

@@ -21,7 +21,7 @@ und die Liste der zu kaufenden Produkte angezeigt. Die Liste der Produkte ist ei
 Die `CheckboxListTile`s sind wie folgt aufgebaut: An erster Stelle ist die Checkbox, danach kommen der Produktname und darunter die Anzahl der
 Produkte, die zu kaufen sind und die Kategorie. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
 
-Nach Abschließen einer Einkaufsliste wird diese in dem "Erledigt" Bereich angezeigt. Die
+Nach Abschließen einer Einkaufsliste wird diese in dem "Erledigt"-Bereich angezeigt. Die
 eingescannten Rechnungen können dann inkl. ihrer erkannten Produkte und Preise angezeigt werden.
 
 \needspace{4cm}
