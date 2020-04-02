@@ -37,6 +37,7 @@ Nachdem sich der User erfolgreich angemeldet oder registriert hat, startet die A
 
 Um einen Mausklick darzustellen, nutze ich drei Keyframes, bei denen die Skalierung unterschiedlich ist. Gewählt wurde ein Kreis, welcher beim Klicken kurz wellenförmig und immer größer werdend erscheint und anschließend immer kleiner wird, bis er nicht mehr sichtbar ist. Der erste und letzte Keyframe hat eine Skalierung von 0 %. Der Keyframe in der Mitte besitzt eine Skalierung von 100 %. Somit kann das Erscheinen und Verschwinden, in Kombination mit der "Ease Ease" Funktion, des Kreises sehr flüssig dargestellt werden. Wie bei einem echten Mausklick erfolgt darauf eine gewisse Reaktion der Seite bzw. der App. Daher muss sobald der Kreis verschwindet die Ansicht gewechselt werden.
 
+\needspace{15cm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth, keepaspectratio]{images/doja/Kreis2.png}
