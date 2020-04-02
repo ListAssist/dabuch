@@ -15,7 +15,7 @@ Folgende Optionen liegen für das Thresholding vor:
 * normale Thresholding Algorithmen
 * Holistically Nested Edge Detection als Threshold
 
-Zu erwähnen ist, dass hier ein Gausscher Blur noch angewendet werden muss um die Performance zu verbessern.
+Weiters ist noch ein Gausscher Blur anzuwenden, um die Performance zu verbessern.
 
 Das Ergebnis kann dann mit folgenden Edge Detections noch verbunden werden:
 
@@ -32,16 +32,16 @@ Daraufhin müssen wir wirklich die Bounding Box für die Rechnung erhalten:
 Theoretisch können auch all diese Schritte auch übersprungen werden, indem der Text auf dem ganzen Bild erkannt wird. Die Idee ist es, die Bounding Box zu nehmen, welche alle Texte umfasst, und diese Box dann als Rechnung anzunehmen. Problem hier ist, dass auch oft im Hintergrund (z.B. bei komplexen Hintergründen) Text erkannt wird, welcher die Bounding Box wieder fälscht.
 
 ### Lösung
-Es hat sich gezeigt, dass die beste Kombination folgende ist:
+Es hat sich gezeigt, dass die beste Kombination die Folgende ist:
 
 * Gausscher Blur (5x5 Kernel)
 * Otsu Thresholding
 * `findContours()` mit `approxPolyDP()` und als Fallback `minAreaRect()`
 * Vier Punkt Transformation um erkannten Teil des Bildes auszuschneiden
 
-Um diese Reihe an Transformationen und Bild Manipulationen anzuwenden, wurde die Bibliothek OpenCV verwendet. Essenziell ist es aber, die Funktion und Logik hinter diesen Transformationen zu verstehen. Aus diesem Grund wurden auch ein paar dieser Methoden, aus Interesse, selbst implementiert aber nicht verwendet, da diese nicht so perfomant wie die eingebauten Funktionen sind. Jede Funktion genau zu erklären, würden den Rahmen des Diplomarbeitsbuches sprengen.  
+Um diese Reihe an Transformationen und Bildmanipulationen anzuwenden, wurde die Bibliothek OpenCV verwendet. Essenziell ist es aber, die Funktion und Logik hinter diesen Transformationen zu verstehen. Aus diesem Grund wurden auch ein paar dieser Methoden, aus Interesse, selbst implementiert aber nicht verwendet, da diese nicht so perfomant wie die eingebauten Funktionen sind. Jede Funktion genau zu erklären, würde den Rahmen des Diplomarbeitsbuches sprengen.  
 
-Wichtig ist aber noch immer keine universelle Lösung für das Problem.
+Leider ist dies aber noch immer keine universelle Lösung für das Problem.
 
 ## Wichtige Teile erkennen
 Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise erkannt werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
@@ -52,7 +52,7 @@ Diese Linien können mithilfe des Hough Transforms erkannt werden. Hier ergab si
 lines = cv2.HoughLinesP(b_w_edges, 1, np.pi / 180, threshold=150, minLineLength=10, maxLineGap=300)
 ```
 
-Da man davon ausgehen kann, dass die Rechnung gerade ist, müssen wir nur horizontale Linien erkennen. Da es aber sehr unwarscheinlich ist das die erkannte Linie wirklich einen Winkel von 0° besitzt, werden nur Linien genommen, welche sich zwischen -20° und 20° befinden.
+Da man davon ausgehen kann, dass die Rechnung gerade ist, müssen wir nur horizontale Linien erkennen. Da es aber sehr unwarscheinlich ist, dass die erkannte Linie wirklich einen Winkel von 0° besitzt, werden nur Linien genommen, welche sich zwischen -20° und 20° befinden.
 
 ```python
 bounding_lines = []
@@ -76,7 +76,7 @@ for line in lines:
         avg_y = (y1 + y2) / 2
         bounding_lines.append(((x1, y1, x2, y2), avg_y))
 ```
-Danach wird die Durchschnittliche X-Koordinate der Linken und Rechten Seite berechnet um dann das Rechteck zu bestimmten, welches den wichtigen Teil beinhaltet. Der nächste Schritt wäre, eine Vier Punkt Transformation durchzuführen um den erkannten Teil rauszuschneiden.
+Danach wird die Durchschnittliche X-Koordinate der linken und rechten Seite berechnet, um dann das Rechteck zu bestimmten, welches den wichtigen Teil beinhaltet. Der nächste Schritt wäre, eine Vier Punkt Transformation durchzuführen um den erkannten Teil rauszuschneiden.
 
 Falls keine Linien erkannt werden, wird einfach das Input Bild weiterverwendet. Aus diesem wird dann der Text erkannt.
 
@@ -109,7 +109,7 @@ POST & /prediction & Bild & Automatic\tabularnewline
 \caption{Endpunkt Struktur der REST API}
 \end{longtable}
 
-Flasks Development Server ist nicht für Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. (vgl. \cite{flask_gunicorn}) Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. (vgl. \cite{gunicorn_nginx}) Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server geproxied werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend} Diese ganze Umgebung ist mit Docker Containern realisiert.
+Flasks Development Server ist nicht für Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. (vgl. \cite{flask_gunicorn}) Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. (vgl. \cite{gunicorn_nginx}) Dieser PC Server ist nur lokal erreichbar. Aus diesem Grund muss von einem Raspberry Pi, welcher Apache2 laufen hat, auf diesen nginx Server weitergeleitet werden. Dieser Apache Server hostet die Projektwebsite. \abb{backend} Diese ganze Umgebung ist mit Docker Containern realisiert.
 
 \begin{figure}[H]
 \centering
