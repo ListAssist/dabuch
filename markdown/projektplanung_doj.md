@@ -6,7 +6,7 @@ Zu Beginn jedes Sprints gehört ein dazugehöriges Sprintplanning-Protokoll, in 
 
 Wurden Aufgaben teilweise oder gar nicht erfüllt, werden diese üblicher Weise in den nächsten Sprint aufgenommen. Zum Abschluss jedes Sprints gehört ein Sprintreview-Protokoll. In diesem Dokument wird beschrieben, welche Tätigkeiten umgesetzt hätten werden sollen und welche tatsächlich umgesetzt wurden. 
 
-Zusätzlich wird noch ein Sprint-Retrospektiv-Protokoll verfasst, welches die Erfahrungen des Sprints schildert. Durch die Retrospektive können zukünftige Sprints, aufgrund der im Protkoll beschriebenen Erfahrungen, besser geplant und umgesetzt werden.
+Zusätzlich wird noch ein Sprint-Retrospektiv-Protokoll verfasst, welches die Erfahrungen des Sprints schildert. Durch die Retrospektive können zukünftige Sprints, aufgrund der im Protokoll beschriebenen Erfahrungen, besser geplant und umgesetzt werden.
 
 # Projektphasen
 
