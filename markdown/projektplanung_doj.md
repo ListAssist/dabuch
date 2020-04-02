@@ -32,7 +32,7 @@ Für die Umsetzung der App sind die Plattformen:
 * PyCharm
 * Webstorm
 
-zum Einsatz gekommen. Der aktuelle Stand der App und des Diplomarbeitsbuches wurde regelmäßig auf Git gepusht.
+zum Einsatz gekommen. Das Animationsvideo wurde im Programm After Effects zusammengestellt. Der aktuelle Stand der App und des Diplomarbeitsbuches wurden regelmäßig auf Git gepusht.
 
 ## Umsetzung
 

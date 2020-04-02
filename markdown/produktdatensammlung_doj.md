@@ -8,7 +8,7 @@ Es wurden einige Möglichkeiten vorgeschlagen und berücksichtigt. Die Daten mü
 
 Wir einigten uns darauf den Kundenservice des Unternehmes Billa zu kontaktieren. In einer förmlichen Email fragten wir, ob es einen Weg gäbe, ihre Datenbank zu verwenden, ohne gegen Rechte zu verstoßen und wenn ja, wie wir die Produkte in unsere App einbinden könnten. Darauf bekammen wir die Antwort vom Kundendienst, dass es ihnen nicht erlaubt ist, über interne Abläufe zu kommunizieren.
 
-Zusätzlich haben wir den Bundeslebensmittelschlüssel, welcher eine Lebensmittelnährwertdatenbank ist, in betracht gezogen. Die hatten zwar eine Produktliste, diese war aber mit sehr vielen Zusatzinformationen gefüllt, welche wir nicht benötigten.Außerdem wäre die Verwendung dieser Datenbank viel zu teuer gewesen, weshalb wir einen anderen Weg einschlagen mussten.
+Zusätzlich haben wir den Bundeslebensmittelschlüssel, welcher eine Lebensmittelnährwertdatenbank ist, in betracht gezogen. Die hatten zwar eine Produktliste, diese war aber mit sehr vielen Zusatzinformationen gefüllt, welche wir nicht benötigten. Außerdem wäre die Verwendung dieser Datenbank viel zu teuer gewesen, weshalb wir einen anderen Weg einschlagen mussten.
 
 # Tatsächliche Datensammlung
 
