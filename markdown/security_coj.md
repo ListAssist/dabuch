@@ -1,5 +1,5 @@
 # Allgemein
-Firebase selbst kann als ein "Serverloses" System bezeichnet werden. Das Frontend (die App), kommuniziert direkt zu der Firestore Datenbank als auch zur Firebase Storage. Das heißt, dass jeder im Internet unseren Firestore Endpunkt erreichen kann als auch Daten hochladen und runterladen kann. Ohne Regeln geben wir dem Internet vollen Lese- als auch Schreibezugriff auf unsere Datenbank.
+Firebase selbst kann als ein "Serverloses" System bezeichnet werden. Das Frontend (die App), kommuniziert direkt zu der Firestore Datenbank. Das heißt, dass jeder im Internet unseren Firestore Endpunkt erreichen kann als auch Daten hochladen und runterladen kann. Würden keine Regeln existieren, würden wir dem Internet vollen Lese- als auch Schreibezugriff auf unsere Datenbank ermöglichen.
 
 # Security Rules
 Die Lösung seitens Firebase, sind Security Rules. Bevor eine Abfrage auf die Firestore Datenbank stattfindet, werden die Security Rules abgefragt, um zu prüfen ob diese Aktion auch wirklich zulässig ist. Die Authentizierung, falls eine vorhanden ist, kann unter dem Objekt `request.auth` gefunden werden.
@@ -34,7 +34,7 @@ Als Beispiel kann die `users` Collection genommen werden. Folgende Regeln gelten
 
 * Als Grundregel gilt, dass ein Nutzer nur auf sein eigenes Dokument zugreifen darf.
 * Änderungen sind nur erlaubt, wenn das `uid` Feld gleich bleibt.
-* Das Dokument darf nur erstellt werden, wenn das Dokument nicht bereits existiert und wenn das `uid` Feld das vom derzeitigem Nutzer entspricht.
+* Das Dokument darf nur erstellt werden, wenn das Dokument nicht bereits existiert und das `uid` Feld dem derzeitigem Nutzer entspricht.
 
 \begin{lstlisting}[language=Dart]
 match /users/{userId} {
@@ -106,7 +106,7 @@ match /groups/{groupId}/shopping_data/data {
 \end{lstlisting}
 
 ### Group Lookup
-Wie es später noch erklärt wird \siehe{beziehung-der-benutzer-zu-den-gruppen}, existiert es eine Lookup-Collection für User, in welcher gespeichert wird, in welcher Gruppe man sich befindet.
+Wie später noch erklärt wird \siehe{beziehung-der-benutzer-zu-den-gruppen}, existiert es eine Lookup-Collection für User, in welcher gespeichert wird, in welcher Gruppe man sich befindet.
 
 Hier ist es wichtig **nur** Lesezugriff zu vergeben, da ansonsten der User sich selbst in Gruppen hinzufügen kann.
 
@@ -117,7 +117,7 @@ match /groups_user/{userId} {
 \end{lstlisting}
 
 ## Invites Collection
-Da die Invites über eine Cloud Function gemanaged werden, und dort validiert werden, wird für die Invites Collection nur Lesezugriff für den eingeladenen Nutzer erlaubt.
+Da die Invites über eine Cloud Function verwaltet werden, und dort validiert werden, wird für die Invites Collection nur Lesezugriff für den eingeladenen Nutzer erlaubt.
 
 \begin{lstlisting}[language=Dart]
 match /invites/{inviteId} {
