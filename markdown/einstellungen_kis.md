@@ -1,5 +1,12 @@
 #   Allgemein
 
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/SettingsView.jpg}
+\caption{Einstellungen}
+\label{einstellungen}
+\end{figure}
+
 Die Einstellungen bestehen aus fünf Hauptkategorien, nämlich den Konto Einstellungen, den App Einstellungen, dem 
 Datenschutz Bereich, dem "Fehler melden" Bereich und dem Info Bereich. Anfangs gab es noch eine sechste Kategorie,
 die Benachrichtigungseinstellungen, da jedoch die Implementierung von App Benachrichtigungen (z.B. bei Einladungen in
@@ -47,6 +54,7 @@ Um das `AuthCredential` zu bekommen wird folgendes verwendet:
 AuthCredential credential = EmailAuthProvider.getCredential(email: currentEmail, password: password);
 \end{lstlisting}
 
+\needspace{10cm}
 
 #	App Einstellungen
 
@@ -76,11 +84,3 @@ Hero(
     ),
 )
 \end{lstlisting}
-
-\begin{figure}[H]
-\centering
-\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/SettingsView.jpg}
-\caption{Einstellungen}
-\label{einstellungen}
-\end{figure}
-

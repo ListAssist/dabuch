@@ -2,6 +2,22 @@
 
 # Allgemein
 
+\begin{figure}[H]
+    \begin{minipage}{\mypicWidth\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{images/kisi/RecipeView.jpg}
+        \caption{Rezepte-View}
+        \label{rezepte-view} 
+	\end{minipage}
+	\hfill
+    \begin{minipage}{\mypicWidth\textwidth}
+        \includegraphics[width=\textwidth, keepaspectratio]{images/kisi/RecipeView2.jpg}
+        \caption{Rezept ohne Zutaten}
+        \label{Rezept ohne Zutaten} 
+	\end{minipage}
+\end{figure}
+
+\needspace{10cm}
+
 Um es dem Benutzer zu ermöglichen bestimmte Einkaufslisten schneller zu erstellen,
 ohne jedes Mal die selben Produkte zu suchen, wurde die Rezepte Funktion entwickelt.
 Mit dieser Funktion haben Benutzer die Möglichkeit Vorlagen für häufig verwendete 
@@ -36,20 +52,6 @@ FloatingActionButton.extended(
         : null,
 ),
 \end{lstlisting}
-
-\begin{figure}[H]
-    \begin{minipage}{\mypicWidth\textwidth}
-        \includegraphics[width=\textwidth, keepaspectratio]{images/kisi/RecipeView.jpg}
-        \caption{Rezepte-View}
-        \label{rezepte-view} 
-	\end{minipage}
-	\hfill
-    \begin{minipage}{\mypicWidth\textwidth}
-        \includegraphics[width=\textwidth, keepaspectratio]{images/kisi/RecipeView2.jpg}
-        \caption{Rezept ohne Zutaten}
-        \label{Rezept ohne Zutaten} 
-	\end{minipage}
-\end{figure}
 
 # Rezepte erstellen
 

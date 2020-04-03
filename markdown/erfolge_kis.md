@@ -1,3 +1,15 @@
+# Allgemein
+
+Benutzer können Erfolge sammeln, indem sie die verschiedenen Funktionen der App benutzen. 
+Ein Erfolg wäre zum Beispiel das Erstellen von 50 Einkaufslisten.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/AchievementsView.jpg}
+\caption{Erfolge}
+\label{erfolge}
+\end{figure}
+
 # Listenansicht der freigeschalteten Erfolge
 
 Alle vom Benutzer freigeschalteten Erfolge werden in einer Listenansicht dargestellt.
@@ -53,8 +65,8 @@ mitgezählt werden muss gibt es in Firebase die `stats` Map, in welcher alle ben
 gespeichert werden. 
 
 Das `AchievementsService` beinhaltet alle Methoden, mit denen die `stats` mitgezählt werden. Falls der 
-Benutzer einen Erfolg freischaltet wird die `addAchievement` Funktion gecallt, welche die Änderung in der 
-Datenbank erledigt und zusätzlich den Benutzer per Snackbar auf den freigeschalteten Erfolg aufmerksam macht.
+Benutzer einen Erfolg freischaltet wird die `addAchievement` Funktion aufgerufen, welche die Änderung in der 
+Datenbank erledigt und zusätzlich den Benutzer per `SnackbarWidget` auf den freigeschalteten Erfolg aufmerksam macht.
 
 Im `AchievementsService`:
 \begin{lstlisting}[language=Dart]
@@ -72,9 +84,3 @@ groupCreated(User user) {
 
 \needspace{10cm}
 
-\begin{figure}[H]
-\centering
-\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/AchievementsView.jpg}
-\caption{Erfolge}
-\label{erfolge}
-\end{figure}

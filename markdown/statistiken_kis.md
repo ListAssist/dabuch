@@ -1,5 +1,12 @@
 # Allgemein
 
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/StatisticsView.jpg}
+\caption{Statistiken}
+\label{statistiken}
+\end{figure}
+
 Benutzer haben die Möglichkeit Statistiken über ihre Einkäufe, wie zum Beispiel
 die meistgekauften Produkte oder die Ausgaben pro Produktkategorie, anzusehen. Hierbei 
 werden logischerweise nur alle abgehakten `Item`s aller offenen und abgeschlossenen Einkaufslisten
@@ -43,9 +50,4 @@ Die `animate` Variable bewirkt bei `true`, dass das Diagramm beim Eintritt in da
         : ShoppyShimmer(),
 \end{lstlisting}
 
-\begin{figure}[H]
-\centering
-\includegraphics[height=0.5\textheight, keepaspectratio]{images/kisi/StatisticsView.jpg}
-\caption{Statistiken}
-\label{statistiken}
-\end{figure}
+
