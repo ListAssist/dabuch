@@ -87,8 +87,8 @@ Weiters, soll nur der Ersteller der Gruppe Zugriff auf Aktionen wie Einstellunge
 match /groups/{groupId} {
     allow create: if isOwner(futureDocument().creator.uid)
     && futureDocument().members == null;
-    allow update: if isOwner(currentDocuemnt().creator.uid) && same("creator") && same("members");
-    allow delete: if isOwner(currentDocuemnt().creator.uid);
+    allow update: if isOwner(currentDocument().creator.uid) && same("creator") && same("members");
+    allow delete: if isOwner(currentDocument().creator.uid);
 }
 \end{lstlisting}
 

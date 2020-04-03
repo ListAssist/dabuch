@@ -63,7 +63,7 @@ ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und de
 
 Die `shopping_data`-Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
 ein Feld `last`, das mehrere Maps beinhaltet. Diese Maps sind eine reduzierte Version einer
-`list`, wie oben beschrieben, und beinhalten nur den Zeitpunk des Abschließens und die Produkte
+`list`, wie oben beschrieben, und beinhalten nur den Zeitpunkt des Abschließens und die Produkte
 als Array. Bei den Produkten wird das Feld `bought` nicht mitgespeichert, da sowieso nur gekaufte
 Produkte gespeichert werden.
 

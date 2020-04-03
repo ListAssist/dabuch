@@ -29,7 +29,7 @@ Folgende Authentizierungen werden vom Paket angeboten, wobei die fett markierten
 Mithilfe OAUTH ist es überhaupt erst möglich, User sicher über eine dritte Applikation einzuloggen. (vgl. \cite{oauth}) Die Implementierung von OAuth mit den einzelnen Social Media Plattformen wurde von dem `firebase_auth` Paket erledigt und zur Verfügung gestellt.
 
 # Realtime Authentication
-Um die Echtzeit Authentifizierung zu verwenden, war es essenziell einen `StreamProvider` aus dem `provider` Paket zu verwenden. Es existieren drei Streams dieses Stream-typen, einen für den `StreamProvider<User>`, welche in Echtzeit die Userdaten aus der Datenbank liest. Der zweite Strean ist für den `StreamProvider<FirebaseUser>` verantwortlich und der dritte vom Typen `StreamProvider<bool>` dafür, ob derzeit eine Authentifizierung im Gange ist.
+Um die Echtzeit Authentifizierung zu verwenden, war es essenziell einen `StreamProvider` aus dem `provider` Paket zu verwenden. Es existieren drei Streams dieses Stream-typen, einen für den `StreamProvider<User>`, welche in Echtzeit die Userdaten aus der Datenbank liest. Der zweite Stream ist für den `StreamProvider<FirebaseUser>` verantwortlich und der dritte vom Typen `StreamProvider<bool>` dafür, ob derzeit eine Authentifizierung im Gange ist.
 
 Diese Streams können von allen Kindern im Widget Baum in Echtzeit gelesen werden. Aus diesem Grund musste die Authentifizierung selbst auch ein Kind des `MaterialApp` Widgets sein.
 

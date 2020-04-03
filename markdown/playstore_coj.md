@@ -22,7 +22,7 @@ Um die App zu builden muss nur `flutter build run` in der Command Line eingegebe
 
 `flutter build appbundle --target-platform android-arm,android-arm64,android-x64` 
 
-verwendet. Dies bringt Optimierungen mit sich, welche zum Beispiel die App Größe beinflussen. 
+verwendet. Dies bringt Optimierungen mit sich, welche zum Beispiel die App Größe beeinflussen. 
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule

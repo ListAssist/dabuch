@@ -21,7 +21,7 @@ snap.hits.forEach((h) => {hits.add(h.data)});
 
 Die Produktdatenbank beinhaltet essentielle Produkte, die häufig auf Einkaufslisten zu finden sind. Alle Produkte in
 der Datenbank besitzen außerdem eine Kategorie, nach welcher sie ebenfalls gesucht werden können. Bei den erstellten
-Produkten und Kategorien wurde vor allem auf Lebensmittel und Haushaltswaren fokusiert.
+Produkten und Kategorien wurde vor allem auf Lebensmittel und Haushaltswaren fokussiert.
 Benutzer haben mehrere Möglichkeiten, Produkte zu Einkaufslisten hinzuzufügen.
 Eine Variante wäre es, in der Produktdatenbank mittels Algolia nach den gewünschten Artikeln zu suchen. Falls es das 
 gewünschte Produkt nicht in der Datenbank gibt, hat der Benutzer selbstverständlich die Möglichkeit es selbst zu erstellen

@@ -323,7 +323,7 @@ Wien, \today
 \tableofcontents{}
 \cleardoublepage{}
 \listoftables
-\todo{kann entfallen falls (fast) leer}
+% \todo{kann entfallen falls (fast) leer}
 \cleardoublepage{}
 \listoffigures
 
@@ -473,15 +473,15 @@ Wien, \today
 
 \appendix
 
-\chapter{Anhang 1\label{chap:Anhang-1}}
+% \chapter{Anhang 1\label{chap:Anhang-1}}
 
-was auch immer: technische Dokumentationen etc.
+% was auch immer: technische Dokumentationen etc.
 
-Zusätzlich sollte es geben:
-\begin{itemize}
-\item Abkürzungsverzeichnis
-\item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
-\end{itemize}
+% Zusätzlich sollte es geben:
+% \begin{itemize}
+% \item Abkürzungsverzeichnis
+% \item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
+% \end{itemize}
 \printindex{}
 
 %% Flattersatz -- damit werden die langen URLs besser umgebrochen
@@ -490,27 +490,27 @@ Zusätzlich sollte es geben:
 \bibliography{diplom}
 
 
-\cleardoublepage
-\newcommand{\Messbox}[2]{%Parameters: #1=Breite, #2=Hoehe
-\setlength{\unitlength}{1.0mm}%
-\begin{picture}(#1,#2)%
-\linethickness{0.05mm}%
-\put(0,0){\dashbox{0.2}(#1,#2)%
-{\parbox{#1mm}{%
-\centering\footnotesize
-%{\bf MESSBOX}\\
-% if \textrm fails use \rm
-Breite $ = #1 {\textrm\ mm}$\\
-Höhe $ = #2 {\textrm\ mm}$
-}}}\end{picture}
-}
-\begin{center} {\Large --- Druckgröße kontrollieren! ---}
-\bigskip
+% \cleardoublepage
+% \newcommand{\Messbox}[2]{%Parameters: #1=Breite, #2=Hoehe
+% \setlength{\unitlength}{1.0mm}%
+% \begin{picture}(#1,#2)%
+% \linethickness{0.05mm}%
+% \put(0,0){\dashbox{0.2}(#1,#2)%
+% {\parbox{#1mm}{%
+% \centering\footnotesize
+% %{\bf MESSBOX}\\
+% % if \textrm fails use \rm
+% Breite $ = #1 {\textrm\ mm}$\\
+% Höhe $ = #2 {\textrm\ mm}$
+% }}}\end{picture}
+% }
+% \begin{center} {\Large --- Druckgröße kontrollieren! ---}
+% \bigskip
 
-\Messbox{100}{50} % Angabe der Breite/Hoehe in mm
-\bigskip
+% \Messbox{100}{50} % Angabe der Breite/Hoehe in mm
+% \bigskip
 
-{\Large --- Diese Seite nach dem Druck entfernen! ---}
-\todo{Diese Seite nach dem Druck entfernen!}
-\end{center}
+% {\Large --- Diese Seite nach dem Druck entfernen! ---}
+% \todo{Diese Seite nach dem Druck entfernen!}
+% \end{center}
 \end{document}

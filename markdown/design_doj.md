@@ -2,15 +2,15 @@
 
 ## Grundgedanke
 
-Ein Logo hat die Funktion ein Unternehmen, ein Produkt oder aber auch ein Brand zu repräsentieren. Überlicher Weise wird ein Logo graphisch dargestellt. 
+Ein Logo hat die Funktion ein Unternehmen, ein Produkt oder aber auch ein Brand zu repräsentieren. Üblicher Weise wird ein Logo graphisch dargestellt. 
 
-In unserem Fall diente das Logo als Markenzeichen der App und als Symbol unserer Diplomarbeit. Es war wichtig sich auf ein Logo zu einigen, welches einheitlich zum Design der App passt. Es sollte zum einen einfach gestaltet, aber auch zum anderen innovativ sein. Oftmals werden entweder Buchtsaben oder Wörter verwendet. Das Logo in diesem Projekt wurde im Programm Adobe XD gestaltet.
+In unserem Fall diente das Logo als Markenzeichen der App und als Symbol unserer Diplomarbeit. Es war wichtig sich auf ein Logo zu einigen, welches einheitlich zum Design der App passt. Es sollte zum einen einfach gestaltet, aber auch zum anderen innovativ sein. Oftmals werden entweder Buchstaben oder Wörter verwendet. Das Logo in diesem Projekt wurde im Programm Adobe XD gestaltet.
 
 ## Erster Entwurf
 
 Zum Beginn muss überlegt werden, was das Logo der Zielgruppe bzw. den Kunden vermitteln soll. Außerdem soll es farblich und gestalterisch zur App passen. 
 
-Da es sich bei unserem Projekt um ein Produkt handelt, welches eine innovative virtuelle Einkaufliste ist, war die erste Idee, das Logo als eine Einkaufliste zu machen, sehr naheliegend. Allerdings wurde dieser Entwurf schnell verworfen, da er nicht nur farblich, sondern auch von der Gestaltung nicht optimal zum Projekt gepasst hat. Das Logo war von der senkrechten Länge viel zu lang und der Font hat nicht gepasst. 
+Da es sich bei unserem Projekt um ein Produkt handelt, welches eine innovative virtuelle Einkaufsliste ist, war die erste Idee, das Logo als eine Einkaufsliste zu machen, sehr naheliegend. Allerdings wurde dieser Entwurf schnell verworfen, da er nicht nur farblich, sondern auch von der Gestaltung nicht optimal zum Projekt gepasst hat. Das Logo war von der senkrechten Länge viel zu lang und der Font hat nicht gepasst. 
 
 Nachdem ein Feedback von den Teammitgliedern eingeholt wurde, sollte der nächste Entwurf viel simpler gestaltet sein und farblich zur App passen.
 
@@ -23,7 +23,7 @@ Nachdem ein Feedback von den Teammitgliedern eingeholt wurde, sollte der nächst
 
 ## Zweiter Entwurf
 
-Aufgrund des Feedbacks vom ersten Entwurf, entschied ich mich das Kürzel der Diplomarbeit nicht in den neuen Entwurf einzubinden. Die Farben wurden nun auch deutlich besser gewählt, damit sie zum Design der App passen. Das Logo musste dennoch so gestaltet sein, dass es mit dem Begriff "Einkaufsliste" oder "Einkaufen" assoziiert werden kann. Der Gedanke eine Einkaufliste zu nehmen wurde verworfen. 
+Aufgrund des Feedbacks vom ersten Entwurf, entschied ich mich das Kürzel der Diplomarbeit nicht in den neuen Entwurf einzubinden. Die Farben wurden nun auch deutlich besser gewählt, damit sie zum Design der App passen. Das Logo musste dennoch so gestaltet sein, dass es mit dem Begriff "Einkaufsliste" oder "Einkaufen" assoziiert werden kann. Der Gedanke eine Einkaufsliste zu nehmen wurde verworfen. 
 
 Stattdessen wurde nun ein Einkaufswagen designed. Die Idee war es ihn, in Verbindung mit der Schrift, in einer dynamischen Art und Weise darzustellen. Beim ersten Entwurf waren die Rundungen des Wagens nicht optimal gewählt und die Platzierung der Schrift musste auch geändert werden. Daher wurden, im zweiten Entwurf, die runden Kanten eckiger gestaltet und der Name der Diplomarbeit wurde, wie beim Einkaufen der eingekaufte Inhalt, in den Einkaufswagen "gefüllt".
 
@@ -66,11 +66,11 @@ Beim Designen einer App geht es vorerst darum, eine gute Farbwahl zu treffen. De
 
 ## Erster Entwurf
 
-Grundsätzlich erscheint die App im blauen Farbton, auf den wir uns geeinigt haben. Anschließend musste ich mir überlegen, wie die App designed werden muss, damit sie sowohl einer App, als auch einer Einkaufliste gleicht. Da es verschiedene Seiten einer App gibt, mussten diese natürlich separat designed werden. 
+Grundsätzlich erscheint die App im blauen Farbton, auf den wir uns geeinigt haben. Anschließend musste ich mir überlegen, wie die App designed werden muss, damit sie sowohl einer App, als auch einer Einkaufsliste gleicht. Da es verschiedene Seiten einer App gibt, mussten diese natürlich separat designed werden. 
 
-Die Anzahl der Seiten richtet sich nach den Features, die die Applikation anbietet. Aufgrund der Funktionen mussten ein Anmelden- und Registirierungs-Screen gestaltet werden. Weiters noch die verschiedenen Ansichten, wie unter anderem die Liste der einzelnen Einkaufslisten, die Gruppenansicht, oder auch die Ansicht, wenn eine neue Einkaufliste erstellt wird oder ein Produkt hinzugefügt wird. Außerdem hab ich beim ersten Versuch probiert das Logo so oft wie möglich in der App einzubinden. 
+Die Anzahl der Seiten richtet sich nach den Features, die die Applikation anbietet. Aufgrund der Funktionen mussten ein Anmelden- und Registrierungs-Screen gestaltet werden. Weiters noch die verschiedenen Ansichten, wie unter anderem die Liste der einzelnen Einkaufslisten, die Gruppenansicht, oder auch die Ansicht, wenn eine neue Einkaufsliste erstellt wird oder ein Produkt hinzugefügt wird. Außerdem hab ich beim ersten Versuch probiert das Logo so oft wie möglich in der App einzubinden. 
 
-Diese Idee wurde aber in der Endversion wieder verworfen, weil das Logo eigentlich bei keiner bekannten App immer erscheint. Beim ersten Entwurf sind zu viele Seiten mit einem blauem Hintergrund gestaltet, was nicht gut aussgesehen hat.
+Diese Idee wurde aber in der Endversion wieder verworfen, weil das Logo eigentlich bei keiner bekannten App immer erscheint. Beim ersten Entwurf sind zu viele Seiten mit einem blauem Hintergrund gestaltet, was nicht gut ausgesehen hat.
 
 
 \begin{figure}[H]
