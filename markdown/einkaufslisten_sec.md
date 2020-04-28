@@ -21,7 +21,7 @@ und die Liste der zu kaufenden Produkte angezeigt. Die Liste der Produkte ist ei
 Die `CheckboxListTile`s sind wie folgt aufgebaut: An erster Stelle ist die Checkbox, danach kommen der Produktname und darunter die Anzahl der
 Produkte, die zu kaufen sind und die Kategorie. An letzter Stelle ist ein Feld, in das der Preis des Produktes eingetragen werden kann.
 
-Nach Abschließen einer Einkaufsliste wird diese in dem "Erledigt"-Bereich angezeigt. Die
+Nach Abschließen einer Einkaufsliste wird diese im "Erledigt"-Bereich angezeigt. Die
 eingescannten Rechnungen können dann inkl. ihrer erkannten Produkte und Preise angezeigt werden.
 
 \needspace{4cm}
@@ -82,6 +82,6 @@ Buttons öffnet sich das `SearchItemsView` Widget, in welchem der Benutzer Produ
 
 ## Rechnungen einscannen
 
-Direkt über dem Produkte-hinzufügen-Button befindet sich ein kleinerer blauer Button mit einem Kamera Symbol. 
+Direkt über dem Produkte-hinzufügen-Button befindet sich ein kleinerer blauer Button mit einem Kamerasymbol. 
 Durch Drücken dieses Buttons gelangt der Benutzer zum `CameraScanner` Widget (\siehe{camera-scanner-coj}). Von den erkannten
 Produkte können dann jene ausgewählt werden, die auf der Einkaufsliste abgehakt werden sollen.

@@ -1,6 +1,6 @@
 # Algorithmus
 
-Als Grundlage für die automatisch generierten Einkaufslisten wird das `last` Array,
+Als Grundlage für die automatisch generierten Einkaufslisten wird das `last`-Array,
 das die letzten 10 abgeschlossenen Einkaufslisten enthält, verwendet. Die Einkaufslisten
 sind nach dem Abschlussdatum sortiert. Zu Beginn wird überprüft, ob die vom Benutzer eingestellte
 Zeitspanne seit der letzten Erstellung bereits vergangen ist. Dafür sind die Felder
@@ -188,7 +188,7 @@ Beim Überlegen, wie die AI aussehen sollte, gab es einige Schwierigkeiten mit d
 (CNN) ist diese Art von AI nicht möglich. Im Unterricht wurden CNN Grundlagen beigebracht, jedoch nur im Zusammenhang
 mit Bildklassifizierung und nicht als eine Art "Vorschlags-AI". Später im Unterricht wurde das sogenannte Recurrent 
 Neural Network (RNN) diskutiert. Diese Art von neuronalen Netzwerken wird vor allem bei Aktienkursvorhersagen verwendet.
-Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM) Layer.
+Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM)-Layer.
 Da ein RNN Aktienpreise vorhersagen kann, wäre es auch möglich, dieses für Produktvorhersagen zu trainieren.
 
 # Unterschied zwischen Algorithmus und AI

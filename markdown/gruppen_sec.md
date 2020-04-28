@@ -1,7 +1,7 @@
 # Allgemeines
 
-Die Gruppen funktionieren wie alles andere auch in Echtzeit. Da die Firestore Security Rules
-keine komplizierteren Sachen decken können, wie zum Beispiel die Überprüfung, ob ein User in
+Die Gruppen funktionieren wie alles andere auch in Echtzeit. Da die Firestore-Security-Rules
+keine komplizierteren Sachen abdecken können, wie zum Beispiel die Überprüfung, ob ein User in
 einem Array vorhanden ist, um die Gruppe zu bearbeiten, wurden Updates/Creates mit Cloud-Functions 
 geregelt. Dadurch hat man eine bessere Kontrolle.
 
@@ -44,7 +44,7 @@ Funktionalität wurde jedoch erst im Laufe der Durchführung hinzugefügt. Deswe
 Gruppe geladen, später als diese Funktionalität hinzugefügt wurde, wurde dann die Liste der Gruppen gestreamt.
 
 Zudem wurde kein Dart-Stream verwendet, sondern ein Observable von `rxdart`\footnote{\url{https://pub.dev/packages/rxdart}}. 
-Das hat den Vorteil, dass mit der `switchMap` Methode der Datentyp des Stream geändert werden kann, was mit
+Das hat den Vorteil, dass mit der `switchMap`-Methode der Datentyp des Stream geändert werden kann, was mit
 einem normalen `map` vom Dart-Stream nicht möglich ist. Mithilfe von `switchMap` wird das String-Array 
 der GruppenIDs zu einem Array von Gruppen umgewandelt.
 
@@ -52,10 +52,10 @@ der GruppenIDs zu einem Array von Gruppen umgewandelt.
 
 Zuerst gab es für Gruppen eigene Widgets, die ähnlich aufgebaut waren wie die der einzelnen
 Benutzer. Dadurch mussten aber Änderungen, die bei den Widgets des einzelnen Benutzers gemacht wurden,
-auch in die Widgets der Gruppen kopiert werden. Da es bereits die Widgets vorhanden waren, wurden diese
+auch in die Widgets der Gruppen kopiert werden. Da bereits die Widgets vorhanden waren, wurden diese
 einfach wiederverwendet. Das erspart sowohl die erneute Programmierung des Widgets
 als auch Probleme mit der Einheitlichkeit, da man bei einer Änderung beide Widgets
-wieder anpassen müsste. Die einzige Änderung war das Hinzufügen eines Parameter, der angibt ob es sich 
+wieder anpassen müsste. Die einzige Änderung war das Hinzufügen eines Parameter, der angibt, ob es sich 
 um eine Gruppe handelt. Falls dies der Fall ist, wird die `uid` durch die GruppenID ersetzt
 und die Listen mussten anders geladen bzw. weitergegeben werden. Das gleiche Prinzip wurde
 auch für die erledigten Einkäufe verwendet. 
@@ -67,7 +67,7 @@ URL für das Profilbild enthalten. Mit der `map`-Methode werden aus den einzelne
 erstellt. Die Darstellung ist ein einfaches `Row`-Widget mit einem Profilbild vorne und dem Namen
 nach dem Profilbild. Falls ein Benutzer keine URL für ein Profilbild besitzt oder während das Bild lädt,
 wird ein selbst erstelltes Standardprofilbild angezeigt. Da der Besitzer der Gruppe ebenfalls in der Liste
-der Mitglieder ist, wird der Besitzer vor dem mappen entfernt und er bekommt eine etwas andere Darstellung,
+der Mitglieder ist, wird der Besitzer vor dem Mappen entfernt und er bekommt eine etwas andere Darstellung,
 nämlich mit einem grünen Text "Gruppenersteller" nach seinem Namen. Sollte der Name zu lang sein, um ihn richtig
 darzustellen, wird mittels der Einstellung `overflow: TextOverflow.ellipsis` der Text gekürzt und mit ...
 am Ende dargestellt.
@@ -92,7 +92,7 @@ die Gruppe bei jedem Benutzer, der in der Gruppe war, aus dem Dokument von `grou
 Jedes Mitglied einer Gruppe kann diese natürlich auch verlassen. In diesem Fall wird der Benutzer aus
 dem `members` Array entfernt und die GruppenID aus dem `groups_user` Dokument des Users entfernt. Eine
 Ausnahme ist der Ersteller der Gruppe. Wenn dieser die Gruppe verlässt, wird er aus dem `creator` Feld
-gelöscht und der nächste Benutzer im `members` Array wird als `creator` eingetragen. Sollte der Ersteller
+gelöscht und der nächste Benutzer im `members`-Array wird als `creator` eingetragen. Sollte der Ersteller
 der Gruppe das letzte Mitglied der Gruppe sein, wird die Gruppe inklusive Subcollections gelöscht.
 
 \needspace{0.4\textheight}
@@ -104,7 +104,7 @@ da sonst für jede Gruppe jeder Benutzer gelesen werden muss -- sprich beim Öff
 müssten jedes Mal 20 Dokumente gelesen werden -- ändern sich die Namen im Feld `members` auch nicht.
 Die Namensänderung in der Gruppenliste erfolgt daher per Cloud-Function. Zusätzlich zu Cloud-Function, die
 über HTTP aufrufbar sind, gibt es auch Trigger, die eine Funktion ausführen. Für das Umbenennen wurde der
-`onWrite` Trigger verwendet. Dadurch wird jedes Mal, wenn das Benutzerdokument beschrieben wird, die Funktion
+`onWrite`-Trigger verwendet. Dadurch wird jedes Mal, wenn das Benutzerdokument beschrieben wird, die Funktion
 `syncUser` aufgerufen. Um nicht unnötig jedes Mal zu schreiben, wird am Anfang überprüft, ob sich Name oder
 Bild geändert haben.
 
