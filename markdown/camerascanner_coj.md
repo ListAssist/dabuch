@@ -17,13 +17,13 @@ Folgende Optionen liegen für das Thresholding vor:
 
 Weiters ist noch ein Gaußscher Blur anzuwenden, um die Performance zu verbessern.
 
-Das Ergebnis kann dann mit folgenden Edge Detections noch verbunden werden:
+Das Ergebnis kann dann noch mit folgenden Edge Detections verbunden werden:
 
 * Canny Edge Detection
 * Dilation + Canny Edge Detection (nur für HED)
 * Hough Transform
 
-Daraufhin müssen wir die Bounding Box für die Rechnung erhalten:
+Daraufhin müssen wir die Bounding Box für die Rechnung ermitteln:
 
 * Rechteck aus Hough Transform
 * `findContours()` mit `minAreaRect()`
@@ -44,7 +44,7 @@ Um diese Reihe an Transformationen und Bildmanipulationen anzuwenden, wurde die 
 Leider ist aber die oben erwähnte Lösung noch immer keine universelle Lösung um Rechnungen von ihrem Hintergrund zu trennen.
 
 ## Wichtige Teile erkennen
-Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise erkannt werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
+Bevor der Text extrahiert werden kann, muss der wichtige Teil der Rechnung gefunden werden, aus welchem der Text und die Preise extrahiert werden. Dies kann aber nur mit Hilfslinien, welche zum Beispiel bei Billa Rechnungen vorhanden sind, funktionieren.
 
 Diese Linien können mithilfe des Hough Transforms erkannt werden. Folgende Konfiguration wurde verwendet:
 
@@ -88,7 +88,7 @@ Um die Daten aus der Engine strukturiert zu erhalten, wird die `pytesseract` Bib
 Nachdem der Text erkannt wurde, müssen Texte und Preise zusammengeführt werden.
 
 ### String Filterung
-In der Datei `mappings.dart` werden erkannte Wörter und Symbole, welche bedeutungslos sind, mithilfe Regulären Audrücken entfernt. Folgender Regex wird verwendet:
+In der Datei `mappings.dart` werden erkannte Wörter und Symbole, welche bedeutungslos sind, mithilfe von Regulären Audrücken entfernt. Folgender Regex wird verwendet:
 
 
 %|§|\?|\^|°|_|²|³|#|€|EUR|kassa|bon-nr|bonnr|filiale 
@@ -105,7 +105,7 @@ Hier trennen sich die Pfade je nach Anwendung.
 
 **Abhaken der Produkte**
 
-Falls der Camera Scanner für das Abhaken der Produkte verantwortlich ist, wird zwischen jedem Erkannten und Existierendem Produkt eine **String Distanz** berechnet, um die Ähnlichkeit der Strings zu ermitteln. Hier wurde der *Sorensen-Dice* Algorithmus verwendet, welcher im Vergleich zu *Distanz* basierten Algorithmen, wie der *Levensthein Distanz*, das Auftreten von Charactersequenzen mit der Länge von 2 als Metrik nimmt. (vgl. \cite{string_algs}) Folgende Formel beschreibt den verwendeten Algorithmus.
+Falls der Camera Scanner für das Abhaken der Produkte verantwortlich ist, wird zwischen jedem erkannten und existierenden Produkt eine **String Distanz** berechnet, um die Ähnlichkeit der Strings zu ermitteln. Hier wurde der *Sorensen-Dice* Algorithmus verwendet, welcher im Vergleich zu *Distanz* basierten Algorithmen, wie der *Levensthein Distanz*, das Auftreten von Charactersequenzen mit der Länge von 2 als Metrik nimmt. (vgl. \cite{string_algs}) Folgende Formel beschreibt den verwendeten Algorithmus.
 
 $$
     D = \frac{2 * \abs{X \cap Y}}{\abs{X} + \abs{Y}}
@@ -121,7 +121,7 @@ D & Resultierende Distanz
 
 Diese Methode hat sich in der Praxis als gut erwiesen und erzielte bessere Ergebnisse als die Levensthein Distanz. Wichtig ist, dass die zu vergleichenden Strings in Kleinbuchstaben umgewandelt werden, da hier Groß und Kleinschreibung irrelevant ist und das Resultat nur verschlechtert.
 
-Um nur gute Übereinstimmungen dieses Algorithmuses zu verwenden, wurde ein Threshold von *0.55* verwendet. Nachdem die Distanz zwischen den Produkten berechnet wurde, wird eine modifizierte Variante des Stable Marriage Problems benutzt. Dieser Algorithmus soll enden, wenn folgendes eintrifft:
+Um nur gute Übereinstimmungen dieses Algorithmuses zu verwenden, wurde ein Threshold von *0.55* verwendet. Nachdem die Distanz zwischen den Produkten berechnet wurde, wird eine modifizierte Variante des Stable Marriage Problems benutzt. Dieser Algorithmus soll enden, wenn Folgendes eintrifft:
 
 * Alle erkannten Produkte sind gematcht.
 * Alle Produkte in der Einkaufsliste besitzen schon die beste Übereinstimmung.
@@ -192,7 +192,7 @@ POST & /prediction & Bild & Automatic\tabularnewline
 \caption{Endpunkt Struktur der REST API}
 \end{longtable}
 
-Der Flask Development Server ist nicht für die Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. (vgl. \cite{flask_gunicorn}) Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. (vgl. \cite{gunicorn_nginx}) Dieser PC Server ist nur lokal erreichbar. Deshalb muss von einem Raspberry Pi, welcher einen Apache2 am Laufen hat, auf diesen nginx Server weitergeleitet werden. Dieser Apache Server hostet auch die Projektwebsite. \abb{backend} Diese ganze Umgebung ist mit Docker Containern realisiert.
+Der Flask Development Server ist nicht für die Produktionsumgebung geeignet. Aus diesem Grund muss Flask mit einem gunicorn WSGI HTTP Server kombiniert werden. (vgl. \cite{flask_gunicorn}) Wobei ein nginx Server auf diesen zeigt, da gunicorn dies empfiehlt. (vgl. \cite{gunicorn_nginx}) Dieser PC Server ist nur lokal erreichbar. Deshalb muss von einem Raspberry Pi, welcher einen Apache2 am Laufen hat, auf diesen nginx Server weitergeleitet werden. Dieser Apache Server hostet auch die Projektwebsite. (\abb{backend}) Diese ganze Umgebung ist mit Docker Containern realisiert.
 
 \begin{figure}[H]
 \centering
@@ -213,7 +213,7 @@ Quellen für \abb{backend} siehe \cite{backend_handy}
 
 
 # Flutter Widget
-Die ganze Logik steckt im Widget `CameraScanner`, welche alle Variablen und States speichern und kontrollieren muss. Dieses Widget kann in mehrere Abschnitte unterteilt werden.
+Die ganze Logik steckt im Widget `CameraScanner`, welches alle Variablen und States speichern und kontrollieren muss. Dieses Widget kann in mehrere Abschnitte unterteilt werden.
 
 ## Camera Scanner Modi
 Wie in der Problemstellung bereits erwähnt, ist das Auslesen der Rechnung
@@ -226,7 +226,7 @@ Aus diesem Grund wurde der Camera Scanner in drei Modi unterteilt:
 * Automatic
 * Trainer (Default)
 
-wobei der **Editor** Modus auch in Kombination mit den anderen zwei Modi verwendet werden kann.
+wobei der Editor Modus auch in Kombination mit den anderen zwei Modi verwendet werden kann.
 
 ### Editor
 Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um einen perfomanten und flüssigen Editor zur Verfügung zu stellen, wurde das `image_cropper` Paket verwendet, welche das Foto nativ auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
@@ -236,7 +236,7 @@ Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt.
 * Text erkennbar
 
 ### Automatic
-Der "Automatic" Modus ist ein sehr instabiler Modus und hat hohe Anforderungen an das Bild. Ziel ist es die Informationen aus der Rechnung auszulesen, ohne weitere Informationen, wie Koordinaten der Polygone etc. zu verwenden.
+Der Automatic Modus ist ein sehr instabiler Modus und hat hohe Anforderungen an das Bild. Ziel ist es die Informationen aus der Rechnung auszulesen, ohne weitere Informationen, wie Koordinaten der Polygone etc. zu verwenden.
 
 #### Anforderungen
 * hoher Rechnungs zu Hintergrund Kontrast
@@ -244,7 +244,7 @@ Der "Automatic" Modus ist ein sehr instabiler Modus und hat hohe Anforderungen a
 * Text erkennbar
 
 ### Trainer
-Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich bis zu bestimmten Grenzen verformen und bewegen lässt. Da der Canvas nur über den ganzen Bildschirm geht, müssen folgende Sachen selbst programmiert werden für das Selection Werkzeug:
+Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich bis zu bestimmten Grenzen verformen und bewegen lässt. Da der Canvas nur über den ganzen Bildschirm geht, müssen folgende Funktionen für das Selection Werkzeug programmiert werden:
 
 * Collision Detection => Kollision mit Ende des Bildes?
 * Angle Detection => Winkel des Quadliterals zu groß oder zu klein?
@@ -252,7 +252,7 @@ Der Trainer Modus stellt dem User ein Quadliteral zur Verfügung, welcher sich b
 
 Wobei diese Detections die Selektion Rot aufleuchten lassen, um dem User zu zeigen, dass hier eine Grenze gesetzt ist.
 
-Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen wie Pixel Werte, Koordinaten und vieles mehr. Um einen Canvas zu erstellen wurde das `PolygonPainter` Widget ausprogrammiert, welches vom `CustomPainter` ableitet. \abb{polypainter} Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Zu notieren ist, dass das Quadliteral convex ist. (Jeder Winkel ist kleiner als 180°)
+Da hier ein eigener Editor programmiert wurde, existiert voller Zugriff auf alle verwendeten Variablen wie Pixelwerte, Koordinaten und vieles mehr. Um einen Canvas zu erstellen wurde das `PolygonPainter` Widget ausprogrammiert, welches vom `CustomPainter` ableitet. (\abb{polypainter}) Dieser ist für das ganze Rendering des Bildes als auch für das Quadliteral verantwortlich. Zu notieren ist, dass das Quadliteral convex ist. (Jeder Winkel ist kleiner als 180°)
 
 \begin{figure}[H]
 \centering
