@@ -78,7 +78,7 @@ Der Ersteller der Gruppe kann diese auch bearbeiten. Das beinhaltet das Umbenenn
 Entfernen von Benutzern aus der Gruppe und das Einstellen, ob und wie oft eine automatische
 Einkaufsliste erstellt werden soll. Das aktualisierte Gruppen-Objekt wird dann einer Cloud-Function
 übergeben. Dort werden dann der Name, die Einstellungen und die aktualisierte Mitgliederliste
-auf Firestore in die Gruppe hochgeladen. Die entfernten Benutzer werden im `members` Array entfernt und
+auf Firestore in die Gruppe hochgeladen. Die entfernten Benutzer werden im `members`-Array entfernt und
 die Gruppen-ID wird aus dem Dokument des Benutzers in `groups_user` entfernt.
 
 # Gruppe löschen
@@ -90,7 +90,7 @@ die Gruppe bei jedem Benutzer, der in der Gruppe war, aus dem Dokument von `grou
 # Gruppe verlassen
 
 Jedes Mitglied einer Gruppe kann diese natürlich auch verlassen. In diesem Fall wird der Benutzer aus
-dem `members` Array entfernt und die GruppenID aus dem `groups_user` Dokument des Users entfernt. Eine
+dem `members`-Array entfernt und die GruppenID aus dem `groups_user` Dokument des Users entfernt. Eine
 Ausnahme ist der Ersteller der Gruppe. Wenn dieser die Gruppe verlässt, wird er aus dem `creator` Feld
 gelöscht und der nächste Benutzer im `members`-Array wird als `creator` eingetragen. Sollte der Ersteller
 der Gruppe das letzte Mitglied der Gruppe sein, wird die Gruppe inklusive Subcollections gelöscht.
