@@ -141,12 +141,10 @@ Map<Item, PossibleItem> findMappings({List<PossibleItem> possibleItems, List<Ite
 
     for (Item item in prefsForItem) {
       if (!finalMappings.containsKey(item)) {
-        /// Stur einfügen
         finalMappings[item] = currentPossibleItem;
         cycleTimeout = 0;
         break;
       } else {
-        /// check if mapped item on object has bigger index than current item
         PossibleItem mappedItem = finalMappings[item];
         List<PossibleItem> prefsForShoppingItem = shoppingToDetected[item];
         if (prefsForShoppingItem.indexOf(currentPossibleItem) < prefsForShoppingItem.indexOf(mappedItem)) {
