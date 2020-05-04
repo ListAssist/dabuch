@@ -11,7 +11,7 @@ Um zu bewerkstelligen, dass die Daten auf der Clientseite in Echtzeit
 aktualisiert werden, war Firebase die einfachste Variante. Mit Firebase ist
 es mithilfe von Streams leicht möglich, Updates in der Datenbank in Echtzeit
 auf der Clientseite zu registrieren. Um Gebrauch von den Echtzeit-Updates zu
-machen werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
+machen, werden einige von Google zur Verfügung gestellte Bibliotheken benutzt.
 
 Bei den Cloud-Functions gibt es ein kleines Problem. Um Ressourcen zu schonen werden
 die Cloud-Functions "heruntergefahren". Das bedeutet, wenn die Funktion nach einiger Zeit
@@ -63,7 +63,7 @@ ein Array der Produkte. Pro Produkt werden Name, Preis, Kategorie, Anzahl und de
 
 Die `shopping_data`-Subcollection hat nur ein Dokument namens `data`. Dieses Dokument enthält
 ein Feld `last`, das mehrere Maps beinhaltet. Diese Maps sind eine reduzierte Version einer
-`list`, wie oben beschrieben, und beinhalten nur den Zeitpunk des Abschließens und die Produkte
+`list`, wie oben beschrieben, und beinhalten nur den Zeitpunkt des Abschließens und die Produkte
 als Array. Bei den Produkten wird das Feld `bought` nicht mitgespeichert, da sowieso nur gekaufte
 Produkte gespeichert werden.
 
@@ -106,7 +106,7 @@ Es werden nur `displayName`, `photoURL` und `uid` gespeichert.
 \needspace{0.3\textheight}
 ## Beziehung der Benutzer zu den Gruppen
 
-Welcher Benutzer in welchen Gruppen ist wird in der `groups_user`-Collection gespeichert. Als Dokument-ID
+Welcher Benutzer in welchen Gruppen ist, wird in der `groups_user`-Collection gespeichert. Als Dokument-ID
 verwendet sie die `uid` des Benutzers. In den jeweiligen Dokumenten gibt es nur ein `groups`-Feld, welches
 die IDs der Gruppen beinhaltet, denen der Benutzer angehört. Die ID der Gruppe ist die zufällig generierte
 Dokument-ID der Gruppe.
@@ -152,7 +152,7 @@ den Namen des Produktes.
 Die Struktur der Storage ist sehr simpel aufgebaut. Für Benutzer müssen nur Profilbilder und eingescannte
 Rechnungen abgespeichert werden, für Gruppen nur die eingescannten Rechnungen. Es gibt zwei Ordner, `users` und
 `groups`. Jeder dieser Ordner hat als Unterordner Ordner, die nach den IDs der Benutzer bzw. der Gruppen benannt 
-sind. Diese Ordner beinhalten noch einen Unterordner namens `lists`. Zusätzlich zu dem `lists` Ordner wird bei den
-Benutzern auch noch das Profilbild `profile-picture.png` gespeichert. Der Ordner `lists` enthält wiederum Ordner 
+sind. Diese Ordner beinhalten noch einen Unterordner namens `lists`. Zusätzlich zu dem `lists`-Ordner wird bei den
+Benutzern auch noch das Profilbild `profile-picture.png` gespeichert. Der Ordner `lists` enthält wiederum Ordner, 
 die nach den IDs der Listen benannt sind. Darin befinden sich die eingescannten Rechnungen im Format 
 `YYYY-MM-DD HH:MM:SS.MS.png` bzw. `DateTime.now()` mit der Endung png.

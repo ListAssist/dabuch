@@ -34,12 +34,12 @@ Theoretisch können auch all diese Schritte übersprungen werden, indem der Text
 ### Lösung
 Es hat sich gezeigt, dass die beste Kombination die Folgende ist:
 
-* Gausscher Blur (5x5 Kernel)
+* Gaußscher Blur (5x5 Kernel)
 * Otsu Thresholding
 * `findContours()` mit `approxPolyDP()` und als Fallback `minAreaRect()`
 * Vier Punkt Transformation, um erkannten Teil des Bildes auszuschneiden
 
-Um diese Reihe an Transformationen und Bildmanipulationen anzuwenden, wurde die Bibliothek OpenCV verwendet. Essenziell ist es aber, die Funktion und Logik hinter diesen Transformationen zu verstehen. Aus diesem Grund wurden auch ein paar dieser Methoden, aus Interesse, selbst implementiert aber nicht verwendet, da diese nicht so perfomant wie die eingebauten Funktionen in der Bibliothek sind. Jede Funktion genau zu erklären, würde den Rahmen des Diplomarbeitsbuches sprengen.  
+Um diese Reihe an Transformationen und Bildmanipulationen anzuwenden, wurde die Bibliothek OpenCV verwendet. Essenziell ist es aber, die Funktion und Logik hinter diesen Transformationen zu verstehen. Aus diesem Grund wurden auch ein paar dieser Methoden, aus Interesse, selbst implementiert aber nicht verwendet, da diese nicht so performant wie die eingebauten Funktionen in der Bibliothek sind. Jede Funktion genau zu erklären, würde den Rahmen des Diplomarbeitsbuches sprengen.  
 
 Leider ist aber die oben erwähnte Lösung noch immer keine universelle Lösung um Rechnungen von ihrem Hintergrund zu trennen.
 
@@ -52,7 +52,7 @@ Diese Linien können mithilfe des Hough Transforms erkannt werden. Folgende Konf
 lines = cv2.HoughLinesP(b_w_edges, 1, np.pi / 180, threshold=150, minLineLength=10, maxLineGap=300)
 ```
 
-Da man davon ausgehen kann, dass die Rechnung gerade orientiert ist, müssen wir nur horizontale Linien erkennen. Da es aber sehr unwarscheinlich ist, dass die erkannte Linie wirklich einen Winkel von 0° besitzt, werden nur Linien genommen, welche sich zwischen -20° und 20° befinden.
+Da man davon ausgehen kann, dass die Rechnung gerade orientiert ist, müssen wir nur horizontale Linien erkennen. Da es aber sehr unwahrscheinlich ist, dass die erkannte Linie wirklich einen Winkel von 0° besitzt, werden nur Linien genommen, welche sich zwischen -20° und 20° befinden.
 
 ```python
 bounding_lines = []
@@ -121,7 +121,7 @@ D & Resultierende Distanz
 
 Diese Methode hat sich in der Praxis als gut erwiesen und erzielte bessere Ergebnisse als die Levensthein Distanz. Wichtig ist, dass die zu vergleichenden Strings in Kleinbuchstaben umgewandelt werden, da hier Groß und Kleinschreibung irrelevant ist und das Resultat nur verschlechtert.
 
-Um nur gute Übereinstimmungen dieses Algorithmuses zu verwenden, wurde ein Threshold von *0.55* verwendet. Nachdem die Distanz zwischen den Produkten berechnet wurde, wird eine modifizierte Variante des Stable Marriage Problems benutzt. Dieser Algorithmus soll enden, wenn Folgendes eintrifft:
+Um nur gute Übereinstimmungen dieses Algorithmus zu verwenden, wurde ein Threshold von *0.55* verwendet. Nachdem die Distanz zwischen den Produkten berechnet wurde, wird eine modifizierte Variante des Stable Marriage Problems benutzt. Dieser Algorithmus soll enden, wenn Folgendes eintrifft:
 
 * Alle erkannten Produkte sind gematcht.
 * Alle Produkte in der Einkaufsliste besitzen schon die beste Übereinstimmung.
@@ -171,7 +171,7 @@ Eine mögliche Verbesserung wäre es, mehrere String Distanzen (günstig wären 
 
 Wäre eine Produktdatenbank von Billa zur Verfügung gestellt worden, könnte man den oben genannten Algorithmus ebenfalls verwenden. Jedoch müsste man hier sehr auf die Rechenleistung achten, da diese Methode viel Rechenaufwand beansprucht.
 
-Zuletzt wäre es möglich, ein Long-Short-Term-Memory (LSTM) Netzwerk zu trainieren, welches ein Klassifizierungsproblem, wie die Kategorisierung der einzelnen Produkkte, löst.
+Zuletzt wäre es möglich, ein Long-Short-Term-Memory (LSTM) Netzwerk zu trainieren, welches ein Klassifizierungsproblem, wie die Kategorisierung der einzelnen Produkte, löst.
 
 # Backend
 Um die ganze Pipeline von Transformationen der Bilder mit der App zu verbinden, wird eine REST API benötigt. Um dies zu realisieren, wurde eine Flask REST API gebaut. 
@@ -227,7 +227,7 @@ Aus diesem Grund wurde der Camera Scanner in drei Modi unterteilt:
 wobei der Editor Modus auch in Kombination mit den anderen zwei Modi verwendet werden kann.
 
 ### Editor
-Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um einen perfomanten und flüssigen Editor zur Verfügung zu stellen, wurde das `image_cropper` Paket verwendet, welche das Foto nativ auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
+Dem User wird ein Crop, Zoom und Rotate Editor am Handy zur Verfügung gestellt. Um einen performanten und flüssigen Editor zur Verfügung zu stellen, wurde das `image_cropper` Paket verwendet, welche das Foto nativ auf Android als auch auf iOS transformiert. Der Nutzer muss daraufhin den wichtigen Teil der Rechnung selbst auswählen und bestätigen.
 
 #### Anforderungen
 * Wichtiger Inhalt ausgewählt

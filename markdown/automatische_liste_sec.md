@@ -1,6 +1,6 @@
 # Algorithmus
 
-Als Grundlage für die automatisch generierten Einkaufslisten wird das `last` Array,
+Als Grundlage für die automatisch generierten Einkaufslisten wird das `last`-Array,
 das die letzten 10 abgeschlossenen Einkaufslisten enthält, verwendet. Die Einkaufslisten
 sind nach dem Abschlussdatum sortiert. Zu Beginn wird überprüft, ob die vom Benutzer eingestellte
 Zeitspanne seit der letzten Erstellung bereits vergangen ist. Dafür sind die Felder
@@ -8,7 +8,7 @@ Zeitspanne seit der letzten Erstellung bereits vergangen ist. Dafür sind die Fe
 Sollte dies nicht der Fall sein, wird das Erstellen der Einkaufsliste abgebrochen.
 
 Der Erstellungsprozess läuft folgendermaßen ab. Zuerst wird die Zeitspanne in Tagen zwischen
-dem neuesten und dem ältersten Einkauf ausgerechnet. Danach wird für jedes Produkt, welches 
+dem neuesten und dem ältesten Einkauf ausgerechnet. Danach wird für jedes Produkt, welches 
 zumindest einmal auf einer Einkaufsliste vorkommt, ausgerechnet, wie oft es gekauft wurde. 
 Damit wird mithilfe der oben erwähnten Zeitspanne ausgerechnet, in welchem Zeitabstand
 eine Einheit des entsprechenden Produktes gekauft wurde. Dies wurde wie folgt umgesetzt:
@@ -187,8 +187,8 @@ die Gruppeneinstellungen geladen werden und die Cloud-Function mit der GruppenID
 Beim Überlegen, wie die AI aussehen sollte, gab es einige Schwierigkeiten mit der AI. Mit einem Convolutional Neural Network
 (CNN) ist diese Art von AI nicht möglich. Im Unterricht wurden CNN Grundlagen beigebracht, jedoch nur im Zusammenhang
 mit Bildklassifizierung und nicht als eine Art "Vorschlags-AI". Später im Unterricht wurde das sogenannte Recurrent 
-Neural Network (RNN) diskutiert. Diese Art von neuronalen Netzwerken wird vorallem bei Aktienkursvorhersagen verwendet.
-Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM) Layer.
+Neural Network (RNN) diskutiert. Diese Art von neuronalen Netzwerken wird vor allem bei Aktienkursvorhersagen verwendet.
+Anstelle der für CNNs benutzen Dense- und Conv2D-Layern, verwendet ein RNN sogenannte Long short-term memory (LSTM)-Layer.
 Da ein RNN Aktienpreise vorhersagen kann, wäre es auch möglich, dieses für Produktvorhersagen zu trainieren.
 
 # Unterschied zwischen Algorithmus und AI

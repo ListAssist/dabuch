@@ -17,12 +17,12 @@ Jeder einzelne Erfolg ist ein `ListTile`, welches sich in einer `Card` befindet.
 Die Liste wird mit dem `ListView.builder` Widget umgesetzt. Direkt unter der `AppBar` 
 wird dem Benutzer, mithilfe des `percent_indicator`\footnote{\url{https://pub.dev/packages/percent_indicator}} 
 Packages angezeigt, wie viele Erfolge schon freigeschaltet wurden. Diese 
-Fortschrittanzeige und der `ListView` befinden sich in einem `Column` Widget, wobei 
+Fortschrittsanzeige und der `ListView` befinden sich in einem `Column` Widget, wobei 
 das `ListView` Widget noch zusätzlich von einem `Expanded` Widget umschlossen werden muss,
 da es sonst zu einer Viewport Exception kommt.
 
 \begin{lstlisting}[language=Dart]
-/* Fortschrittanzeige der Erfolge */
+/* Fortschrittsanzeige der Erfolge */
 Text(
     _achievements.length.toString() + " / 20 Erfolge freigeschaltet"),
 ),
