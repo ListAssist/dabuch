@@ -1,8 +1,8 @@
 # Allgemein
-Firebase selbst kann als ein "Serverloses" System bezeichnet werden. Das Frontend (die App), kommuniziert direkt zu der Firestore Datenbank. Das heißt, dass jeder im Internet unseren Firestore Endpunkt erreichen kann als auch Daten hochladen und runterladen kann. Würden keine Regeln existieren, würden wir dem Internet vollen Lese- als auch Schreibezugriff auf unsere Datenbank ermöglichen.
+Firebase selbst kann als ein "Serverloses" System bezeichnet werden. Das Frontend (die App), kommuniziert direkt zur Firestore Datenbank. Das heißt, dass jeder im Internet unseren Firestore Endpunkt erreichen als auch Daten hochladen und runterladen kann. Würden keine Regeln existieren, würden wir dem Internet vollen Lese- und auch Schreibezugriff auf unsere Datenbank ermöglichen.
 
 # Security Rules
-Die Lösung seitens Firebase, sind Security Rules. Bevor eine Abfrage auf die Firestore Datenbank stattfindet, werden die Security Rules abgefragt, um zu prüfen ob diese Aktion auch wirklich zulässig ist. Die Authentizierung, falls eine vorhanden ist, kann unter dem Objekt `request.auth` gefunden werden.
+Die Lösung seitens Firebase sind Security Rules. Bevor eine Abfrage auf die Firestore Datenbank stattfindet, werden die Security Rules abgefragt, um zu prüfen ob diese Aktion auch wirklich zulässig ist. Die Authentizierung, falls vorhanden, kann unter dem Objekt `request.auth` gefunden werden.
 
 ## Funktionshilfen
 Um den Code lesbarer, als auch schöner zu schreiben, wurden Funktionen erstellt, welche über den Namen schnell vermitteln sollen, was diese bewirken.
@@ -69,7 +69,7 @@ match /users/{userId}/shopping_data/data {
 \end{lstlisting}
 
 ## Group Collections
-Die Gruppen Collection ist in zwei Teile getrennt worden, um die Komplexität im Frontend als auch bei den Security Rules zu mindern.
+Die Gruppen Collection ist in zwei Teile getrennt worden, um die Komplexität sowohl Frontend als auch bei den Security Rules zu mindern.
 
 ### Group Collection
 Hier ist die Idee, dass nur User auf eine bestimmte Gruppe zugreifen dürfen, welche die ID der angeforderten Gruppe in ihrem `groups_user` Dokument stehen haben. 
@@ -81,7 +81,7 @@ match /groups/{groupId}/{document=**} {
 }
 \end{lstlisting}
 
-Weiters, soll nur der Ersteller der Gruppe Zugriff auf Aktionen wie Einstellungen oder die Löschung haben. Den Ersteller finden wir im `creator` Feld des Dokumentes. Außerdem muss geprüft werden, ob der `creator` als auch die `members` nach einem Update nicht geändert werden.
+Weiters soll nur der Ersteller der Gruppe Zugriff auf Aktionen wie Einstellungen oder die Löschung haben. Den Ersteller finden wir im `creator` Feld des Dokumentes. Außerdem muss geprüft werden, ob der `creator` und die `members` nach einem Update nicht geändert werden.
 
 \begin{lstlisting}[language=Dart]
 match /groups/{groupId} {
@@ -106,9 +106,9 @@ match /groups/{groupId}/shopping_data/data {
 \end{lstlisting}
 
 ### Group Lookup
-Wie später noch erklärt wird \siehe{beziehung-der-benutzer-zu-den-gruppen}, existiert es eine Lookup-Collection für User, in welcher gespeichert wird, in welcher Gruppe man sich befindet.
+Wie später noch erklärt wird (\siehe{beziehung-der-benutzer-zu-den-gruppen}), existiert eine Lookup-Collection für User, in welcher gespeichert wird, in welcher Gruppe man sich befindet.
 
-Hier ist es wichtig **nur** Lesezugriff zu vergeben, da ansonsten der User sich selbst in Gruppen hinzufügen kann.
+Hier ist es wichtig, **nur** Lesezugriff zu vergeben, da sich ansonsten der User selbst in Gruppen hinzufügen kann.
 
 \begin{lstlisting}[language=Dart]
 match /groups_user/{userId} {
@@ -117,7 +117,7 @@ match /groups_user/{userId} {
 \end{lstlisting}
 
 ## Invites Collection
-Da die Invites über eine Cloud Function verwaltet werden, und dort validiert werden, wird für die Invites Collection nur Lesezugriff für den eingeladenen Nutzer erlaubt.
+Da die Invites über eine Cloud Function verwaltet und dort validiert werden, wird für die Invites Collection nur Lesezugriff für den eingeladenen Nutzer erlaubt.
 
 \begin{lstlisting}[language=Dart]
 match /invites/{inviteId} {
