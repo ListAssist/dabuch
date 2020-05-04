@@ -4,7 +4,7 @@
     twoside,
     numbers=noenddot,% Keine Punkte am Ende der Gliederungsnummern und davon
                      % abgeleiteten Nummern
-    toc=flat, %Flache TOC --- kann man anpassen (auskommentieren)
+    %toc=flat, %Flache TOC --- kann man anpassen (auskommentieren)
     12pt, % Schriftgröße
     titlepage, % es wird eine Titelseite verwendet
     parskip=full, % Abstand zwischen Absätzen (ganze Zeile)
@@ -52,6 +52,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{commath}
 
 %%? \usepackage{textcomp}
 \usepackage[hyphens]{url}
@@ -171,7 +172,7 @@
 
 \lstdefinelanguage{Dart}{
 	language=Java,
-	morekeywords={*,num,String,var,library,get,set}
+	morekeywords={*,num,String,var,library,get,set,await,Item,PossibleItem,Map,List,removeAt,containsKey,indexOf,add,allow}
 }
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -220,9 +221,9 @@
  breaklinks=true,pdfborder={0 0 0},backref=false,colorlinks=false]
  {hyperref}
 \hypersetup{pdftitle={ListAssist},
- pdfauthor={Wer auch immer},
+ pdfauthor={Team ListAssist},
  pdfsubject={Diplomarbeit},
- pdfkeywords={dies, das}}
+ pdfkeywords={Einkaufsliste, ListAssist}}
 \urlstyle{same} % don't use monospace font for urls
 
 %% for pandoc
@@ -322,7 +323,7 @@ Wien, \today
 \tableofcontents{}
 \cleardoublepage{}
 \listoftables
-\todo{kann entfallen falls (fast) leer}
+% \todo{kann entfallen falls (fast) leer}
 \cleardoublepage{}
 \listoffigures
 
@@ -407,7 +408,8 @@ Wien, \today
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Filip Coja %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Camera Scanner (COJ)}
+\hypertarget{camera-scanner-coj}{%
+\chapter{Camera Scanner (COJ)}\label{camera-scanner-coj}}
 \renewcommand{\kapitelautor}{Autor: Filip Coja}
 \input{tex/converted/camerascanner_coj.tex}
 
@@ -428,11 +430,9 @@ Wien, \today
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
 \input{tex/converted/produktsuche_kis.tex}
 
-\chapter{Spracheingabe (KIS)}
-\renewcommand{\kapitelautor}{Autor: Daniel Kisling}
-
 \chapter{Statistiken (KIS)}
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
+\input{tex/converted/statistiken_kis.tex}
 
 \chapter{Einstellungen (KIS)}
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
@@ -440,12 +440,15 @@ Wien, \today
 
 \chapter{Erfolge (KIS)}
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
+\input{tex/converted/erfolge_kis.tex}
 
 \chapter{Rezepte (KIS)}
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
+\input{tex/converted/rezepte_kis.tex}
 
 \chapter{Intro-View (KIS)}
 \renewcommand{\kapitelautor}{Autor: Daniel Kisling}
+\input{tex/converted/introview_kis.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tobias Seczer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Firebase (SEC)}
@@ -462,6 +465,7 @@ Wien, \today
 
 \chapter{Einladungen (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
+\input{tex/converted/einladungen_sec.tex}
 
 \chapter{Automatische Einkaufsliste (SEC)}
 \renewcommand{\kapitelautor}{Autor: Tobias Seczer}
@@ -469,15 +473,15 @@ Wien, \today
 
 \appendix
 
-\chapter{Anhang 1\label{chap:Anhang-1}}
+% \chapter{Anhang 1\label{chap:Anhang-1}}
 
-was auch immer: technische Dokumentationen etc.
+% was auch immer: technische Dokumentationen etc.
 
-Zusätzlich sollte es geben:
-\begin{itemize}
-\item Abkürzungsverzeichnis
-\item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
-\end{itemize}
+% Zusätzlich sollte es geben:
+% \begin{itemize}
+% \item Abkürzungsverzeichnis
+% \item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
+% \end{itemize}
 \printindex{}
 
 %% Flattersatz -- damit werden die langen URLs besser umgebrochen
@@ -486,27 +490,27 @@ Zusätzlich sollte es geben:
 \bibliography{diplom}
 
 
-\cleardoublepage
-\newcommand{\Messbox}[2]{%Parameters: #1=Breite, #2=Hoehe
-\setlength{\unitlength}{1.0mm}%
-\begin{picture}(#1,#2)%
-\linethickness{0.05mm}%
-\put(0,0){\dashbox{0.2}(#1,#2)%
-{\parbox{#1mm}{%
-\centering\footnotesize
-%{\bf MESSBOX}\\
-% if \textrm fails use \rm
-Breite $ = #1 {\textrm\ mm}$\\
-Höhe $ = #2 {\textrm\ mm}$
-}}}\end{picture}
-}
-\begin{center} {\Large --- Druckgröße kontrollieren! ---}
-\bigskip
+% \cleardoublepage
+% \newcommand{\Messbox}[2]{%Parameters: #1=Breite, #2=Hoehe
+% \setlength{\unitlength}{1.0mm}%
+% \begin{picture}(#1,#2)%
+% \linethickness{0.05mm}%
+% \put(0,0){\dashbox{0.2}(#1,#2)%
+% {\parbox{#1mm}{%
+% \centering\footnotesize
+% %{\bf MESSBOX}\\
+% % if \textrm fails use \rm
+% Breite $ = #1 {\textrm\ mm}$\\
+% Höhe $ = #2 {\textrm\ mm}$
+% }}}\end{picture}
+% }
+% \begin{center} {\Large --- Druckgröße kontrollieren! ---}
+% \bigskip
 
-\Messbox{100}{50} % Angabe der Breite/Hoehe in mm
-\bigskip
+% \Messbox{100}{50} % Angabe der Breite/Hoehe in mm
+% \bigskip
 
-{\Large --- Diese Seite nach dem Druck entfernen! ---}
-\todo{Diese Seite nach dem Druck entfernen!}
-\end{center}
+% {\Large --- Diese Seite nach dem Druck entfernen! ---}
+% \todo{Diese Seite nach dem Druck entfernen!}
+% \end{center}
 \end{document}

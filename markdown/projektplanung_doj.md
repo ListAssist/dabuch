@@ -12,13 +12,13 @@ Zusätzlich wird noch ein Sprint-Retrospektiv-Protokoll verfasst, welches die Er
 
 ## Projektplanung
 
-In den Sommerferien haben sich die Teammitglieder mit ihrem Betreuer getroffen, um die grobe Plannung des Projekts durchzuführen. Es wurden unter anderem mögliche Aufgaben definiert und grob geschätzt. Zum Beginn des Schuljahres wurden diese dann überarbeitet und zusätzlich wurden noch alle notwendigen Dokumente, wie unter anderem die Umfeldanalyse, die Riskoanalyse oder der Diplomarbeitsantrag verfasst.
+In den Sommerferien haben sich die Teammitglieder mit ihrem Betreuer getroffen, um die grobe Planung des Projekts durchzuführen. Es wurden unter anderem mögliche Aufgaben definiert und grob geschätzt. Zum Beginn des Schuljahres wurden diese dann überarbeitet und zusätzlich wurden noch alle notwendigen Dokumente, wie unter anderem die Umfeldanalyse, die Risikoanalyse oder der Diplomarbeitsantrag verfasst.
 
 ## Technische Planung
 
-Bei der technischen Plannung wird festgelegt welche Tools, Frameworks aber auch Programmiersprachen im Projekt verwendet werden sollen. Welche Tools und Software schlussendlich verwendet wurden, stehen im Spielregeldokument. Wir haben teilweise neue Tools, aber auch teilweise Tools gewählt, die wir unter anderem im Unterricht schon verwendet haben. 
+Bei der technischen Planung wird festgelegt welche Tools, Frameworks aber auch Programmiersprachen im Projekt verwendet werden sollen. Welche Tools und Software schlussendlich verwendet wurden, stehen im Spielregeldokument. Wir haben teilweise neue Tools, aber auch teilweise Tools gewählt, die wir unter anderem im Unterricht schon verwendet haben. 
 
-Für den Projektmanagement-Teil der Diplomarbeit wurde zum Time-Tracking das Tool Toogle verwendet. Weiters wurde zur Definition, Priorisierung und Einteilung der Userstories bzw. der Storypoints Taiga verwendet. In diesem Tool wurden auch die einzelnen Sprints definiert und die jeweiligen Tasks zugewiesen. Fürs designen der Icons, des Logos und das Design der App wurden folgende Tools verwendet:  
+Für den Projektmanagement-Teil der Diplomarbeit wurde zum Time-Tracking das Tool Toggle verwendet. Weiters wurde zur Definition, Priorisierung und Einteilung der Userstories bzw. der Storypoints Taiga verwendet. In diesem Tool wurden auch die einzelnen Sprints definiert und die jeweiligen Tasks zugewiesen. Fürs designen der Icons, des Logos und das Design der App wurden folgende Tools verwendet:  
 
 * Adobe Illustrator 
 * Inkscape
@@ -30,10 +30,10 @@ Für die Umsetzung der App sind die Plattformen:
 * Firebase 
 * Android Studio
 * PyCharm
-* Webstorm
+* WebStorm
 
 zum Einsatz gekommen. Das Animationsvideo wurde im Programm After Effects zusammengestellt. Der aktuelle Stand der App und des Diplomarbeitsbuches wurden regelmäßig auf Git gepusht.
 
 ## Umsetzung
 
-Mit dem Start des ersten Sprints sind wir von der Plannungsphase in die Umsetzungsphase umgestiegen. Es wurden, wie schon erwähnt, im Zeitraum zwischen September 2018 und März 2019, immer vierwöchige Sprints durchgeführt. Zwischen den Sprints gab es auch Meetings mit den Haupt- und Nebenbetreuern, um den aktuellen Status zu präsentieren, offene Fragen zu beantworten und das weitere Vorgehen zu besprechen. Durch die Meetings und durch die notwendigen Sprint-Dokumente und die Management-Summary, wurden die Betreuer am Laufenden gehalten.
+Mit dem Start des ersten Sprints sind wir von der Planungsphase in die Umsetzungsphase umgestiegen. Es wurden, wie schon erwähnt, im Zeitraum zwischen September 2018 und März 2019, immer vierwöchige Sprints durchgeführt. Zwischen den Sprints gab es auch Meetings mit den Haupt- und Nebenbetreuern, um den aktuellen Status zu präsentieren, offene Fragen zu beantworten und das weitere Vorgehen zu besprechen. Durch die Meetings und durch die notwendigen Sprint-Dokumente und die Management-Summary, wurden die Betreuer am Laufenden gehalten.

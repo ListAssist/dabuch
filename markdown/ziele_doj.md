@@ -76,7 +76,7 @@ RE-O 2	Benachrichtigung bei Angeboten
  
 Die App zeigt dem Benutzer aktuelle Angebote von Geschäften, passend zu seinen Einkaufslisten, an.
 
-RE-O 3	Rechnungen und Einkauflisten als PDF exportieren
+RE-O 3	Rechnungen und Einkaufslisten als PDF exportieren
 
 Die App zeigt dem Benutzer aktuelle Angebote von Geschäften, passend zu seinen Einkaufslisten, an.
 
@@ -100,15 +100,15 @@ Die App wird im AppStore zur Verfügung stehen.
 
 ## Filip Coja
 
-| Themenschwerpunkt       | Programmierung der App                                  |
-| ----------------------- | ------------------------------------------------------- |
-| Ziele und Anforderungen | RE-M 5 Automatisches einlesen der Rechnung per Foto     |
-|                         | RE-M 7 Sicherung der Daten                              |
-|                         | RE-M 8 Automatische Einkaufsliste                       |
-|                         | RE-M 9 Authentifizierung                                |
-|                         | RE-M 12 Projektwebsite                                  |
-|                         | RE-M 16 Veröffentlichung                                |
-|                         | RE-O 3 Rechnungen und Einkauflisten als PDF exportieren |
+| Themenschwerpunkt       | Programmierung der App                                   |
+| ----------------------- | -------------------------------------------------------- |
+| Ziele und Anforderungen | RE-M 5 Automatisches einlesen der Rechnung per Foto      |
+|                         | RE-M 7 Sicherung der Daten                               |
+|                         | RE-M 8 Automatische Einkaufsliste                        |
+|                         | RE-M 9 Authentifizierung                                 |
+|                         | RE-M 12 Projektwebsite                                   |
+|                         | RE-M 16 Veröffentlichung                                 |
+|                         | RE-O 3 Rechnungen und Einkaufslisten als PDF exportieren |
 
 ## Tobias Seczer
 

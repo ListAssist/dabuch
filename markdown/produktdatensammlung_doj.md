@@ -6,7 +6,7 @@ Damit ein Kunde überhaupt nach einem bestimmten Produkt suchen kann, müssen na
 
 Es wurden einige Möglichkeiten vorgeschlagen und berücksichtigt. Die Daten müssten natürlich aus einer Datenbank kommen. Wir wussten, dass eine Produktdatenbank von einem großen Supermarktkonzern vom Vorteil wäre, da sie diese regelmäßig aktualisieren und die Vielfalt der Produkte einfach enorm ist. Weiters haben wir auch noch öffentlichen Datenbanken in Betracht gezogen. Allerdings wussten wir auch, dass wir im schlimmsten Fall die Daten selber eintragen müssen, falls uns keine externe Datenbank Daten liefern würde. 
 
-Wir einigten uns darauf den Kundenservice des Unternehmes Billa zu kontaktieren. In einer förmlichen Email fragten wir, ob es einen Weg gäbe, ihre Datenbank zu verwenden, ohne gegen Rechte zu verstoßen und wenn ja, wie wir die Produkte in unsere App einbinden könnten. Darauf bekammen wir die Antwort vom Kundendienst, dass es ihnen nicht erlaubt ist, über interne Abläufe zu kommunizieren.
+Wir einigten uns darauf den Kundenservice des Unternehmes Billa zu kontaktieren. In einer förmlichen Email fragten wir, ob es einen Weg gäbe, ihre Datenbank zu verwenden, ohne gegen Rechte zu verstoßen und wenn ja, wie wir die Produkte in unsere App einbinden könnten. Darauf bekamen wir die Antwort vom Kundendienst, dass es ihnen nicht erlaubt ist, über interne Abläufe zu kommunizieren.
 
 Zusätzlich haben wir den Bundeslebensmittelschlüssel, welcher eine Lebensmittelnährwertdatenbank ist, in Betracht gezogen. Die hatten zwar eine Produktliste, diese war aber mit sehr vielen Zusatzinformationen gefüllt, welche wir nicht benötigten. Außerdem wäre die Verwendung dieser Datenbank viel zu teuer gewesen, weshalb wir einen anderen Weg einschlagen mussten.
 
