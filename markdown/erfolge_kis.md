@@ -61,7 +61,7 @@ und eine Punkteanzahl, die den Schwierigkeitsgrad des Erfolgs angibt und 10 bis 
 kann. Insgesamt gibt es 20 Erfolge, die freigeschaltet werden können. 
 
 Da bei manchen Erfolgen, zum Beispiel die Anzahl der vom Benutzer erstellten Einkaufslisten, 
-mitgezählt werden muss gibt es in Firebase die `stats` Map, in welcher alle benötigten Werte 
+mitgezählt werden muss, gibt es in Firebase die `stats` Map, in welcher alle benötigten Werte 
 gespeichert werden. 
 
 Das `AchievementsService` beinhaltet alle Methoden, mit denen die `stats` mitgezählt werden. Falls der 

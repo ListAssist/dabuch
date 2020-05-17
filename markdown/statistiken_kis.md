@@ -29,7 +29,7 @@ den Balken haben. Dies wurde mit der `sublist` Methode gelöst.
 
 \needspace{10cm}
 
-Die Skalierung der Balken wird automatisch von `charts_flutter` gemacht. Da es bei schlechter Internetverbindung zu
+Die Skalierung der Balken wird automatisch von `charts_flutter` durchgeführt. Da es bei schlechter Internetverbindung zu
 Verzögerungen beim Laden der Daten kommen kann, wird, bei fehlenden Daten, ein Shimmer anstelle eines leeren Diagramms angezeigt.
 Die `animate` Variable bewirkt bei `true`, dass das Diagramm beim Eintritt in das UI animiert wird.
 
