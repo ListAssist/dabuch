@@ -8,9 +8,7 @@
 \end{figure}
 
 Die Einstellungen bestehen aus fünf Hauptkategorien, nämlich den Konto Einstellungen, den App Einstellungen, dem 
-Datenschutz Bereich, dem "Fehler melden" Bereich und dem Info Bereich. Anfangs gab es noch eine sechste Kategorie,
-die Benachrichtigungseinstellungen, da jedoch die Implementierung von App Benachrichtigungen (z.B. bei Einladungen in
-eine Gruppe) sehr zeitaufwendig gewesen wäre und diese kein Hauptziel darstellte, wurde sie nicht umgesetzt.
+Datenschutz Bereich, dem "Fehler melden" Bereich und dem Info Bereich.
 
 Die Buttons "Datenschutz" und "Info" führen auf die Projektwebseite und der "Fehler melden" Button führt auf das Git Repository.
 Das `url_launcher`\footnote{\url{https://pub.dev/packages/url_launcher}} Package wurde zum Öffnen der Webseiten im Browser verwendet.
