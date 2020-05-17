@@ -18,7 +18,7 @@
 
 \needspace{10cm}
 
-Um es dem Benutzer zu ermöglichen bestimmte Einkaufslisten schneller zu erstellen,
+Um es dem Benutzer zu ermöglichen, bestimmte Einkaufslisten schneller zu erstellen,
 ohne jedes Mal die selben Produkte zu suchen, wurde die Rezepte Funktion entwickelt.
 Mit dieser Funktion haben Benutzer die Möglichkeit Vorlagen für häufig verwendete 
 Einkaufslisten, sogenannte Rezepte, zu erstellen.
