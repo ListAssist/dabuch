@@ -20,9 +20,9 @@ Bei der technischen Planung wird festgelegt welche Tools, Frameworks aber auch P
 
 Für den Projektmanagement-Teil der Diplomarbeit wurde zum Time-Tracking das Tool Toggle verwendet. Weiters wurde zur Definition, Priorisierung und Einteilung der Userstories bzw. der Storypoints Taiga verwendet. In diesem Tool wurden auch die einzelnen Sprints definiert und die jeweiligen Tasks zugewiesen. Fürs designen der Icons, des Logos und das Design der App wurden folgende Tools verwendet:  
 
-* Adobe Illustrator 
+* Adobe Illustrator
 * Inkscape
-* Photoshop  
+* Photoshop
 * Adobe XD 
 
 Für die Umsetzung der App sind die Plattformen: 
